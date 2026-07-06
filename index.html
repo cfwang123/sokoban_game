@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>推箱子</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header>
+    <h1>推箱子</h1>
+    <div class="toolbar">
+      <label>关卡：
+        <select id="levelSelect"></select>
+      </label>
+      <span id="moveCount">步数：0</span>
+      <button id="undoBtn">撤销</button>
+      <button id="resetBtn">重置</button>
+    </div>
+  </header>
+
+  <main>
+    <canvas id="gameCanvas"></canvas>
+  </main>
+
+  <div class="controls">
+    <div class="ai-control">
+      <button id="viewAnswerBtn" class="ai-btn" disabled>查看答案</button>
+      <span id="aiStatus" class="ai-status"></span>
+    </div>
+  </div>
+
+  <div id="winOverlay" class="win-overlay hidden">
+    <div class="win-box">
+      <h2>恭喜过关！</h2>
+      <p id="winMoves"></p>
+      <button id="nextLevelBtn">下一关</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/pathfinding.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/levels_data.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+# --- Build artifacts ---
+*.o
+*.obj
+*.exe
+*.dll
+*.lib
+*.so
+*.dylib
+
+# --- C application ---
+c_app/sokoban.exe
+c_app/*.o
+c_app/lib/cjson/*.o
+
+# --- IDE & Editor ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.trae/
+
+# --- OS files ---
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# --- User config / runtime data ---
+c_app/lastlevel.ini
+
+# --- Logs & temp ---
+*.log
+*.tmp
+*.temp
+
+# --- Node.js (if used) ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- Environment & secrets ---
+.env
+.env.local
+.env.*.local
