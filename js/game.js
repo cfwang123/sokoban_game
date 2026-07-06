@@ -707,6 +707,23 @@ levelSelect.addEventListener('change', () => {
 undoBtn.addEventListener('click', undo);
 resetBtn.addEventListener('click', resetLevel);
 
+// ---- 快捷键弹窗 ----
+const shortcutOverlay = document.getElementById('shortcutOverlay');
+const shortcutBtn = document.getElementById('shortcutBtn');
+const shortcutCloseBtn = document.getElementById('shortcutCloseBtn');
+
+shortcutBtn.addEventListener('click', () => {
+  shortcutOverlay.classList.remove('hidden');
+});
+shortcutCloseBtn.addEventListener('click', () => {
+  shortcutOverlay.classList.add('hidden');
+});
+shortcutOverlay.addEventListener('click', (e) => {
+  if (e.target === shortcutOverlay) {
+    shortcutOverlay.classList.add('hidden');
+  }
+});
+
 nextLevelBtn.addEventListener('click', () => {
   if (!state) return;
   const next = state.levelIndex + 1;

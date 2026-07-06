@@ -187,3 +187,67 @@ canvas {
 .win-box button:hover {
   background: #ff6b81;
 }
+
+/* ---- Shortcut Overlay ---- */
+.shortcut-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+}
+
+.shortcut-overlay.hidden {
+  display: none;
+}
+
+.shortcut-box {
+  background: #16213e;
+  border-radius: 16px;
+  padding: 28px 36px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+  min-width: 320px;
+}
+
+.shortcut-box h2 {
+  font-size: 22px;
+  color: #e94560;
+  margin-bottom: 16px;
+}
+
+.shortcut-box table {
+  margin: 0 auto 20px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.shortcut-box td {
+  padding: 6px 16px;
+  font-size: 14px;
+  color: #ccc;
+}
+
+.shortcut-box td:first-child {
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.shortcut-box button {
+  background: #e94560;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.shortcut-box button:hover {
+  background: #ff6b81;
+}
