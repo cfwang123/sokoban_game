@@ -206,9 +206,8 @@ static int do_move(GameState *s, int dx, int dy, int checkWin) {
         return 1;
     }
 
-    /* 纯移动 */
+    /* 纯移动（不计步数） */
     s->player.x = nx; s->player.y = ny;
-    s->moves++;
     hist_push(s, playerBefore, 0, (Pos){0,0}, (Pos){0,0});
     return 1;
 }
@@ -240,9 +239,8 @@ void game_undo(GameState *s) {
             s->moves--;
             poppedBox = 1;
         } else {
-            /* 纯移动：恢复玩家位置，步数减一，继续弹 */
+            /* 纯移动：恢复玩家位置（不计步数），继续弹 */
             s->player = pb;
-            s->moves--;
         }
     }
 }

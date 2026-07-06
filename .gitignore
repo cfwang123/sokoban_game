@@ -19,6 +19,7 @@ c_app/lib/cjson/*.o
 *.swo
 *~
 .trae/
+/tmp
 
 # --- OS files ---
 .DS_Store

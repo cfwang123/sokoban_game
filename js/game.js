@@ -317,7 +317,7 @@ function tryMove(dx, dy) {
     return true;
   }
 
-  // 普通移动
+  // 普通移动（不计步数）
   const histEntry = {
     player: { x: state.player.x, y: state.player.y },
     boxMoved: null
@@ -326,7 +326,6 @@ function tryMove(dx, dy) {
 
   state.player.x = nx;
   state.player.y = ny;
-  state.moves++;
   updateUI();
   render();
   return true;
@@ -371,7 +370,6 @@ function tryMoveInstant(dx, dy) {
 
   state.player.x = nx;
   state.player.y = ny;
-  state.moves++;
   return true;
 }
 
@@ -382,9 +380,8 @@ function undo() {
   while (state.history.length > 0) {
     entry = state.history.pop();
     if (entry.boxMoved) break;
-    // 纯移动：恢复玩家位置，但不计入撤销
+    // 纯移动：恢复玩家位置（不计步数）
     state.player = entry.player;
-    state.moves--;
   }
   if (!entry || !entry.boxMoved) {
     updateUI();
