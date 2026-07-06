@@ -2,13 +2,14 @@
 
 > [中文版](README_zh.md)
 
-A classic Sokoban puzzle game implemented in both **C (console)** and **JavaScript (web)**.
+A classic Sokoban puzzle game implemented in **C (console)**, **JavaScript (2D web)**, and **three.js (3D web)**.
 
 ## Features
 
 - Classic Sokoban gameplay with multiple levels
 - **C console version** — lightweight terminal-based game
-- **Web version** — playable in browser with a clean UI
+- **Web version** — playable in browser with a clean 2D UI
+- **3D web version** — built with three.js, featuring a top-down default camera, mouse rotation, and stylized 3D warehouse visuals
 - Built-in **pathfinding AI** to help solve puzzles
 - Level solving and batch-solving scripts
 - Level data in JSON format for easy editing
@@ -26,12 +27,20 @@ sokoban/
 │   ├── console.h        # Console abstraction
 │   ├── lib/cjson/       # JSON parser (cJSON)
 │   └── Makefile         # Build system
-├── js/                  # Web version (JavaScript)
+├── js/                  # 2D web version (JavaScript)
 │   ├── game.js          # Game engine
 │   ├── levels.js        # Level loader
 │   ├── levels_data.js   # Built-in level data
 │   ├── ai.js            # AI solver
 │   └── pathfinding.js   # Pathfinding
+├── html_app/            # Standalone 2D web app
+│   ├── index.html
+│   ├── style.css
+│   └── js/
+├── html_3dapp/          # Standalone 3D web app (three.js)
+│   ├── index.html
+│   ├── style.css
+│   └── js/
 ├── scripts/             # Utility scripts
 │   ├── solve_levels.js  # Batch solver
 │   ├── convert_levels.js
@@ -43,15 +52,28 @@ sokoban/
 
 ## Screenshots
 
-| C Console Version | Web Version |
-|:---:|:---:|
-| ![C Sokoban](documents/c_sokoban.png) | ![HTML Sokoban](documents/html_sokoban.png) |
+| C Console Version | 2D Web Version | 3D Web Version |
+|:---:|:---:|:---:|
+| ![C Sokoban](documents/c_sokoban.png) | ![HTML Sokoban](documents/html_sokoban.png) | ![3D HTML Sokoban](documents/html_3d.png) |
 
 ## Getting Started
 
-### Web Version
+### 2D Web Version
 
 Open `index.html` in any modern browser. No server required.
+
+### 3D Web Version
+
+Open `html_3dapp/index.html` in a modern browser through a local HTTP server.
+
+Example:
+
+```bash
+cd html_3dapp
+python -m http.server 8765
+```
+
+Then visit `http://localhost:8765/`.
 
 ### C Console Version
 
@@ -79,7 +101,7 @@ Requires a C compiler (e.g., GCC / MinGW on Windows).
 | PageDown         | Next level     |
 | Q / Esc          | Quit           |
 
-### Web Version
+### 2D Web Version
 
 | Key              | Action          |
 |------------------|----------------|
@@ -90,6 +112,19 @@ Requires a C compiler (e.g., GCC / MinGW on Windows).
 | Space            | Next level (when won) |
 | PageUp           | Previous level |
 | PageDown         | Next level     |
+
+### 3D Web Version
+
+| Key / Mouse       | Action          |
+|-------------------|----------------|
+| Arrow keys / WASD | Move player    |
+| Z                 | Undo move      |
+| R                 | Reset level    |
+| F1                | View answer    |
+| Space             | Next level (when won) |
+| PageUp            | Previous level |
+| PageDown          | Next level     |
+| Mouse drag        | Rotate camera  |
 
 ## License
 

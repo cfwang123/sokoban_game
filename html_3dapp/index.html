@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>推箱子 3D</title>
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<div id="app">
+  <header>
+    <h1>推箱子 3D</h1>
+    <div class="toolbar">
+      <label>关卡：
+        <select id="levelSelect"></select>
+      </label>
+      <span id="moveCount">步数：0</span>
+      <button id="undoBtn">撤销</button>
+      <button id="resetBtn">重置</button>
+      <button id="shortcutBtn">快捷键</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="canvasWrap">
+      <canvas id="gameCanvas"></canvas>
+    </div>
+  </main>
+
+  <div class="controls">
+    <div class="ai-control">
+      <button id="viewAnswerBtn" class="ai-btn" disabled>查看答案</button>
+      <span id="aiStatus" class="ai-status"></span>
+    </div>
+  </div>
+
+  <div id="winOverlay" class="win-overlay hidden">
+    <div class="win-box">
+      <h2>恭喜过关！</h2>
+      <p id="winMoves"></p>
+      <button id="nextLevelBtn">下一关</button>
+    </div>
+  </div>
+
+  <div id="shortcutOverlay" class="shortcut-overlay hidden">
+    <div class="shortcut-box">
+      <h2>快捷键</h2>
+      <table>
+        <tr><td>方向键 / WASD</td><td>移动玩家</td></tr>
+        <tr><td>Z</td><td>撤销上一步</td></tr>
+        <tr><td>R</td><td>重置关卡</td></tr>
+        <tr><td>F1</td><td>查看答案</td></tr>
+        <tr><td>Space</td><td>下一关（通关后）</td></tr>
+        <tr><td>PageUp</td><td>上一关</td></tr>
+        <tr><td>PageDown</td><td>下一关</td></tr>
+        <tr><td>鼠标拖拽</td><td>旋转视角</td></tr>
+      </table>
+      <button id="shortcutCloseBtn">关闭</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/pathfinding.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/levels_data.js"></script>
+<script type="module" src="js/game.js"></script>
+</body>
+</html>

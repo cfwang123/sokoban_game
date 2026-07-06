@@ -2,13 +2,14 @@
 
 > [English](README.md)
 
-一个经典的推箱子益智游戏，提供 **C 语言控制台版** 和 **JavaScript 网页版** 两种实现。
+一个经典的推箱子益智游戏，提供 **C 语言控制台版**、**JavaScript 2D 网页版** 和 **three.js 3D 网页版** 三种实现。
 
 ## 功能特点
 
 - 经典推箱子玩法，内置多个关卡
 - **C 控制台版** — 轻量级终端游戏
-- **网页版** — 浏览器直接游玩，界面简洁
+- **2D 网页版** — 浏览器直接游玩，界面简洁
+- **3D 网页版** — 基于 three.js，提供默认俯视视角、鼠标旋转和 3D 仓库风格表现
 - 内置 **寻路 AI** 辅助解谜
 - 关卡求解与批量求解脚本
 - 关卡数据使用 JSON 格式，方便编辑
@@ -26,12 +27,20 @@ sokoban/
 │   ├── console.h        # 控制台抽象层
 │   ├── lib/cjson/       # JSON 解析库 (cJSON)
 │   └── Makefile         # 构建脚本
-├── js/                  # 网页版 (JavaScript)
+├── js/                  # 2D 网页版 (JavaScript)
 │   ├── game.js          # 游戏引擎
 │   ├── levels.js        # 关卡加载
 │   ├── levels_data.js   # 内置关卡数据
 │   ├── ai.js            # AI 求解
 │   └── pathfinding.js   # 寻路算法
+├── html_app/            # 独立 2D 网页应用
+│   ├── index.html
+│   ├── style.css
+│   └── js/
+├── html_3dapp/          # 独立 3D 网页应用 (three.js)
+│   ├── index.html
+│   ├── style.css
+│   └── js/
 ├── scripts/             # 工具脚本
 │   ├── solve_levels.js  # 批量求解
 │   ├── convert_levels.js
@@ -43,15 +52,28 @@ sokoban/
 
 ## 截图
 
-| C 控制台版 | 网页版 |
-|:---:|:---:|
-| ![C 推箱子](documents/c_sokoban.png) | ![HTML 推箱子](documents/html_sokoban.png) |
+| C 控制台版 | 2D 网页版 | 3D 网页版 |
+|:---:|:---:|:---:|
+| ![C 推箱子](documents/c_sokoban.png) | ![HTML 推箱子](documents/html_sokoban.png) | ![3D 推箱子](documents/html_3d.png) |
 
 ## 快速开始
 
-### 网页版
+### 2D 网页版
 
 直接用浏览器打开 `index.html` 即可，无需启动服务器。
+
+### 3D 网页版
+
+建议通过本地 HTTP 服务器打开 `html_3dapp/index.html`。
+
+示例：
+
+```bash
+cd html_3dapp
+python -m http.server 8765
+```
+
+然后访问 `http://localhost:8765/`。
 
 ### C 控制台版
 
@@ -79,7 +101,7 @@ make
 | PageDown       | 下一关        |
 | Q / Esc        | 退出          |
 
-### 网页版
+### 2D 网页版
 
 | 按键             | 功能          |
 |----------------|-------------|
@@ -90,6 +112,19 @@ make
 | Space          | 下一关（通关后）  |
 | PageUp         | 上一关        |
 | PageDown       | 下一关        |
+
+### 3D 网页版
+
+| 按键 / 鼠标       | 功能          |
+|----------------|-------------|
+| 方向键 / WASD    | 移动玩家       |
+| Z              | 撤销上一步      |
+| R              | 重置关卡       |
+| F1             | 查看答案       |
+| Space          | 下一关（通关后）  |
+| PageUp         | 上一关        |
+| PageDown       | 下一关        |
+| 鼠标拖拽         | 旋转视角       |
 
 ## 许可证
 
