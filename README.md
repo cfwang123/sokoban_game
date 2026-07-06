@@ -1,5 +1,7 @@
 # Sokoban
 
+> [中文版](README_zh.md)
+
 A classic Sokoban puzzle game implemented in both **C (console)** and **JavaScript (web)**.
 
 ## Features

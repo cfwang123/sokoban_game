@@ -1,5 +1,7 @@
 # 推箱子 (Sokoban)
 
+> [English](README.md)
+
 一个经典的推箱子益智游戏，提供 **C 语言控制台版** 和 **JavaScript 网页版** 两种实现。
 
 ## 功能特点
