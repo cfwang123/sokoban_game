@@ -65,13 +65,31 @@ Requires a C compiler (e.g., GCC / MinGW on Windows).
 
 ## Controls
 
-| Key       | Action       |
-|-----------|-------------|
-| Arrow keys / WASD | Move player |
-| R         | Reset level |
-| Z         | Undo move   |
-| A         | AI solve    |
-| Q / Esc   | Quit        |
+### C Console Version
+
+| Key              | Action          |
+|------------------|----------------|
+| Arrow keys / WASD | Move player    |
+| Z                | Undo move      |
+| R                | Reset level    |
+| F1               | AI solve       |
+| F2               | Select level   |
+| Space            | Next level (when won) |
+| PageUp           | Previous level |
+| PageDown         | Next level     |
+| Q / Esc          | Quit           |
+
+### Web Version
+
+| Key              | Action          |
+|------------------|----------------|
+| Arrow keys / WASD | Move player    |
+| Z                | Undo move      |
+| R                | Reset level    |
+| F1               | View answer    |
+| Space            | Next level (when won) |
+| PageUp           | Previous level |
+| PageDown         | Next level     |
 
 ## License
 
