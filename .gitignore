@@ -11,6 +11,7 @@
 c_app/sokoban.exe
 c_app/*.o
 c_app/lib/cjson/*.o
+sokoban_linux/*.py
 
 # --- IDE & Editor ---
 .vscode/
