@@ -1,5 +1,19 @@
 [
   {
+    "id": -1,
+    "name": "Classic Star",
+    "puzzle": [
+      "#######",
+      "#. . .#",
+      "# $$$ #",
+      "#.$@$.#",
+      "# $$$ #",
+      "#. . .#",
+      "#######"
+    ],
+    "solution": "ULrRldDLUdrRluurDlllURdddlUrurrrDLuuurDldlluuRlddrrddLruulluurRddlUdrddlLuurD"
+  },
+  {
     "id": 0,
     "name": "1 L",
     "puzzle": [
@@ -964,8 +978,7 @@
       "##.*..-$-#",
       "-#########"
     ],
-    "solution": null
-  },
+    "solution": "drrDrddLUlUdrruLdlLdlLUlluuRlddrrRdrRurrdLLuruuLDrddlLLuuRDlllluurDldRuRRlluurDlddRluurDrDrRdrruLLruulDLLrruulDrdrddlULrruullDurDllLulldRRRR"},
   {
     "id": 66,
     "name": "34 L",
@@ -1055,8 +1068,7 @@
       "###----#",
       "--######"
     ],
-    "solution": null
-  },
+    "solution": "uLuLDuullDldDRURUruLdrrdLLLdlUrrrDLurrrdLulldddrrULdlUrUUruLdrrdLullDulldRurrrdddlllUdrruruuululDrdLLrrrddlUruLdddlluUlldRurRUrrdLLLruruulDrddllLrrrddllUdrruulLrruulDrdLrddlU"},
   {
     "id": 72,
     "name": "37 L",
@@ -1069,8 +1081,7 @@
       "##--#.---##",
       "-#########"
     ],
-    "solution": null
-  },
+    "solution": "rrurrDulldRDDLULrruurrdddLruuullddlddlUruruurrdddldLUdLulLLdlUluurDldRRRRRdrruruuulllDllDurrurrrdddldlluUddrruLdlUlUlLdlluRRdRRRdrruLLrULdrrruuullDulDurrrdLL"},
   {
     "id": 73,
     "name": "37 R",
@@ -1114,8 +1125,7 @@
       "##-----###",
       "-#######"
     ],
-    "solution": null
-  },
+    "solution": "ddLLLUllDllDurDururrdLdLrddllllUdrrrruulLuRdrddllUdlluRdrrruuUluRdrrrruulDrdLLLLdlUllDRurrdddlllluluRddrrUUddlluuRuRRlldlddrruUddrruuLrddlllluRuuRldddrrruuUrrddLruullLdLLdlluRRddrrrUUluRdddllluuuRRdLrrddllUUdlluRuRlddrU"},
   {
     "id": 76,
     "name": "39 L",
@@ -1177,8 +1187,7 @@
       "-#---##",
       "-#####"
     ],
-    "solution": null
-  },
+    "solution": "uLrddLLLuuLLrrRlllddRlulldRddrrUrUrrruuLLLrrrddllldlLdlUrrrurrruulllDLLrDururrrddllLulluRRRldddLUrrrruuLrddllldldlluRUddrUruuuRlllDRDrrrruuLLLrrrddllUdldLuuluRddddlluRUrrrrruululDDurrddlLLdLdlluRuRuuRRddrruuLulDrrddllLrrruullDLullDurrddRuullldRurrddldLruruurrddLruulllldRddlUruurrrddlLLdldlluRURlddrUrUrrruulllllDDuurrrrrddllldldlluRuuurrrrrddllUdrruulLLrddldLdlluRuuuRRRddlLrruullDurrddrruuLrddllldLUddlluRUrrrrruululDDurrddlLL"},
   {
     "id": 80,
     "name": "41 L",
@@ -1192,8 +1201,7 @@
       "-#####----##",
       "-----######"
     ],
-    "solution": null
-  },
+    "solution": "lUluRRRRdRddrrrUdllluuluUddrdRluluurDrruLLdllllddrUluRRRdLullddrUluRdrruRurrdLDLddrUdrruLLUUruLdrDlddrruruLLrddlluUrrdLullLLLuRllldRRRRRRRdrruLLLrddlU"},
   {
     "id": 81,
     "name": "41 R",
@@ -1240,8 +1248,7 @@
       "--######---#",
       "-------#####"
     ],
-    "solution": null
-  },
+    "solution": "dRRuuuRurrDLdddRdLuuuLruulDlDDDuuurrddddrRRuLuLrddlluRuUluurDllldddRRdrrrdrruLLLLUlUUddrdrruLuLrddlUlUdrruLdllluuururrdDDuuulldldddlluRdrrrRuuuulldldDldRRluuurRurDDD"},
   {
     "id": 84,
     "name": "43 L",
@@ -1286,8 +1293,7 @@
       "#---#--#",
       "########"
     ],
-    "solution": null
-  },
+    "solution": "rrrrDLrDLuulldRldlDurRDuuurrdLrdLrDrddlUUUluullddRluurrdLddRUllldRuruullDRddddlUruurrrDullluurrrDullDurrdLddrUluulldddRlddrUluuuurrddLruLdDlddrUUUruulDulldRurrddrdLuuurDullldRlDDuuurrrdLLrddrUdlLruuullldRurrdddlddlluRUrruuurDlddllddrUluURDrrrddlUruLULLdRllddrUluRuruulDulldRRlDDrddlUruUrrDLulluurrrDulllddDurrdLuluurrDullddrdrrrddlUruLULuurDDuulllddRluurrdLddddlluRUruuulldRRddlddrUluUruulldRurrrddLLDlddrUluUrrrDuuullDurrdddrddlUUUlLuurrDDllDlddrUUUrruulDulDulldRRlDDuuurrrdLLrrdDLruuulllldRRurrdddrddlUUUdlLUluurrrDDLrDrddlUruLuuulllddRRlluurrrdDDrddlUUUlldRulluurrDDuLddddlluRdrUUUlDurruullDRddlUdrddlUruurrDLuluurrDullddlDurrdLrrrddlUruLUlluurrDDlldddlluRdrUUUrruulDulDrrdDuuulllldRurrdrddLUruulllddRlDRuluurrrddLLrruulDulldRddlUdrddlUUruuulldRurrrddLrdLuruulDrddrddlUruL"},
   {
     "id": 87,
     "name": "44 R",
@@ -1302,8 +1308,7 @@
       "-###--#",
       "---####"
     ],
-    "solution": null
-  },
+    "solution": "DDRRUrrrrrddlllULulDlddrrdrUUdllluuluRluurDlddrrruRDlllddrUluluurDRDrruLuLrddrDrrruulLLdllUlluurDlddRddrrdrUUrrruulllLuLrdrrrrddlllUddllluuRDuUrRddrrruulLrrddllluLulDlluRluurDDDrruuLrddlluluurDrrddrdrrruulluurDldLdlllluurrDurDrddrrruuLLLLullDurrdL"},
   {
     "id": 88,
     "name": "45 L",
@@ -1443,8 +1448,7 @@
       "-####----#",
       "----######"
     ],
-    "solution": null
-  },
+    "solution": "uURRurrdrdddlllUdrrruuuullldlllUdrrrRurrddddllulUddrrruuuulldRlDlddrUdrruuUluRddddlluUddrruuuulllDurrdrdddlluuUlllluluurDRDulldRdRRRuuLLrrddllluluurDrDulldRdRRlddlUUUluurDrDurrdRRdrdddlluuULuRdddlUruululldDuulldRurrrdDuulllddrRRuullDldRRllddrUluuurrrdrDululldlddrUluurrrdrdDuululllddrrRuullDDrrDrUllllddrUluuurrrddrrrdddlllUUddrUluUlLuurrDulldddlUruulldRurDDrRlllddrUluuurrrddRRlluulldldRRR"},
   {
     "id": 97,
     "name": "49 R",
@@ -1520,8 +1524,7 @@
       "--#--##",
       "--####"
     ],
-    "solution": null
-  },
+    "solution": "LdlUUlluuRDRRULuurDRRDDuulllddlluRdrrRllddrrUdlluurUdlddrruRULLuLuurDrrDrrddLruullullldDlluRdrrrddllUdrruulLLulDrrrULuurDrrdrrddlLrruulluurDllllddlluRdrddrrUrUUddrruuLuLLrrdrddlluLLrdrrruulullLullDDuurrdDuullddRDuluurDrrrrdrddlluUruLLrddlL"},
   {
     "id": 102,
     "name": "52 L",
@@ -1550,8 +1553,7 @@
       "#####--#",
       "----####"
     ],
-    "solution": null
-  },
+    "solution": "llDulldRRDDDrddlUlLuuRUruurrddLruulllldRurrrddlDDuuruulDulldRlddRUdllddrrUdlluuruuurrrddLLrruulDLdDuuulldRRddllddrrUdlluurUruurrdLrdLLDllddrrUrULdddrUluurUruullDurrddldlddrUdllluullddRRRRuuLLLrrrUrruullDurDullldRDuurrdLulDrDDLLddrrUdlluurUrurrdLuullldRddlddrrurULdddrUUluLuuurrdLulDDurDurrdLLDDrUluurrdLddddlUU"},
   {
     "id": 104,
     "name": "53 L",
@@ -1566,8 +1568,7 @@
       "----####--##",
       "-------####"
     ],
-    "solution": null
-  },
+    "solution": "UUluurrrDDuulllddrddRRRdrUURldllUUddrruruuLrddldlllluuluurrrDDuulllddrddrrrruruulDDDldRRlulllluuluurrrddDRluuulllddrddrRRuRuuLrddldllluuluurrrDDDrddrUUlluuulllddrddrRRdrrRdrUruLdlllluuluuullDurrdLrddrrDldRRluulluuullldRRurDDurrDDldllluUluRRldddrrrdrrRdrUlllluuruulLdDuuulldRurDDurrddlddrUUdlLrurUruLLLulldRldddRRUrrddlUruuulLDDuuulldRurDDulldddrRRdrUUdlllluuurrdDRluulldddrRR"},
   {
     "id": 105,
     "name": "53 R",
@@ -1723,8 +1724,7 @@
       "#######---#",
       "------#####"
     ],
-    "solution": null
-  },
+    "solution": "rrURURRRddrruLruulDDulllldldlluRuRRllddrUruRRRDrrddllUlULrdrdrruLuruulDlLdlLLruRdlldlluRuuurrrDDlUddLdlluRuRlddrUrUruuLrddRdLrdRdrruuulLLdlUrrrrddLUruLLLdRurrdddllUUdrruLdllulLuUddrruLdrdrruuLLdllUdrruLrrrdLullUdrrddlUruLdlUdlLdlluRR"},
   {
     "id": 115,
     "name": "58 R",
@@ -1771,8 +1771,7 @@
       "#---##---@#",
       "###########"
     ],
-    "solution": null
-  },
+    "solution": "uuuuLullDurrdrddddlllUdrrruuuulLdLLLLuullddRdrUdlddrUluurrrrruulDrrrddddllluLLLdlluRuuluurrrDRRldLurrurrdLdLrurrddddllluUdllLdlluRuuluurrrdrRurrdrddddllluuUrUdlddllLdlluRRRRllluuluurrrdrRuRlddrUrrddddlllUUUddlllluuluurrrddRululllddrRRuulDullddrddrrrrdrrruuuulUdrddddlllulllluuluurrdrrRuRldllulllddrddrrrruUrUdlddlllluuluurrdrdRululllddrRRllddrUluluurrdrrRllulllddrddrrrruUddlllululuurrdrdRululllddrRurrdRlulldRR"},
   {
     "id": 118,
     "name": "60 L",
@@ -1786,8 +1785,7 @@
       "######-.----#",
       "-----########"
     ],
-    "solution": null
-  },
+    "solution": "uRRllddRRlluurrRlllddrrRRRuRDlllllluurrrDulllddrrRRRuLdlllluurrrDrdrdRRRuuLrddllluullulllddrrRurrddrrrurrdLLLruulLLuLLLrdRurDrruLdrrdrruLuuulllDDLrrdRlulldlluRdldllluuRRllddrrrurrRuuurrrddDuuullldddlluRdlldllluurrRRdrrUdlluRdrRRddrruuLLLLLLulDrrrruLdrrruuulllDDLdlluRRdRRRddrruuLuuullldDuurrrdddrdLuuuulllddrdLuuurrrdddLruuullldddLuruurrrdddlLrrddlUruuuulllddrdLuuurrrdddLL"},
   {
     "id": 119,
     "name": "60 R",
@@ -1832,8 +1830,7 @@
       "-----#####--#",
       "---------####"
     ],
-    "solution": null
-  },
+    "solution": "LLLuullDlddRluurDuurrddLDuruulldldRldLurururrddrrrDulllLdLUlldRurUdrrrrrdrddlUlUdrruLuLLLLdLUrrrrrddllULrdrruulDllulldRullldRullldRurrrrdRullldRullldRurrrrdRRuLLLLLLdlluRRRRRldLLurrrRdrruLLLLdllulldRurRdrRllulldRRuRRdRlLLLrrrrRuLdllulllldRRurrdrruLLLLdlluRRdRRlUrrrrrrDLulldLurrrdLrrrddlUruLullddRluurrdLrrddlUruLdllUdrruulLLrrrdLullLLrrrrddlUruLLLdLLLrrrRllllulldRRRRRurrrddlUruLLrdL"},
   {
     "id": 122,
     "name": "62 L",
@@ -1864,8 +1861,7 @@
       "#---#",
       "#####"
     ],
-    "solution": null
-  },
+    "solution": "dlDururDDulldLurrrdLddLLURdrUUdllllDRllddrrUURurruruulDllDurDurrdLddLLURdrUUruulDllDurrDulldRddlUdLddlluuRuRDrruLruulDrddllluuRRurDurrdLulldllddlddrUUrrrrUUruulDlldllDurrDRdLuuurDurrdLulldddrrUUddlluuurRlldRurDrUluRddlllddrrUdlluulldRururrrdLLLrrddllURuulDrddrUUluRdrUdlddllUllDRllddrUdrUUdlluRuRRRdrUllllddrUluRRRuulDrddLruuRlddrUUluRdddllUllddrUruruulDrddllluuRRurDlllddrUluRRRurDlllddrUluRR"},
   {
     "id": 124,
     "name": "63 L",
@@ -1911,8 +1907,7 @@
       "--#--#######",
       "--####"
     ],
-    "solution": null
-  },
+    "solution": "rRldDrddlUUUddrRRlluluUluurDDrDRRULLrrruulDrdLdllDlddrUrrUUlluLDDurrrddllUluRululldRurDrddlUdrddlUUdrrrurrdLurrrdLulldLLrurrrdLulluUruulDrdDlddRRurrdLulLuuulDrdddllLuuuRRlldddrrrurrdLuluUluurDDDulllLulldRRRddlUdrddlUUruuRRurDlllLulldRRRddlUruRRlldlUluurDldRR"},
   {
     "id": 127,
     "name": "64 R",
@@ -1926,8 +1921,7 @@
       "--##..-$@#",
       "---#######"
     ],
-    "solution": null
-  },
+    "solution": "UUUdddLLLrUUllllUdrruLdrrrULdrddrruuuLuurrdLddddlluuluRdddrruuuuullDDDDuuuurrdLulDrrddddlLrruuuullDDllluRdllluRluurDlddrrrrruurrddddllUUllllUdrrrrUdlluLdrrruRlLdrddrruuUluulDurrrdLulldDDuuRdldllluRdllluRluurDlddrrrrruuurrrdLdlldllllluurDldRRRuLdlluurDldRurDurRRuurrdLrdLLLLrrdLulDurrruulDrdLdlluLdrrruLLdllluurDldRRRurrdLulLdlluurDrdRullldRRurrrrrdddllUUddrruuulLLLrrrrddLruullllLdlluRRRRRurrddddllUrruuLLLrrrddllUUlLLdlluRRRRRRuulDrdLLLrrddrruUluurrdLulDldllLdlluurDrrrrurrdLulDllllldRurrrrrrddllUdrruulLLL"},
   {
     "id": 128,
     "name": "65 L",
@@ -2068,8 +2062,7 @@
       "#######--#",
       "------####"
     ],
-    "solution": null
-  },
+    "solution": "dRRRRRuurrdLrddlUlUdrUdlllllluuRDldRRRRRurrddlUluUUlldLDururrdddrruuLullldldldRRRRllluururuuLDlluRRdrdrrdrddLUdLLLLulldRRRRRurrddlUlllluurUruLdrrruLdlldlddrrruUUdddrruuLullldldlluRddrrrrrruulullluulldDDuuurrdddLddlluRdrrrrrruulullluulldRldDDldRRRRRuUrrdLrddlUlUdrruuluLLrrdrddlllllluurDldRRRRuUrrdLrddlUlUdrU"},
   {
     "id": 137,
     "name": "69 R",
@@ -2458,8 +2451,7 @@
       "##-$-.-#",
       "########"
     ],
-    "solution": null
-  },
+    "solution": "urrRluluRurrdLLdlluuRDuRRRdllddlUluRurrdrrddLLLrrUruLddrddlUruuulullDurrdLLullddrUrrrdDllUdrrrddlUruuullLdlluuRDrruLdllddRRuurrdrddlUUruLulldddRluuurrdLulDllddrrUdlldRdRRlUluRlluurDDuuRurrdLLdlluuRDrruLdrrdrddlUUruLulldddRluuurrdL"},
   {
     "id": 164,
     "name": "Kristi",
@@ -2575,8 +2567,7 @@
       "#--.-.-#",
       "########"
     ],
-    "solution": null
-  },
+    "solution": "ullDurrruulDrddddlluUrruulDrdddlluuluRRldddrruuLrddlllUdrrruululDDldRuuulDllURdrruruullllDurrrrdddllluUluRddRRdlllUdrrrddllUdrruuullldRurrdrrddLLuurrULuurDlddlLrruurDldlluRllldRuuulDrdrrdrUruulDDldddrruUUlllldddRRlluulUrrrdLurrrdLuuurDldlldDuulldRuuulDrdrDurrdL"},
   {
     "id": 172,
     "name": "Jessica",
@@ -2854,8 +2845,7 @@
       "#.--$--#",
       "########"
     ],
-    "solution": null
-  },
+    "solution": "lddDurUluRRRdLrddrruuLLddrrddlUruuullulllddrUluRdRRddlddllUUUUdddRdrRUrruuuLLrrddddLLLLuRdrruruuullLrrrddddlllulluurUrrrrdddlLUUddrruuulLddddlluRdrUrruuullLrrrdddllUUddrruuulLrrddL"},
   {
     "id": 191,
     "name": "Juliana Helling",
@@ -3031,8 +3021,7 @@
       "#-.+*--#",
       "########"
     ],
-    "solution": null
-  },
+    "solution": "lluuurruurDurrdLDDrddlUdLLuRdrruuUluullddlldddRluuurruulDurrrdLrdLrrdddllulLdlUUdrrrRUddrUdllLurruUluurDurDulllldRurrdDuulldRdrDDrdLLuruuluurDDDDrdL"},
   {
     "id": 203,
     "name": "Michelle",
@@ -3062,8 +3051,7 @@
       "#....-##",
       "########"
     ],
-    "solution": null
-  },
+    "solution": "urrdrDlDllddrrUdlllluRdrrruUllDurrddlLLuluRRddrruuUruulDDDLLddrrUrULuurDuullldRurrddldddllulluuuRRurrDDuulldlldddrruLddrrrurUUluurDullldlDururrdrDuullldldDrddlUlUdrdrrruUUruulDDuulldldDldRuuulDrdddrrruULLDldRuurrUruulDulldldDDuuurRDuurrdLrdLdLLdllUdrrurruuulldldDldRuuulDrdrDuluurRurDD"},
   {
     "id": 205,
     "name": "Miranda Domville",
@@ -3092,8 +3080,7 @@
       "#.--.-+#",
       "########"
     ],
-    "solution": null
-  },
+    "solution": "lllluUUdrruLdrrruLdlllddrrrrUdlllluurrrDrdLuuurDllluRdllluRluurDlddrrruuLDrdrruLLuurDlddrddrUdlLLLuuluuRlddrUdddrrruuluLrdrUrDulluurDlddrddllluuluRluurDDuRRddrruLdddrUdlllluUluurrrurDllllddrUdddrrruulLUlluurDlddRddrrruuUdddllluuUdddrrruuurDlddllluuurRdLulluurDldRldRddrrruulLruuLDlluRdrrdrruLLuurDlLrddrruLdlUdrddrUdlllluUluuRlddrUdddrrruuulLrrrDlddllluuRlluRdrRurDulLdlddrrrrUdlllluurrrDrdLuulllluRdrrurrDDuullLrruulDrddlluRRdlllluRluurDDuRldRdrruLruLLrddlU"},
   {
     "id": 207,
     "name": "Hayley",
@@ -3121,8 +3108,7 @@
       "#------#",
       "########"
     ],
-    "solution": null
-  },
+    "solution": "rddrrruuuuullllDDuurrrrdddddllluuLrrURldlluuurrDurrdDuulllldddrddlUUUdrrUrrDuuullllDDDrddrUdrrULLrrUUllDlluuurrDDrrdddlllURdrruuullDurrdddllllUUddrrrruuulluurDlddLddrrruuuLrdddllluurUruurDDlldlddrUdrruLLdlUrrrUUllDuruulDDrrddlLLrrruullDurrdddllluRuuuurrDD"},
   {
     "id": 209,
     "name": "Christine",
@@ -3136,8 +3122,7 @@
       "#...@..#",
       "########"
     ],
-    "solution": null
-  },
+    "solution": "luurrrDullUdlddlluuRuRldRuuulDDrdddrrUruulLrrddldlluuUdddlluuRurDDuurrruulDrdLrddlUddlLuuuluurDRllddrddLruuUdddrruuLUlDDuuluurDlddrrrruLruulDLrrdddldlLuurrruulDDDullluuRRllddrrruruulDllDDDurrUruLLrddlluluurD"},
   {
     "id": 210,
     "name": "Marisa",
@@ -3150,8 +3135,7 @@
       "#----#@#",
       "########"
     ],
-    "solution": null
-  },
+    "solution": "uuululldDRluullddRluurrrrdLulllddrddrrUUddlluuRlddrruLulluurrDurrdLrrddLLUdrruulullllddrRlluurrDurrdrddlldlllUUddrrrurruulLrrddllUddllluurRllddrUdrruLrrruulDuullllDDuurrDDRddlllUURRllddrUdrruLuuurrdLulllDDuurrrdrrddLLdlllUdrrruURdldllluUddrrrurrUdlldllluuRRRddlUruLdrrruLuullllDDuurrDDuullddRluurrrrdLrddlUruullllddrRRllluurrrrdDlddlUruruullllddrRlluurrDRDLddrUUluullddRluurrdDrddlUUlluurrrDDlddllUUrrdLurruulDDlddrUdrUUrrdLLdlluuRlddrruLuuurrDDuLDlddrUU"},
   {
     "id": 211,
     "name": "Sabrina",
@@ -3179,8 +3163,7 @@
       "##-----#",
       "########"
     ],
-    "solution": null
-  },
+    "solution": "lldDulldddrrRllluuurrdDuullddRddrruLUlluurrDrDLddrrruuLrddllluuLrddrrruulLulDuuurDurrdLulldddrrrddllUdllUlUUddrRuuuRlddddrrruulLUlDrrrddlllluluRRRllddrrULuurDlddrrruuLLulDuuurDlddrrrddlllUdrrUdlluRuUlDuuurDlddrddllUdrrrruuLLUluurDDuurrdLullddrDuUluRRdlddrrddllUUUdrrdLuluUluRdddrddlUUUdddlluRdrruululDrrddllluluRRuuurDlddRluurDldlddrUdrruLUUdddlluuRlddrruLuurDlddrruruLLulD"},
   {
     "id": 213,
     "name": "Celeste Angelo",
@@ -3209,8 +3192,7 @@
       "#.#----#",
       "########"
     ],
-    "solution": null
-  },
+    "solution": "dddrrdrrruuluLLrrdrddlUdlluRRlllluuuurrrddrDuluurDDuullllddddrrdrrrULdllulluuuurrrddrDuuullllddRRllddrrdrrULLrrUULLrrddllLrrruuluurDDDuuulllldddDrrdrrruLLLrruuuullllddRRllddRRlluurDuluurDurrdLrrdLrdddlluRRuuuullllddddRRluluuRDuurrdLrdLrrddLLrruuuulllldRRlldddRluuRRuurrdLLdllddrUluuurrdrrdddlLrruuuulllldRRurrddLruulldllddrUluurrrrdLulllddddRuuRlddRluuluurDRllddrUruurrddLLrrddLruuuulllldRDlddrRlluurDuuurDurrddlLuurDllDurrrdLulldlddRluurDuurrdLulD"},
   {
     "id": 215,
     "name": "Jennifer Silsbury",
@@ -3239,8 +3221,7 @@
       "#-@----#",
       "########"
     ],
-    "solution": null
-  },
+    "solution": "luuurrDuluurDldldddrrrruUruuLuLrdDDllUlldddrrUdrrrUUddllllluuuruuRlddrDuluurDldldddrrrrruuluuuLrdddrddllllluuururRurDllluRdrrrDDuuluLdrrddlllUluRdlldddrrUUddlluuuruuRdldldddrruurrruulDuLLDlldddrrrrrUULuullulDrrruLdrddrddllluURlULuRddddrrruuLLrrddllluUUluuRDDDrruuuLrdddlluuRurDllddrrrddlllUUUluuRDrruLdrrDDlllddrrrUdllluuUluuRlddrdddrrUdlluuuluurDrruLdlDurrrdDuulllluRdrrrddLddlluUddrruuruuluLdrrddlddrUUddllluuUluuRDrruLdrDDuullluRdrrddrddllluuUluRddddrrruuluuuLrdddrddllluuuuRurDllluRdrrrDDlUruLLLulDrrruLLdddddlluRdrUUddrrrUdllluuUdddrrUUUruLullDurrddddrUluuulldRurDllDurrrDullldDuurrrdDlUruLddddrUUluuulldddRluuurrddDrddlllUU"},
   {
     "id": 217,
     "name": "Jasmine",
@@ -3270,8 +3251,7 @@
       "#-@-$-.#",
       "########"
     ],
-    "solution": null
-  },
+    "solution": "rRRUdlllUdrrruLUUluuurrrddlLrruullllldddRluuurrrrrddDuuullllldddrDuluuurrrrrdddLDlddrUluUddrrUdlluururuullllldddrRlluuurrrrrddldDuuruullllldddrrRllluuurrdDuurrrddlLdLUdrdddllUdrruuuurruullllldddRluuurrrrrddlldddLrurrdLuluurruullllldddrRurrrDulllUdrrruullLLrddrDurrdLdddlluRdllluRRdrrUrUUlulldlDururrdLrrddldlluRUddllluRdrruuUrrddLdllluuuRuuurrrdDuullldddRluuurrrddlLdlUrrrDulldlldddrrUUddlluuuruUdrrruullLdddldddrruuUluuurrrddlLdlUdlddRluuruUdrrrdLDlUruLdlUdldddrrrUUddlluRdrU"},
   {
     "id": 219,
     "name": "Hazel",
@@ -3285,8 +3265,7 @@
       "#-#----#",
       "########"
     ],
-    "solution": null
-  },
+    "solution": "rRurrddddllluRdrruuuulldlDurDuurrddLUlldRurrdddllUUluRdddlUruulllddRRUruuullDurrdddlddrrruuuuLrddddllluuruUddlddrUdrruuuullLDurrrddddllullluuRlddrrdrrruLruuulldRDrddlllulluurRRlllddrrUdlluurRuulDrdddlluuRlddrruUUddddrrruulLrrddlllulluurrDrrrddllULLrdrrruLLLuuurrDDuulldR"},
   {
     "id": 220,
     "name": "Lisa",
@@ -3345,8 +3324,7 @@
       "#.-----#",
       "########"
     ],
-    "solution": null
-  },
+    "solution": "uuuRRRdLrrrddLruullullldddddrruUUULulDDDRDrdLuuluurrdDuurrrddlLUdrruulLuLDlluRdlddrRUruLddlddrUUUrurrddlLulDlddrrrUdllluurururrddLLuuuLDrrruLdlddrddllluuluuRRRRurDllluRdllluRdrruRdllllddrRUdlddrrruuLuuuLrdddrddllluuluurRllddrRlddrUUlluurrurDlllddrrUdlluurRddddrruuLrddllululuurrurrdLLdDlluuuRldddrrrUdllddrU"},
   {
     "id": 224,
     "name": "Laura",
@@ -3376,8 +3354,7 @@
       "#-#.---#",
       "########"
     ],
-    "solution": null
-  },
+    "solution": "urrdDDuuulldddLuruurrdddLruuLrddlUlldRurruulllDurrrddllUdrruulDlddlddrrrUULrULuurDllluRdrddrddllluuUddlluuRlddrrdrrruulLruulDrdrddlllulluurRRurrDDlUllllddrrdrrUdrUdlllulluurDurruulDrdrruuLrddlDDrdLLruuuruulDrdD"},
   {
     "id": 226,
     "name": "Meredith Angelo",
@@ -3406,8 +3383,7 @@
       "#--$.###",
       "########"
     ],
-    "solution": null
-  },
+    "solution": "RdrruUluurDldDrdLurUdlllUlldRRllddrRlluurrRRuuullDDldRuuurrddrDuluurDlddLLrrrUdlllulldddrrUULrrruuulldDldRuuurrrDulllddllDurruurrdddLLrrrUdlllulluRdrdrruuullDldldRRddllUUruururrrDldddLruuuulldlddrRlluurDldRllddrrUUluulDDrrdrrUrUdldlluluururrdDuulldlddrddllUUruurDldlddrrurrUUddlldlluuruururrrDulllddldlddrrurruuUruLdddrUUddldllURlluurDldR"},
   {
     "id": 228,
     "name": "Wendy",
@@ -3421,8 +3397,7 @@
       "##...-##",
       "########"
     ],
-    "solution": null
-  },
+    "solution": "urrrrdrddlUruulllllddrRRRdrUUdllllluurDurrrDrddlddllUUddrruuruulullldlddRUluurrrrdrddlUlLDlluuurrrrDullllddRRlluurrrrdrddlddlllUdrrruuruulullllddrrdDuulluurDlddRddRuluUluurrrrdrddlULLDDulluuurrrrDullllddRluurDDDuuurrrdrddlUlUdrruLdlLdlDuUrrruuLLrDrdLLdlluuuRRllddRluurDDDuRRurrddlUruLuLLrDrdLLdlluuuRR"},
   {
     "id": 229,
     "name": "Beatrice",
@@ -3437,8 +3412,7 @@
       "#.--$-#",
       "#######"
     ],
-    "solution": null
-  },
+    "solution": "urrdddrrddlLdlluRUUlDurrrrdddLuruulluuulldDuurrrrdLulllddRdrrUUddlluluurrRddLruulDrddlldlUdrdRldlUruurrrdddlLLrrruLruuluulDrdrdddllluuulURddddrruruulLUlldRurruulllDurrrddlldddRRdrUllluulUdrddlUruurrdLulDurruulDrddllDldRRluurruulDrdLulDDldRuuulDurruullDurrdddllD"},
   {
     "id": 230,
     "name": "Veronica",
@@ -3452,8 +3426,7 @@
       "##-----#",
       "########"
     ],
-    "solution": null
-  },
+    "solution": "ldddllluuruuulldDRdrUdlddrrruuLruLdrddllluuuluurrrDulllddrdRRUrDllluluurrrDDrdLuuulllddrdddrrUUUdddlluuuRldddrruuLulDrrruLdlluluurrrDulllddrdrrddrUlulluluurrrdDLrrDLuuulllddRluurrrdddddllUdrrrUluuLrdddllulUURlddrdrruuurDlddlluluurDRRddllUluRddrruuuuulllDDrRlluurrrdDllddlUUrrruulDrdDLLrruulDldddrrUU"},
   {
     "id": 231,
     "name": "Penelope",
@@ -3481,8 +3454,7 @@
       "#---#-.#",
       "########"
     ],
-    "solution": null
-  },
+    "solution": "rrrddlddRUrDuUddllLdlluRRRuullDurrddldlluRuurrdrruLuurDldLddLrurrUdlldldlluRuRRllddrUruurrdLuuurDlddrdLLruuurDlddlLdlluRuuRRDrUllldRlddrUluurrrruulllDurrrddlddrUluUruLddddLruuurDlddlLdlluRuuRuuRlddRDrUllldRlddrUluurrrruuLrddlddrUlulllddrRUruUddldlluRuRlddrUrUdlluRdrrdLLullddrUUluR"},
   {
     "id": 233,
     "name": "Marcea",
@@ -3557,8 +3529,7 @@
       "#--.$--#",
       "########"
     ],
-    "solution": null
-  },
+    "solution": "rrddrdddlLUlLdlUUdrrrdrruuullDurrdddllLulUdrdrrruuulldLdlldRurururuulDLLrrrdrdddllLuurUdldlldRurururrdddllUllluRdrrdrruuullDuruulldlDDldRuuururrddldLruruulldldDrruruLddlllddrUluRddRRlluuuuRurrddldLrurrdddLruuuluulDlldDlddrUUrrUrrdddlLUUddrruuuluulldlDDuururrdLrdrdddlluuUdlllddrUluRddRRuuurrdddLruuulldLrdLururrddLruulldlddlluRluRddrRULrrruullDuruulDDrrddlLdllluuruuRurrddlDuruulldlddRluururrddrdddLLLUdrruruuluulldlddlddRluuruururrddrddlLrruullDuruulldlddlddrUUddRRUrruullDurrdddLLruruuluulldlDururrddrdddllUUddLrurruuluulldldDuurRurDlllddlddRluuruurrDDuullddlddrUUddRRUrrdLulUUddrruuLuulldlDDlddrUdrRuLrrruuluulldRDrrddlldllluRdrrurruulluurDldDuulldDlddrUdrrUrrdLulUUddLdlluRUddrRuuLrdrruuLrddllLrrrdLuruuluulldRDDlddlluuRlddrruRldlluRdrRuuurrdddLLuuuuurDlddddrruuuLrdddlluuUruulldlDDlddrUUddRRuuurrdddLruuuluulldlDururDDDurrdddlLrruuulullldDlddrUUddRRUULrdLurUrrdddLruuullddRdrUllldlluRluRddrRurrdLLuuuruulldlDDRluururrddlDuruLddlllddrUluRuuRlddddRluuuururrddldLruruulDlldDlddrUUrrUdllddrRlluurruruulldlDDrruruLddlllddrrrUrrdLLuUUdlllddrURlluRdrRuurrDulldLdrdLrrrUdlluuuruulDDDldlluRuuRurrddldLdlUrruruulDrdrDululllDDrrUruLddlddrrrUdllUlullddRluurrdrUUdllldRR"},
   {
     "id": 238,
     "name": "Katherine",

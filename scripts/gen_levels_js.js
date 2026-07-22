@@ -13,5 +13,8 @@ const items = data.map(d => ({
 const js = `// 自动生成 - 从 levels.json 转换
 window.LEVELS_DATA = ${JSON.stringify(items)};`;
 
-fs.writeFileSync(path.join(__dirname, '..', 'js', 'levels_data.js'), js, 'utf8');
-console.log('已生成 js/levels_data.js');
+for (const rel of ['html_app/js/levels_data.js', 'html_3dapp/js/levels_data.js']) {
+  const out = path.join(__dirname, '..', rel);
+  fs.writeFileSync(out, js, 'utf8');
+  console.log('已生成', rel);
+}

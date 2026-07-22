@@ -1,0 +1,55 @@
+BATCH: 110 unsolved levels, mode=auto timeLimit=unlimited
+
+>>> [1/110] boxes=7 id=103 52 R
+
+========== id=103 52 R ==========
+  --#######
+  --#----@#
+  --#-$$--#
+  ####*.$-#
+  #...*.$##
+  #-#-#--#
+  #--$---#
+  #####--#
+  ----####
+N=42 boxes=7 limit=unlimited mode=auto
+SOLVED ms=1723 pushes=78 nodes=757265 exp=1514454 dir=auto/dfs playerMoves=310
+player: llDulldRRDDDrddlUlLuuRUruurrddLruulllldRurrrddlDDuuruulDulldRlddRUdllddrrUdlluuruuurrrddLLrruulDLdDuuulldRRddllddrrUdlluurUruurrdLrdLLDllddrrUrULdddrUluurUruullDurrddldlddrUdllluullddRRRRuuLLLrrrUrruullDurDullldRDuurrdLulDrDDLLddrrUdlluurUrurrdLuullldRddlddrrurULdddrUUluLuuurrdLulDDurDurrdLLDDrUluurrdLddddlUU
+  Wrote levels.json
+  Wrote c_app/levels.json
+  Wrote sokoban_linux/levels.json
+--- progress solved=1 failed=0 skipped=0 elapsed=1.737s ---
+
+>>> [2/110] boxes=7 id=104 53 L
+
+========== id=104 53 L ==========
+  ######
+  #----####
+  #--$$-$-#
+  #--#-#.-##
+  ##$#-$.*.###
+  -#@$--.#..-#
+  -####------#
+  ----####--##
+  -------####
+N=51 boxes=7 limit=unlimited mode=auto
+SOLVED ms=53 pushes=83 nodes=26509 exp=52946 dir=auto/dfs playerMoves=375
+player: UUluurrrDDuulllddrddRRRdrUURldllUUddrruruuLrddldlllluuluurrrDDuulllddrddrrrruruulDDDldRRlulllluuluurrrddDRluuulllddrddrRRuRuuLrddldllluuluurrrDDDrddrUUlluuulllddrddrRRdrrRdrUruLdlllluuluuullDurrdLrddrrDldRRluulluuullldRRurDDurrDDldllluUluRRldddrrrdrrRdrUlllluuruulLdDuuulldRurDDurrddlddrUUdlLrurUruLLLulldRldddRRUrrddlUruuulLDDuuulldRurDDulldddrRRdrUUdlllluuurrdDRluulldddrRR
+  Wrote levels.json
+  Wrote c_app/levels.json
+  Wrote sokoban_linux/levels.json
+--- progress solved=2 failed=0 skipped=0 elapsed=1.796s ---
+
+>>> [3/110] boxes=7 id=117 59 R
+
+========== id=117 59 R ==========
+  -------###
+  ########.#
+  #----#-..##
+  #-#-$$*.$-#
+  #-----..#-#
+  ##--##-##-#
+  #--$-$$##-#
+  #---##---@#
+  ###########
+N=49 boxes=7 limit=unlimited mode=auto
