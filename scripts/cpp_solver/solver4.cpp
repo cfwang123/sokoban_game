@@ -534,8 +534,7 @@ struct Solver4 {
 
 // ---------------- Main ----------------
 static std::string findLevelsJson() {
-    for (const char* p : {"levels.json", "../levels.json", "../../levels.json",
-                          "D:/VS_Projects/AIPrototype/game/sokoban/levels.json"}) {
+    for (const char* p : {"levels.json", "../levels.json", "../../levels.json"}) {
         auto s = readFile(p);
         if (!s.empty()) return p;
     }

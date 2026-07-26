@@ -555,8 +555,7 @@ static void writeAllCopies(const std::string& primaryPath, int id, const std::st
 int main(int argc, char** argv) {
     // Find levels.json
     std::string path;
-    for (const char* p : {"levels.json", "../levels.json", "../../levels.json",
-                          "D:/VS_Projects/AIPrototype/game/sokoban/levels.json"}) {
+    for (const char* p : {"levels.json", "../levels.json", "../../levels.json"}) {
         auto s = readFile(p);
         if (!s.empty()) { path = p; break; }
     }

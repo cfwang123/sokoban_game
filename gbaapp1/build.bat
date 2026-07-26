@@ -14,7 +14,14 @@ goto :eof
 
 :direct
 if not exist build mkdir build
-set PREFIX=D:\bin\ST\gcc\bin\arm-none-eabi-
+rem Toolchain: set DEVKITARM or ARM_NONE_EABI_PREFIX, or put arm-none-eabi-* on PATH
+if defined DEVKITARM (
+  set "PREFIX=%DEVKITARM%\bin\arm-none-eabi-"
+) else if defined ARM_NONE_EABI_PREFIX (
+  set "PREFIX=%ARM_NONE_EABI_PREFIX%"
+) else (
+  set "PREFIX=arm-none-eabi-"
+)
 set CC=%PREFIX%gcc
 set OBJCOPY=%PREFIX%objcopy
 set ARCH=-mthumb -mthumb-interwork -mcpu=arm7tdmi

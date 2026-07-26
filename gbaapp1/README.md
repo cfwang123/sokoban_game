@@ -44,7 +44,7 @@ gbaapp1/sokoban.gba
 
 依赖：
 
-- `arm-none-eabi-gcc`（本机路径：`D:\bin\ST\gcc\bin\`）
+- `arm-none-eabi-gcc`（加入 PATH，或设置 `DEVKITARM` / `ARM_NONE_EABI_PREFIX`）
 - Python 3
 - Node.js（`gbafix.js`）
 

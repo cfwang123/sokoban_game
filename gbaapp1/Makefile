@@ -4,12 +4,13 @@ BUILD    := build
 SRC      := src
 INC      := include
 
+# Toolchain: DEVKITARM, ARM_NONE_EABI_PREFIX, common install paths, or PATH
 ifneq ($(DEVKITARM),)
   PREFIX := $(DEVKITARM)/bin/arm-none-eabi-
+else ifneq ($(ARM_NONE_EABI_PREFIX),)
+  PREFIX := $(ARM_NONE_EABI_PREFIX)
 else ifneq ($(wildcard /opt/devkitpro/devkitARM/bin/arm-none-eabi-gcc),)
   PREFIX := /opt/devkitpro/devkitARM/bin/arm-none-eabi-
-else ifneq ($(wildcard D:/bin/ST/gcc/bin/arm-none-eabi-gcc.exe),)
-  PREFIX := D:/bin/ST/gcc/bin/arm-none-eabi-
 else
   PREFIX := arm-none-eabi-
 endif

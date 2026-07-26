@@ -48,7 +48,7 @@ HUD：`L` 关卡号 · `M` 推箱步数 · `G` 已入目标/总箱子
 
 依赖：
 
-- `AIPrototype/game/tools_cc65/`（cc65 V2.19）
+- [cc65](https://cc65.github.io/) V2.19+（`cc65` / `ca65` / `ld65` 在 PATH，或设置 `CC65_HOME`，或放到 `fcapp1/tools/cc65/`）
 - Python 3（生成 CHR 与关卡数据）
 - 上级目录的 `levels.json`
 
@@ -129,13 +129,10 @@ fcapp1/
 
 关卡解析、移动、撤销、过关判定、标题与绘制均在 **C** 中。
 
-## 工具链路径
+## 工具链配置
 
-```
-D:\VS_Projects\AIPrototype\game\tools_cc65\bin\cc65.exe
-D:\VS_Projects\AIPrototype\game\tools_cc65\bin\ca65.exe
-D:\VS_Projects\AIPrototype\game\tools_cc65\bin\ld65.exe
-D:\VS_Projects\AIPrototype\game\tools_cc65\lib\none.lib
-```
+`build.bat` 按以下顺序查找 cc65（任选其一即可）：
 
-`build.bat` 使用相对路径 `..\..\..\game\tools_cc65\`（从 `fcapp1` 上溯到 `AIPrototype`）。
+1. 环境变量 `CC65_HOME`（指向含 `bin/`、`lib/` 的安装根目录）
+2. 本仓库 `fcapp1/tools/cc65/`（可选本地拷贝，勿提交）
+3. 已加入 `PATH` 的 `cc65` / `ca65` / `ld65`

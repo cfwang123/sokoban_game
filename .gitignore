@@ -28,7 +28,17 @@ build/
 # --- C application ---
 c_app/sokoban.exe
 c_app/lastlevel.ini
+
+# Local-only deploy / SSH helpers (may contain machine-specific config)
 sokoban_linux/*.py
+sokoban_linux/*.local
+*.local.bat
+*.local.sh
+*.local.env
+
+# Optional local toolchains dropped into the tree
+fcapp1/tools/cc65/
+**/tools/cc65/
 
 # --- CMake ---
 CMakeCache.txt
@@ -77,6 +87,8 @@ Agents.md
 .env
 .env.local
 .env.*.local
+secrets/
+**/secrets/
 
 # --- Node.js (if used) ---
 node_modules/

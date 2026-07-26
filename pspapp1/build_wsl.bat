@@ -1,10 +1,18 @@
 @echo off
 setlocal
 cd /d "%~dp0"
-set SCRIPT=%~dp0..\tmp\build_psp_wsl.sh
 
 echo [Sokoban PSP] Build via WSL Ubuntu + ~/pspdev ...
-wsl -d Ubuntu -- bash -lc "sed -i 's/\r$//' /mnt/d/VS_Projects/AIPrototype/Github共享/sokoban/tmp/build_psp_wsl.sh; bash /mnt/d/VS_Projects/AIPrototype/Github共享/sokoban/tmp/build_psp_wsl.sh"
+
+rem Convert this directory to a WSL path (no hardcoded host path)
+for /f "usebackq delims=" %%i in (`wsl -d Ubuntu wslpath -a "%CD%"`) do set "WSL_DIR=%%i"
+if not defined WSL_DIR (
+  echo Failed to resolve WSL path for: %CD%
+  echo Is WSL Ubuntu installed?
+  exit /b 1
+)
+
+wsl -d Ubuntu -- bash -lc "set -e; export PSPDEV=\"$HOME/pspdev\"; export PATH=\"$PSPDEV/bin:$PATH\"; cd \"%WSL_DIR%\"; if [ ! -x \"$PSPDEV/bin/psp-gcc\" ]; then echo \"Missing $PSPDEV/bin/psp-gcc — extract pspdev to ~/pspdev\"; exit 1; fi; bash ./build.sh"
 if errorlevel 1 (
   echo Build failed.
   exit /b 1

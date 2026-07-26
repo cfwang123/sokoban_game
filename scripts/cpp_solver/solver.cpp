@@ -237,8 +237,7 @@ static std::vector<int> listAllIds(const std::string& json) {
 }
 
 static std::string findLevelsJson() {
-    for (const char* p : {"levels.json", "../levels.json", "../../levels.json",
-                          "D:/VS_Projects/AIPrototype/game/sokoban/levels.json"}) {
+    for (const char* p : {"levels.json", "../levels.json", "../../levels.json"}) {
         if (!readFile(p).empty()) return p;
     }
     return {};
