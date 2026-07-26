@@ -2,52 +2,33 @@
 
 > [English](README.md)
 
-一个经典的推箱子益智游戏，提供 **C 语言控制台版**、**JavaScript 2D 网页版** 和 **three.js 3D 网页版** 三种实现。
+一个经典的推箱子益智游戏，提供控制台、网页与多种主机 homebrew 实现。
 
 ## 功能特点
 
-- 经典推箱子玩法，内置多个关卡
+- 经典推箱子玩法，内置多个关卡（`levels.json`）
 - **C 控制台版** — 轻量级终端游戏
-- **2D 网页版** — 浏览器直接游玩，界面简洁
-- **3D 网页版** — 基于 three.js，提供默认俯视视角、鼠标旋转和 3D 仓库风格表现
-- 内置 **寻路 AI** 辅助解谜
-- 关卡求解与批量求解脚本
-- 关卡数据使用 JSON 格式，方便编辑
+- **2D / 3D 网页版** — 浏览器游玩（3D 基于 three.js）
+- **FC / NES** — `fcapp1/`（cc65，`sokoban.nes`）
+- **GBA** — `gbaapp1/`（裸机 Mode 3，`sokoban.gba`）
+- **PSP** — `pspapp1/`（pspdev + sceGu，`EBOOT.PBP`）
+- 内置寻路 / 答案回放（视平台而定）
+- 关卡数据 JSON，便于编辑与转换
 
 ## 项目结构
 
 ```
 sokoban/
-├── c_app/               # C 控制台应用
-│   ├── main.c           # 入口
-│   ├── game.c/h         # 游戏逻辑
-│   ├── levels.c/h       # 关卡管理
-│   ├── pathfinding.c/h  # A* 寻路
-│   ├── console_win.c    # Windows 控制台渲染
-│   ├── console.h        # 控制台抽象层
-│   ├── lib/cjson/       # JSON 解析库 (cJSON)
-│   └── Makefile         # 构建脚本
-├── js/                  # 2D 网页版 (JavaScript)
-│   ├── game.js          # 游戏引擎
-│   ├── levels.js        # 关卡加载
-│   ├── levels_data.js   # 内置关卡数据
-│   ├── ai.js            # AI 求解
-│   └── pathfinding.js   # 寻路算法
-├── html_app/            # 独立 2D 网页应用
-│   ├── index.html
-│   ├── style.css
-│   └── js/
-├── html_3dapp/          # 独立 3D 网页应用 (three.js)
-│   ├── index.html
-│   ├── style.css
-│   └── js/
-├── scripts/             # 工具脚本
-│   ├── solve_levels.js  # 批量求解
-│   ├── convert_levels.js
-│   └── ...
-├── index.html           # 网页入口
-├── style.css            # 网页样式
-└── levels.json          # 关卡定义
+├── c_app/               # C 控制台（Windows）
+├── sokoban_linux/       # C 控制台（Linux）
+├── html_app/            # 2D 网页
+├── html_3dapp/          # 3D 网页（three.js）
+├── fcapp1/              # FC / NES homebrew
+├── gbaapp1/             # GBA homebrew
+├── pspapp1/             # PSP homebrew
+├── scripts/             # 求解与转换脚本
+├── levels.json          # 关卡定义
+└── documents/           # 截图等
 ```
 
 ## 截图
@@ -84,6 +65,35 @@ make
 ```
 
 需要 C 编译器（Windows 下推荐 GCC / MinGW）。
+
+### FC / NES 版
+
+见 [fcapp1/README.md](fcapp1/README.md)。用任意 FC 模拟器打开 `fcapp1/sokoban.nes`。
+
+```bat
+cd fcapp1
+build.bat
+```
+
+### GBA 版
+
+见 [gbaapp1/README.md](gbaapp1/README.md)。用 mGBA 等打开 `gbaapp1/sokoban.gba`。
+
+```bat
+cd gbaapp1
+build.bat
+```
+
+### PSP 版
+
+见 [pspapp1/README.md](pspapp1/README.md)。用 PPSSPP 打开 `pspapp1/EBOOT.PBP`。
+
+推荐 **WSL Ubuntu + ~/pspdev**：
+
+```bat
+cd pspapp1
+build_wsl.bat
+```
 
 ## 操作说明
 
