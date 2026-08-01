@@ -1,0 +1,66 @@
+# Built application files
+*.apk
+*.ap_
+*.aab
+*.dex
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+outputs/
+release/
+
+# Gradle
+.gradle/
+build/
+**/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Local configuration (SDK path, etc. — never commit machine paths)
+local.properties
+
+# Release signing (do not commit secrets)
+keystore.properties
+release.keystore
+*.jks
+*.keystore
+*.pem
+!debug.keystore
+
+# Android Studio / IntelliJ
+*.iml
+.idea/
+.idea/**
+captures/
+.externalNativeBuild/
+.cxx/
+*.hprof
+*.iws
+*.ipr
+.navigation/
+
+# Kotlin / compiler
+.kotlin/
+
+# OS junk
+.DS_Store
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+
+# Logs & temp
+*.log
+*.tmp
+*.temp
+tmp/
+**/tmp/
+
+# Editor
+.vscode/
+*.swp
+*~
+
+# Node (if any local helpers)
+node_modules/

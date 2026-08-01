@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_dark">#1A1A2E</color>
+    <color name="bg_panel">#16213E</color>
+    <color name="bg_board">#2D2D44</color>
+    <color name="floor">#3A3A55</color>
+    <color name="floor_grid">#444466</color>
+    <color name="wall">#4A4A6A</color>
+    <color name="wall_light">#5A5A7A</color>
+    <color name="wall_shadow">#2A2A4A</color>
+    <color name="goal">#E94560</color>
+    <color name="goal_stroke">#FF6B81</color>
+    <color name="box">#F39C12</color>
+    <color name="box_stroke">#E67E22</color>
+    <color name="box_light">#F5B041</color>
+    <color name="box_cross">#D35400</color>
+    <color name="box_on_goal">#2ECC71</color>
+    <color name="box_on_goal_stroke">#27AE60</color>
+    <color name="box_on_goal_light">#58D68D</color>
+    <color name="box_on_goal_cross">#1E8449</color>
+    <color name="player">#3498DB</color>
+    <color name="player_stroke">#2980B9</color>
+    <color name="accent">#E94560</color>
+    <color name="accent_hover">#FF6B81</color>
+    <color name="button_bg">#0F3460</color>
+    <color name="button_border">#533483</color>
+    <color name="text_primary">#EEEEEE</color>
+    <color name="text_secondary">#AAAAAA</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="overlay">#B3000000</color>
+</resources>

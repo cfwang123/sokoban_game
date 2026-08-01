@@ -95,3 +95,30 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# --- Android (androidapp1) ---
+androidapp1/local.properties
+androidapp1/.gradle/
+androidapp1/**/build/
+androidapp1/.cxx/
+androidapp1/.externalNativeBuild/
+androidapp1/captures/
+androidapp1/.idea/
+androidapp1/*.iml
+androidapp1/.kotlin/
+androidapp1/keystore.properties
+androidapp1/*.jks
+androidapp1/*.keystore
+androidapp1/release.keystore
+!androidapp1/gradle/wrapper/gradle-wrapper.jar
+*.apk
+*.aab
+
+# --- iOS (iosapp1) ---
+iosapp1/DerivedData/
+iosapp1/**/xcuserdata/
+iosapp1/**/*.xcuserstate
+iosapp1/**/*.ipa
+iosapp1/**/*.dSYM
+iosapp1/**/*.dSYM.zip
+iosapp1/.swiftpm/

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">推箱子</string>
+    <string name="level_label">关卡</string>
+    <string name="moves_format">%1$d</string>
+    <string name="moves_content_desc">步数 %1$d</string>
+    <string name="undo">撤销</string>
+    <string name="reset">重置</string>
+    <string name="help">帮助</string>
+    <string name="view_answer">查看答案</string>
+    <string name="stop_answer">停止查看</string>
+    <string name="answer_available">本关有答案</string>
+    <string name="answer_unavailable">本关暂无答案</string>
+    <string name="answer_playing">执行答案中…（%1$d 步）</string>
+    <string name="cleared">已过关</string>
+    <string name="win_title">恭喜过关！</string>
+    <string name="win_moves">共用 %1$d 步完成！</string>
+    <string name="next_level">下一关</string>
+    <string name="close">关闭</string>
+    <string name="help_title">操作说明</string>
+    <string name="help_body">• 点击空地：自动走到该位置\n• 点击相邻箱子：向前推一格\n• 虚拟方向键：移动 / 推箱\n• 撤销：只撤销推箱子的步\n• 重置：重开本关\n• 查看答案：回放内置解法（如有）\n• 上一关 / 下一关：切换关卡</string>
+    <string name="prev_level">上一关</string>
+    <string name="dir_up">↑</string>
+    <string name="dir_down">↓</string>
+    <string name="dir_left">←</string>
+    <string name="dir_right">→</string>
+    <string name="level_item">第%1$d关 - %2$s</string>
+</resources>

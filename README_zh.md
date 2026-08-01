@@ -9,6 +9,8 @@
 - 经典推箱子玩法，内置多个关卡（`levels.json`）
 - **C 控制台版** — 轻量级终端游戏
 - **2D / 3D 网页版** — 浏览器游玩（3D 基于 three.js）
+- **Android** — `androidapp1/`（Kotlin，点击寻路 + 图标虚拟键；见 [更新日志](androidapp1/CHANGELOG.md)）
+- **iOS** — `iosapp1/`（SwiftUI 教学演示源码，不要求在本仓库编译；见 [说明](iosapp1/README.md)）
 - **FC / NES** — `fcapp1/`（cc65，`sokoban.nes`）
 - **GBA** — `gbaapp1/`（裸机 Mode 3，`sokoban.gba`）
 - **PSP** — `pspapp1/`（pspdev + sceGu，`EBOOT.PBP`）
@@ -23,6 +25,8 @@ sokoban/
 ├── sokoban_linux/       # C 控制台（Linux）
 ├── html_app/            # 2D 网页
 ├── html_3dapp/          # 3D 网页（three.js）
+├── androidapp1/         # Android 原生版
+├── iosapp1/             # iOS SwiftUI 教学演示
 ├── fcapp1/              # FC / NES homebrew
 ├── gbaapp1/             # GBA homebrew
 ├── pspapp1/             # PSP homebrew
@@ -55,6 +59,25 @@ python -m http.server 8765
 ```
 
 然后访问 `http://localhost:8765/`。
+
+### Android 版
+
+见 [androidapp1/README.md](androidapp1/README.md) · [更新日志](androidapp1/CHANGELOG.md)。
+
+需要 Android SDK、JDK 17+，并在 `androidapp1/local.properties` 中配置 `sdk.dir`（勿提交该文件）。
+
+```bat
+cd androidapp1
+gradlew.bat assembleDebug
+```
+
+Debug APK：`androidapp1/app/build/outputs/apk/debug/app-debug.apk`
+
+### iOS 版（教学演示）
+
+见 [iosapp1/README.md](iosapp1/README.md) · [更新日志](iosapp1/CHANGELOG.md) · [开发速查](iosapp1/Sokoban/DEVELOPMENT.md)。
+
+SwiftUI 完整源码，演示 iOS 工程组织与和 Android 的对照；**不要求在本仓库内编译**。在 Mac 上用 Xcode 新建 App 工程并导入 `iosapp1/Sokoban/` 即可运行。
 
 ### C 控制台版
 

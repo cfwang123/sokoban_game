@@ -1,0 +1,38 @@
+# Xcode
+build/
+DerivedData/
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+xcuserdata/
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# CocoaPods / SPM
+Pods/
+*.xcworkspace
+!default.xcworkspace
+.swiftpm/
+Package.resolved
+
+# OS / IDE
+.DS_Store
+.idea/
+*.swp
+*~
+
+# Secrets / local
+*.mobileprovision
+*.p12
+*.cer
+Secrets/
+.env
+.env.*
+
+# Logs / temp
+*.log
+tmp/
+**/tmp/
