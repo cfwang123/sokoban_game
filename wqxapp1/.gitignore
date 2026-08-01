@@ -1,0 +1,13 @@
+*.o
+*.obj
+*.exe
+*.elf
+*.bin
+*.map
+wqx_sokoban
+.DS_Store
+.idea/
+*.swp
+*~
+tmp/
+*.log

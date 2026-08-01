@@ -1,0 +1,146 @@
+// generated mini levels
+const MINI_LEVELS = [
+  {
+    "name": "Classic Star",
+    "puzzle": [
+      "#######",
+      "#. . .#",
+      "# $$$ #",
+      "#.$@$.#",
+      "# $$$ #",
+      "#. . .#",
+      "#######"
+    ],
+    "solution": "ULrRldDLUdrRluurDlllURdddlUrurrrDLuuurDldlluuRlddrrddLruulluurRddlUdrddlLuurD"
+  },
+  {
+    "name": "1 L",
+    "puzzle": [
+      "###",
+      "#@#",
+      "#$#",
+      "#.#",
+      "###"
+    ],
+    "solution": "D"
+  },
+  {
+    "name": "1 R",
+    "puzzle": [
+      "#####",
+      "#.$@#",
+      "#####"
+    ],
+    "solution": "L"
+  },
+  {
+    "name": "2 L",
+    "puzzle": [
+      "###",
+      "#.###",
+      "#*$-#",
+      "#--@#",
+      "#####"
+    ],
+    "solution": "llUdrruL"
+  },
+  {
+    "name": "2 R",
+    "puzzle": [
+      "--#####",
+      "###---##",
+      "#.*-#@-#",
+      "##$###-#",
+      "-#-----#",
+      "-#######"
+    ],
+    "solution": "ulldLrurrdrddllllU"
+  },
+  {
+    "name": "3 L",
+    "puzzle": [
+      "----#####",
+      "--###---#",
+      "###.*-#-#",
+      "#@$.$#--#",
+      "##-----##",
+      "-#######"
+    ],
+    "solution": "RdrrrruruulldLrurrddldllU"
+  },
+  {
+    "name": "3 R",
+    "puzzle": [
+      "#########",
+      "#-------#",
+      "#-*..##-#",
+      "##$#$#--#",
+      "-#-@---##",
+      "-#######"
+    ],
+    "solution": "rUdrruruulllllldRurrrrrddldllllU"
+  },
+  {
+    "name": "4 L",
+    "puzzle": [
+      "#####",
+      "#---##",
+      "#-.*-#",
+      "#--$@#",
+      "#--###",
+      "####"
+    ],
+    "solution": "LruLulldRlddrU"
+  },
+  {
+    "name": "4 R",
+    "puzzle": [
+      "-######",
+      "-#----#",
+      "##-$*$#",
+      "#@$...#",
+      "#######"
+    ],
+    "solution": "RRluurDurrD"
+  },
+  {
+    "name": "5 L",
+    "puzzle": [
+      "---#####",
+      "---#.$-#",
+      "---#.$-#",
+      "####.#-#",
+      "#@$-*--#",
+      "##---###",
+      "-#####"
+    ],
+    "solution": "RdrrUrruuuLrdLrddlldlluR"
+  },
+  {
+    "name": "7 L",
+    "puzzle": [
+      "######",
+      "#----#",
+      "#@-*-#",
+      "#-*.###",
+      "##-$--#",
+      "-##---#",
+      "--#####"
+    ],
+    "solution": "urrrdLullddRdRUddrruLdlUluluurD"
+  },
+  {
+    "name": "7 R",
+    "puzzle": [
+      "####",
+      "#--##",
+      "#-$.##",
+      "#--*.###",
+      "#--**$-#",
+      "###---@#",
+      "--######"
+    ],
+    "solution": "llULdrrruLdlluUlluurDldRldR"
+  }
+];
+module.exports = { MINI_LEVELS };

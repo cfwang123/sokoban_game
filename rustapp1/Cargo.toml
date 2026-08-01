@@ -1,0 +1,9 @@
+[package]
+name = "sokoban_rust"
+version = "1.0.0"
+edition = "2021"
+description = "Teaching demo: Sokoban core in Rust (terminal loop)"
+license = "MIT"
+
+[dependencies]
+# 教学默认无第三方依赖；需要图形可自行加 macroquad / egui

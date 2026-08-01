@@ -122,3 +122,24 @@ iosapp1/**/*.ipa
 iosapp1/**/*.dSYM
 iosapp1/**/*.dSYM.zip
 iosapp1/.swiftpm/
+
+# --- Java ME (n81app1) ---
+n81app1/classes/
+n81app1/build/
+n81app1/dist/
+n81app1/*.jar
+
+# --- Multi-stack ports ---
+flutterapp1/.dart_tool/
+flutterapp1/build/
+unityapp1/[Ll]ibrary/
+unityapp1/[Tt]emp/
+rustapp1/target/
+zigapp1/zig-cache/
+zigapp1/zig-out/
+zigapp1/.zig-cache/
+goapp1/*.exe
+linuxfbapp1/sokoban_fb
+dosapp1/*.exe
+esp32app1/build/
+harmonyapp1/**/build/

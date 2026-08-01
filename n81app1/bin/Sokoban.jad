@@ -1,0 +1,8 @@
+MIDlet-Name: Sokoban N81
+MIDlet-Version: 1.0.0
+MIDlet-Vendor: whj
+MIDlet-1: Sokoban, , com.whj.sokoban.SokobanMIDlet
+MIDlet-Jar-URL: Sokoban.jar
+MIDlet-Jar-Size: 0
+MicroEdition-Profile: MIDP-2.0
+MicroEdition-Configuration: CLDC-1.1

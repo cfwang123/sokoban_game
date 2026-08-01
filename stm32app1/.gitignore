@@ -1,0 +1,8 @@
+Debug/
+Release/
+*.o
+*.elf
+*.hex
+*.map
+.idea/
+*.ioc.bak

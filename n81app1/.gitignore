@@ -1,0 +1,21 @@
+# Build
+classes/
+build/
+dist/
+*.jar
+*.jad
+!bin/Sokoban.jad
+!bin/MANIFEST.MF
+
+# IDE / OS
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Temp / logs
+tmp/
+*.log
+*.tmp

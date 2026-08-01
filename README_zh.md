@@ -11,6 +11,9 @@
 - **2D / 3D 网页版** — 浏览器游玩（3D 基于 three.js）
 - **Android** — `androidapp1/`（Kotlin，点击寻路 + 图标虚拟键；见 [更新日志](androidapp1/CHANGELOG.md)）
 - **iOS** — `iosapp1/`（SwiftUI 教学演示源码，不要求在本仓库编译；见 [说明](iosapp1/README.md)）
+- **Nokia N81** — `n81app1/`（Java ME MIDP 教学演示，不要求编译；见 [说明](n81app1/README.md)）
+- **文曲星** — `wqxapp1/`（步步高文曲星类词典 C + HAL 教学工程，不要求编固件；见 [说明](wqxapp1/README.md)）
+- **多技术栈教学工程** — Flutter / Unity / Rust / Go / Zig / 微信小游戏 / 鸿蒙 / ESP32 / STM32 / Arduino / Linux fbdev / Casio / DOS（见 [TODO.md](TODO.md)）
 - **FC / NES** — `fcapp1/`（cc65，`sokoban.nes`）
 - **GBA** — `gbaapp1/`（裸机 Mode 3，`sokoban.gba`）
 - **PSP** — `pspapp1/`（pspdev + sceGu，`EBOOT.PBP`）
@@ -27,10 +30,26 @@ sokoban/
 ├── html_3dapp/          # 3D 网页（three.js）
 ├── androidapp1/         # Android 原生版
 ├── iosapp1/             # iOS SwiftUI 教学演示
+├── n81app1/             # Nokia N81 Java ME 教学演示
+├── wqxapp1/             # 步步高文曲星 C 教学工程
+├── flutterapp1/         # Flutter
+├── unityapp1/           # Unity C# 脚本
+├── rustapp1/            # Rust
+├── goapp1/              # Go
+├── zigapp1/             # Zig
+├── wxgame1/             # 微信小游戏
+├── harmonyapp1/         # HarmonyOS ArkTS
+├── esp32app1/           # ESP32 (ESP-IDF)
+├── stm32app1/           # STM32
+├── arduinoapp1/         # Arduino
+├── linuxfbapp1/         # Linux 帧缓冲
+├── casioapp1/           # Casio 计算器抽象
+├── dosapp1/             # DOS
 ├── fcapp1/              # FC / NES homebrew
 ├── gbaapp1/             # GBA homebrew
 ├── pspapp1/             # PSP homebrew
 ├── scripts/             # 求解与转换脚本
+├── TODO.md              # 多平台移植清单
 ├── levels.json          # 关卡定义
 └── documents/           # 截图等
 ```
@@ -78,6 +97,38 @@ Debug APK：`androidapp1/app/build/outputs/apk/debug/app-debug.apk`
 见 [iosapp1/README.md](iosapp1/README.md) · [更新日志](iosapp1/CHANGELOG.md) · [开发速查](iosapp1/Sokoban/DEVELOPMENT.md)。
 
 SwiftUI 完整源码，演示 iOS 工程组织与和 Android 的对照；**不要求在本仓库内编译**。在 Mac 上用 Xcode 新建 App 工程并导入 `iosapp1/Sokoban/` 即可运行。
+
+### Nokia N81 版（Java ME 教学演示）
+
+见 [n81app1/README.md](n81app1/README.md) · [更新日志](n81app1/CHANGELOG.md) · [开发速查](n81app1/docs/DEVELOPMENT.md)。
+
+MIDP 2.0 MIDlet 源码，演示功能机 Java 生命周期、`Canvas` 绘制与键盘操作；**不要求在本仓库内编译**。
+
+### 文曲星版（电子词典 C 教学工程）
+
+见 [wqxapp1/README.md](wqxapp1/README.md) · [更新日志](wqxapp1/CHANGELOG.md) · [开发速查](wqxapp1/docs/DEVELOPMENT.md)。
+
+面向步步高文曲星类词典的 C 工程分层（`wqx_api` HAL + 玩法核心）；**不要求编出真机固件**。
+
+### 其它技术栈教学工程
+
+进度与说明见 **[TODO.md](TODO.md)**。各目录均有独立 README（多数为演示/骨架，不强制本机工具链）：
+
+| 目录 | 技术 |
+|------|------|
+| `flutterapp1/` | Flutter |
+| `unityapp1/` | Unity C# |
+| `rustapp1/` | Rust |
+| `goapp1/` | Go |
+| `zigapp1/` | Zig |
+| `wxgame1/` | 微信小游戏 |
+| `harmonyapp1/` | HarmonyOS ArkTS |
+| `esp32app1/` | ESP32 |
+| `stm32app1/` | STM32 |
+| `arduinoapp1/` | Arduino |
+| `linuxfbapp1/` | Linux fbdev |
+| `casioapp1/` | Casio 计算器 |
+| `dosapp1/` | DOS |
 
 ### C 控制台版
 

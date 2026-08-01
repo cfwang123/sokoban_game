@@ -1,0 +1,12 @@
+{
+  "description": "推箱子微信小游戏教学工程",
+  "packOptions": { "ignore": [], "include": [] },
+  "setting": {
+    "es6": true,
+    "minified": false
+  },
+  "compileType": "game",
+  "appid": "touristappid",
+  "projectname": "sokoban-wxgame",
+  "condition": {}
+}
