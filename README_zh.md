@@ -13,8 +13,10 @@
 - **iOS** — `iosapp1/`（SwiftUI 教学演示源码，不要求在本仓库编译；见 [说明](iosapp1/README.md)）
 - **Nokia N81** — `n81app1/`（Java ME MIDP 教学演示，不要求编译；见 [说明](n81app1/README.md)）
 - **文曲星** — `wqxapp1/`（步步高文曲星类词典 C + HAL 教学工程，不要求编固件；见 [说明](wqxapp1/README.md)）
-- **多技术栈教学工程** — Flutter / Unity / Rust / Go / Zig / 微信小游戏 / 鸿蒙 / ESP32 / STM32 / Arduino / Linux fbdev / Casio / DOS（见 [TODO.md](TODO.md)）
+- **多技术栈教学工程** — 桌面/移动/嵌入式/掌机/编辑器与浏览器扩展等（见 [TODO.md](TODO.md)）
 - **FC / NES** — `fcapp1/`（cc65，`sokoban.nes`）
+- **GB / GBC** — `gbapp1/` · `gbcapp1/`（教学骨架，GBDK）
+- **NDS** — `ndsapp1/`（双屏教学骨架，libnds）
 - **GBA** — `gbaapp1/`（裸机 Mode 3，`sokoban.gba`）
 - **PSP** — `pspapp1/`（pspdev + sceGu，`EBOOT.PBP`）
 - 内置寻路 / 答案回放（视平台而定）
@@ -45,6 +47,19 @@ sokoban/
 ├── linuxfbapp1/         # Linux 帧缓冲
 ├── casioapp1/           # Casio 计算器抽象
 ├── dosapp1/             # DOS
+├── gbapp1/              # Game Boy 教学
+├── gbcapp1/             # Game Boy Color 教学
+├── ndsapp1/             # Nintendo DS 教学
+├── vscodeext1/          # VS Code 扩展
+├── vs2026ext1/          # Visual Studio 扩展教学
+├── chromeext1/          # Chrome 扩展
+├── edgeext1/            # Edge 扩展
+├── firefoxext1/         # Firefox 扩展
+├── vimext1/             # Vim 插件
+├── nvimext1/            # Neovim Lua 插件
+├── safariext1/          # Safari Web Extension
+├── emacsext1/           # Emacs 插件
+├── jetbrainsext1/       # JetBrains IDE 插件
 ├── fcapp1/              # FC / NES homebrew
 ├── gbaapp1/             # GBA homebrew
 ├── pspapp1/             # PSP homebrew
@@ -129,6 +144,19 @@ MIDP 2.0 MIDlet 源码，演示功能机 Java 生命周期、`Canvas` 绘制与�
 | `linuxfbapp1/` | Linux fbdev |
 | `casioapp1/` | Casio 计算器 |
 | `dosapp1/` | DOS |
+| `gbapp1/` | Game Boy |
+| `gbcapp1/` | Game Boy Color |
+| `ndsapp1/` | Nintendo DS |
+| `vscodeext1/` | VS Code 扩展（Webview） |
+| `vs2026ext1/` | Visual Studio 扩展（Tool Window 示意） |
+| `chromeext1/` | Chrome 扩展（MV3 popup） |
+| `edgeext1/` | Edge 扩展（与 Chrome 同源） |
+| `firefoxext1/` | Firefox 扩展 |
+| `vimext1/` | Vim：`:Sokoban` |
+| `nvimext1/` | Neovim Lua：`:Sokoban` |
+| `safariext1/` | Safari 扩展（需 Xcode 包装） |
+| `emacsext1/` | Emacs：`M-x sokoban` |
+| `jetbrainsext1/` | IntelliJ 系 Tool Window 示意 |
 
 ### C 控制台版
 

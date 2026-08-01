@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Sokoban 推箱子",
+  "version": "1.0.0",
+  "description": "教学演示：Firefox 扩展内的推箱子（WebExtensions）",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "sokoban-demo@local",
+      "strict_min_version": "109.0"
+    }
+  },
+  "action": {
+    "default_title": "推箱子",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": ["storage"]
+}

@@ -13,8 +13,10 @@ A classic Sokoban puzzle game with **console**, **web**, and **console homebrew*
 - **iOS** — `iosapp1/` (SwiftUI teaching sources; no in-repo build required; [docs](iosapp1/README.md))
 - **Nokia N81** — `n81app1/` (Java ME MIDP teaching demo; no build required; [docs](n81app1/README.md))
 - **Wenquxing** — `wqxapp1/` (BBK e-dictionary C + HAL teaching project; no firmware build; [docs](wqxapp1/README.md))
-- **Multi-stack teaching ports** — Flutter, Unity, Rust, Go, Zig, WeChat mini-game, HarmonyOS, ESP32, STM32, Arduino, Linux fbdev, Casio, DOS (see [TODO.md](TODO.md))
+- **Multi-stack teaching ports** — desktop/mobile/embedded/handheld/editor & browser extensions (see [TODO.md](TODO.md))
 - **FC / NES** — `fcapp1/` (cc65 → `sokoban.nes`)
+- **GB / GBC** — `gbapp1/` · `gbcapp1/` (teaching skeletons, GBDK)
+- **NDS** — `ndsapp1/` (dual-screen teaching skeleton, libnds)
 - **GBA** — `gbaapp1/` (bare-metal Mode 3 → `sokoban.gba`)
 - **PSP** — `pspapp1/` (pspdev + sceGu → `EBOOT.PBP`)
 - Pathfinding / answer playback where supported
@@ -45,6 +47,19 @@ sokoban/
 ├── linuxfbapp1/         # Linux framebuffer
 ├── casioapp1/           # Casio calculator abstraction
 ├── dosapp1/             # DOS
+├── gbapp1/              # Game Boy teaching
+├── gbcapp1/             # Game Boy Color teaching
+├── ndsapp1/             # Nintendo DS teaching
+├── vscodeext1/          # VS Code extension
+├── vs2026ext1/          # Visual Studio extension teaching
+├── chromeext1/          # Chrome extension
+├── edgeext1/            # Edge extension
+├── firefoxext1/         # Firefox extension
+├── vimext1/             # Vim plugin
+├── nvimext1/            # Neovim Lua plugin
+├── safariext1/          # Safari Web Extension
+├── emacsext1/           # Emacs package
+├── jetbrainsext1/       # JetBrains IDE plugin
 ├── fcapp1/              # FC / NES homebrew
 ├── gbaapp1/             # GBA homebrew
 ├── pspapp1/             # PSP homebrew
@@ -112,7 +127,7 @@ Portable C Sokoban with a `wqx_api` HAL for dictionary-class devices. **Not requ
 
 ### Other teaching stacks
 
-See **[TODO.md](TODO.md)**. Each folder has its own README (mostly demos/skeletons; full toolchains not required in-repo): Flutter, Unity, Rust, Go, Zig, WeChat mini-game, HarmonyOS, ESP32, STM32, Arduino, Linux fbdev, Casio, DOS.
+See **[TODO.md](TODO.md)**. Each folder has its own README (mostly demos/skeletons). Includes Safari, Emacs, JetBrains plugins, browser extensions, consoles, handhelds, etc.
 
 ### C Console Version
 

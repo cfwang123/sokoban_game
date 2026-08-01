@@ -1,0 +1,27 @@
+*sokoban.txt*  Teaching demo: Sokoban in Vim
+
+==============================================================================
+USAGE							*sokoban-usage*
+
+  :Sokoban
+
+Keys (in game buffer):
+
+  h/j/k/l or arrows   Move
+  u                   Undo push
+  r                   Reset level
+  n / p               Next / previous level
+  q                   Close buffer
+
+==============================================================================
+INSTALL							*sokoban-install*
+
+  Pathogen / Vim 8 packages:
+
+    pack/sokoban/start/vimext1   " or symlink this folder
+
+  Or:
+
+    set runtimepath+=/path/to/vimext1
+
+vim:tw=78:ts=8:ft=help:norl:

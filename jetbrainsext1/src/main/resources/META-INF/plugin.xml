@@ -1,0 +1,25 @@
+<!-- IntelliJ Platform 插件清单（教学）。用 IntelliJ Plugin 模板打开后即可识别。 -->
+<idea-plugin>
+  <id>com.whj.sokoban</id>
+  <name>Sokoban 推箱子</name>
+  <vendor>whj-demo</vendor>
+  <description><![CDATA[
+    Teaching demo: play Sokoban in a Tool Window inside IntelliJ IDEA / Android Studio / WebStorm, etc.
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <toolWindow id="Sokoban"
+                secondary="true"
+                icon="AllIcons.Actions.Lightning"
+                anchor="right"
+                factoryClass="com.whj.sokoban.SokobanToolWindowFactory"/>
+  </extensions>
+  <actions>
+    <action id="Sokoban.Open"
+            class="com.whj.sokoban.OpenSokobanAction"
+            text="Open Sokoban"
+            description="Open Sokoban tool window">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>
