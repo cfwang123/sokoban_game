@@ -8,6 +8,8 @@ A classic Sokoban puzzle game with **console**, **web**, and **console homebrew*
 
 - Classic Sokoban gameplay with many levels (`levels.json`)
 - **C console** — lightweight terminal game
+- **Multi-language CLIs** — Python / PHP / Lua / Node.js / Ruby / Java / C# / Kotlin / Perl / R / Haskell / Rust / Go / Zig
+- **Desktop demos** — Pygame / Qt / Electron / SDL2 / Godot / raylib
 - **2D / 3D web** — browser play (3D uses three.js)
 - **Android** — `androidapp1/` (Kotlin, tap pathfinding + icon pad; [changelog](androidapp1/CHANGELOG.md))
 - **iOS** — `iosapp1/` (SwiftUI teaching sources; no in-repo build required; [docs](iosapp1/README.md))
@@ -39,6 +41,23 @@ sokoban/
 ├── rustapp1/            # Rust
 ├── goapp1/              # Go
 ├── zigapp1/             # Zig
+├── pythonapp1/          # Python CLI
+├── phpapp1/             # PHP CLI
+├── luaapp1/             # Lua CLI
+├── nodejsapp1/          # Node.js CLI
+├── rubyapp1/            # Ruby CLI
+├── javaapp1/            # Java CLI
+├── csharpapp1/          # C# CLI
+├── kotlinapp1/          # Kotlin CLI
+├── perlapp1/            # Perl CLI
+├── rapp1/               # R CLI
+├── haskellapp1/         # Haskell CLI
+├── pygameapp1/          # Pygame (html_app-like 2D)
+├── qtapp1/              # Qt Widgets desktop
+├── electronapp1/        # Electron desktop
+├── sdlapp1/             # SDL2 desktop
+├── godotapp1/           # Godot 4 desktop
+├── raylibapp1/          # raylib desktop
 ├── wxgame1/             # WeChat mini-game
 ├── harmonyapp1/         # HarmonyOS ArkTS
 ├── esp32app1/           # ESP32 (ESP-IDF)
@@ -138,6 +157,35 @@ make
 ```
 
 Requires a C compiler (e.g., GCC / MinGW on Windows).
+
+### Multi-language CLIs
+
+Teaching mini-level. Controls: WASD, z undo, r reset, q quit.
+
+```bash
+cd pythonapp1  && python -X utf8 main.py
+cd phpapp1     && php main.php
+cd luaapp1     && lua main.lua
+cd nodejsapp1  && node main.js
+cd rubyapp1    && ruby main.rb
+cd javaapp1    && javac *.java && java Main
+cd csharpapp1  && dotnet run
+cd kotlinapp1  && kotlinc Game.kt Main.kt -include-runtime -d sokoban.jar && java -jar sokoban.jar
+cd perlapp1    && perl main.pl
+cd rapp1       && Rscript main.R
+cd haskellapp1 && ghc Main.hs Game.hs -o sokoban && ./sokoban
+```
+
+### Desktop demos
+
+| Folder | How to run |
+|--------|------------|
+| [pygameapp1](pygameapp1/README.md) | `pip install pygame` → `python main.py` |
+| [qtapp1](qtapp1/README.md) | `qmake && make` |
+| [electronapp1](electronapp1/README.md) | `npm install && npm start` |
+| [sdlapp1](sdlapp1/README.md) | SDL2 + `make` |
+| [godotapp1](godotapp1/README.md) | Open `project.godot` in Godot 4 |
+| [raylibapp1](raylibapp1/README.md) | raylib + `make` |
 
 ### FC / NES
 

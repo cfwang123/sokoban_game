@@ -8,6 +8,8 @@
 
 - 经典推箱子玩法，内置多个关卡（`levels.json`）
 - **C 控制台版** — 轻量级终端游戏
+- **多语言终端版** — Python / PHP / Lua / Node.js / Ruby / Java / C# / Kotlin / Perl / R / Haskell / Rust / Go / Zig
+- **桌面图形 demo** — Pygame / Qt / Electron / SDL2 / Godot / raylib
 - **2D / 3D 网页版** — 浏览器游玩（3D 基于 three.js）
 - **Android** — `androidapp1/`（Kotlin，点击寻路 + 图标虚拟键；见 [更新日志](androidapp1/CHANGELOG.md)）
 - **iOS** — `iosapp1/`（SwiftUI 教学演示源码，不要求在本仓库编译；见 [说明](iosapp1/README.md)）
@@ -39,6 +41,23 @@ sokoban/
 ├── rustapp1/            # Rust
 ├── goapp1/              # Go
 ├── zigapp1/             # Zig
+├── pythonapp1/          # Python 终端
+├── phpapp1/             # PHP 终端
+├── luaapp1/             # Lua 终端
+├── nodejsapp1/          # Node.js 终端
+├── rubyapp1/            # Ruby 终端
+├── javaapp1/            # Java 终端
+├── csharpapp1/          # C# 终端
+├── kotlinapp1/          # Kotlin 终端
+├── perlapp1/            # Perl 终端
+├── rapp1/               # R 终端
+├── haskellapp1/         # Haskell 终端
+├── pygameapp1/          # Pygame（仿 html_app 2D）
+├── qtapp1/              # Qt Widgets 桌面
+├── electronapp1/        # Electron 桌面
+├── sdlapp1/             # SDL2 桌面
+├── godotapp1/           # Godot 4 桌面
+├── raylibapp1/          # raylib 桌面
 ├── wxgame1/             # 微信小游戏
 ├── harmonyapp1/         # HarmonyOS ArkTS
 ├── esp32app1/           # ESP32 (ESP-IDF)
@@ -136,6 +155,23 @@ MIDP 2.0 MIDlet 源码，演示功能机 Java 生命周期、`Canvas` 绘制与�
 | `rustapp1/` | Rust |
 | `goapp1/` | Go |
 | `zigapp1/` | Zig |
+| `pythonapp1/` | Python 终端 |
+| `phpapp1/` | PHP 终端 |
+| `luaapp1/` | Lua 终端 |
+| `nodejsapp1/` | Node.js 终端 |
+| `rubyapp1/` | Ruby 终端 |
+| `javaapp1/` | Java 终端 |
+| `csharpapp1/` | C# 终端 |
+| `kotlinapp1/` | Kotlin 终端 |
+| `perlapp1/` | Perl 终端 |
+| `rapp1/` | R 终端 |
+| `haskellapp1/` | Haskell 终端 |
+| `pygameapp1/` | Pygame（仿 2D 网页） |
+| `qtapp1/` | Qt Widgets |
+| `electronapp1/` | Electron |
+| `sdlapp1/` | SDL2（SFML 可同理） |
+| `godotapp1/` | Godot 4 |
+| `raylibapp1/` | raylib |
 | `wxgame1/` | 微信小游戏 |
 | `harmonyapp1/` | HarmonyOS ArkTS |
 | `esp32app1/` | ESP32 |
@@ -167,6 +203,35 @@ make
 ```
 
 需要 C 编译器（Windows 下推荐 GCC / MinGW）。
+
+### 多语言终端版
+
+教学用迷你关卡，操作均为 WASD + z 撤销 + r 重置 + q 退出。
+
+```bash
+cd pythonapp1  && python -X utf8 main.py
+cd phpapp1     && php main.php
+cd luaapp1     && lua main.lua
+cd nodejsapp1  && node main.js
+cd rubyapp1    && ruby main.rb
+cd javaapp1    && javac *.java && java Main
+cd csharpapp1  && dotnet run
+cd kotlinapp1  && kotlinc Game.kt Main.kt -include-runtime -d sokoban.jar && java -jar sokoban.jar
+cd perlapp1    && perl main.pl
+cd rapp1       && Rscript main.R
+cd haskellapp1 && ghc Main.hs Game.hs -o sokoban && ./sokoban
+```
+
+### 桌面图形 demo
+
+| 目录 | 运行要点 |
+|------|----------|
+| [pygameapp1](pygameapp1/README.md) | `pip install pygame` → `python main.py`（读全量 `levels.json`） |
+| [qtapp1](qtapp1/README.md) | `qmake && make` |
+| [electronapp1](electronapp1/README.md) | `npm install && npm start` |
+| [sdlapp1](sdlapp1/README.md) | 需 SDL2 → `make` |
+| [godotapp1](godotapp1/README.md) | Godot 4 打开 `project.godot` |
+| [raylibapp1](raylibapp1/README.md) | 需 raylib → `make` |
 
 ### FC / NES 版
 

@@ -1,0 +1,13 @@
+{
+  "name": "sokoban-electron",
+  "version": "1.0.0",
+  "description": "Sokoban Electron desktop demo (html_app-like)",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "private": true,
+  "devDependencies": {
+    "electron": "^28.0.0"
+  }
+}

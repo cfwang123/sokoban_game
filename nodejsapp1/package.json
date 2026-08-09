@@ -1,0 +1,13 @@
+{
+  "name": "sokoban-nodejs",
+  "version": "1.0.0",
+  "description": "Sokoban CLI teaching port (Node.js)",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=14"
+  }
+}
