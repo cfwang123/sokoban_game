@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sokoban Vue（教学）</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="js/game-core.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div class="app">
+      <h1>Sokoban · Vue 3</h1>
+      <p class="hint">WASD / 方向键 · Z 撤销 · R 重置 · 无需 npm 构建</p>
+      <div class="board">
+        <div class="row" v-for="y in state.height" :key="'r'+y">
+          <span
+            v-for="x in state.width"
+            :key="x+','+y"
+            class="cell"
+            :class="cellClass(x - 1, y - 1)"
+          >{{ cellChar(x - 1, y - 1) }}</span>
+        </div>
+      </div>
+      <p class="status">moves={{ state.moves }}{{ state.won ? ' WIN!' : '' }}</p>
+      <p v-if="state.won" class="win">Level clear!</p>
+      <div class="btns">
+        <button type="button" @click="move(0,-1)">W</button>
+        <button type="button" @click="move(-1,0)">A</button>
+        <button type="button" @click="move(0,1)">S</button>
+        <button type="button" @click="move(1,0)">D</button>
+        <button type="button" @click="doUndo">Z</button>
+        <button type="button" @click="reset">R</button>
+      </div>
+    </div>
+  </div>
+  <script src="js/app.js"></script>
+</body>
+</html>

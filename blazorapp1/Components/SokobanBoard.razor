@@ -1,0 +1,78 @@
+@* Blazor 推箱子棋盘组件（教学） *@
+@using Microsoft.AspNetCore.Components.Web
+@implements IDisposable
+
+<div class="sokoban" tabindex="0" @onkeydown="OnKey" @ref="_root">
+  <h1>Sokoban · Blazor</h1>
+  <p class="hint">WASD / 方向键 · Z 撤销 · R 重置 · 可选 <code>dotnet run</code></p>
+  <div class="board">
+    @for (var y = 0; y < _state.Height; y++)
+    {
+      <div class="row">
+        @for (var x = 0; x < _state.Width; x++)
+        {
+          var ch = _state.CellAt(x, y);
+          <span class="cell @CellClass(ch)">@(ch == ' ' ? "\u00a0" : ch)</span>
+        }
+      </div>
+    }
+  </div>
+  <p class="status">moves=@_state.Moves@(_state.Won ? " WIN!" : "")</p>
+  @if (_state.Won)
+  {
+    <p class="win">Level clear!</p>
+  }
+  <div class="btns">
+    <button type="button" @onclick="() => Move(0, -1)">W</button>
+    <button type="button" @onclick="() => Move(-1, 0)">A</button>
+    <button type="button" @onclick="() => Move(0, 1)">S</button>
+    <button type="button" @onclick="() => Move(1, 0)">D</button>
+    <button type="button" @onclick="DoUndo">Z</button>
+    <button type="button" @onclick="Reset">R</button>
+  </div>
+</div>
+
+@code {
+    private GameState _state = GameState.FromRows(Levels.Mini);
+    private ElementReference _root;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+            await _root.FocusAsync();
+    }
+
+    private void Move(int dx, int dy)
+    {
+        _state.TryMove(dx, dy);
+    }
+
+    private void DoUndo() => _state.Undo();
+
+    private void Reset() => _state = GameState.FromRows(Levels.Mini);
+
+    private void OnKey(KeyboardEventArgs e)
+    {
+        switch (e.Key.ToLowerInvariant())
+        {
+            case "w": case "arrowup": Move(0, -1); break;
+            case "s": case "arrowdown": Move(0, 1); break;
+            case "a": case "arrowleft": Move(-1, 0); break;
+            case "d": case "arrowright": Move(1, 0); break;
+            case "z": DoUndo(); break;
+            case "r": Reset(); break;
+        }
+    }
+
+    private static string CellClass(char ch) => ch switch
+    {
+        '#' => "c-wall",
+        '.' => "c-goal",
+        '$' => "c-box",
+        '*' => "c-boxg",
+        '@' or '+' => "c-player",
+        _ => "c-floor",
+    };
+
+    public void Dispose() { }
+}

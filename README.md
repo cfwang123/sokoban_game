@@ -10,8 +10,8 @@ A classic Sokoban puzzle game with **console**, **web**, and **console homebrew*
 - **C console** — lightweight terminal game
 - **Multi-language CLIs** — Python / PHP / Lua / Node.js / Ruby / Java / C# / Kotlin / Perl / R / Haskell / Rust / Go / Zig / C++ / …
 - **Classic & extended CLIs** — Lisp / Scheme / COBOL / Fortran / Pascal / Prolog / BASIC / Ada / Forth / Tcl / OCaml / Clojure / F# / Scala / Elixir / Erlang / Nim / … (full list in [TODO.md](TODO.md))
-- **Desktop demos** — Pygame / Qt / Electron / SDL2 / Godot / raylib
-- **2D / 3D web** — browser play (3D uses three.js)
+- **Desktop demos** — Pygame / Qt / Electron / SDL2 / Godot / raylib / Win32 / MFC / Tkinter / PyQt / WinForms / WPF / Avalonia / C# TUI / MAUI / WinUI3 / Blazor
+- **2D / 3D web** — browser play (3D uses three.js) · React / Vue / Angular teaching · Cocos2d-style
 - **Android** — `androidapp1/` (Kotlin, tap pathfinding + icon pad; [changelog](androidapp1/CHANGELOG.md))
 - **iOS** — `iosapp1/` (SwiftUI teaching sources; no in-repo build required; [docs](iosapp1/README.md))
 - **Nokia N81** — `n81app1/` (Java ME MIDP teaching demo; no build required; [docs](n81app1/README.md))
@@ -77,6 +77,7 @@ sokoban/
 ├── juliaapp1/           # Julia CLI
 ├── powershellapp1/      # PowerShell CLI
 ├── bashapp1/            # Bash CLI
+├── cmdapp1/             # Windows CMD batch
 ├── awkapp1/             # AWK CLI
 ├── sqlapp1/             # SQL/SQLite CLI
 ├── cppapp1/             # C++ CLI
@@ -91,6 +92,31 @@ sokoban/
 ├── logoapp1/            # Logo CLI
 ├── aplapp1/             # APL CLI
 ├── factorapp1/          # Factor CLI
+├── vbapp1/              # Visual Basic .NET CLI
+├── vbaapp1/             # VBA (Excel macro) teaching
+├── vb6app1/             # Visual Basic 6.0 teaching
+├── win32app1/           # C Win32 API teaching
+├── mfcapp1/             # MFC Doc/View teaching
+├── tkinterapp1/         # Python Tkinter GUI
+├── pyqtapp1/            # Python PyQt GUI
+├── winformsapp1/        # C# WinForms
+├── wpfapp1/             # C# WPF
+├── avaloniaapp1/        # C# Avalonia
+├── csharptuiapp1/       # C# console TUI
+├── reactapp1/           # React (CDN)
+├── vueapp1/             # Vue 3 (CDN)
+├── angularapp1/         # Angular teaching + zero-build play
+├── cocos2dapp1/         # Cocos2d-style Canvas
+├── x11app1/             # X11/Xlib teaching
+├── gtkapp1/             # GTK3 teaching
+├── blazorapp1/          # Blazor WebAssembly
+├── mauiapp1/            # .NET MAUI
+├── winui3app1/          # WinUI 3
+├── monoapp1/            # Mono / mcs
+├── netaotapp1/          # .NET Native AOT
+├── asm_common/          # ASM teaching C reference (playable)
+├── asm_x86app1/ …       # multi-ISA asm skeletons (see TODO.md)
+├── asm_wasmapp1/        # WebAssembly / WAT
 ├── pygameapp1/          # Pygame (html_app-like 2D)
 ├── qtapp1/              # Qt Widgets desktop
 ├── electronapp1/        # Electron desktop
@@ -228,13 +254,17 @@ cd ocamlapp1       && ocamlc -o sokoban game.ml main.ml && ./sokoban
 cd clojureapp1     && clj -M main.clj
 cd fsharpapp1      && dotnet run
 cd cppapp1         && g++ -std=c++17 -O2 main.cpp -o sokoban && ./sokoban
-cd powershellapp1  && pwsh -File main.ps1
+cd powershellapp1  && pwsh -NoProfile -File main.ps1
 cd bashapp1        && bash main.sh
+cd cmdapp1         && main.cmd
 cd sqlapp1         && python -X utf8 main.py
 cd juliaapp1       && julia main.jl
 cd nimapp1         && nim c -r main.nim
 cd dartapp1        && dart run main.dart
 cd groovyapp1      && groovy main.groovy
+cd vbapp1          && dotnet run
+# VBA (Excel): see vbaapp1/README.md — import macros, run SokobanMain
+# VB6: see vb6app1/README.md — open sokoban.vbp in VB6, F5
 # … every folder has its own README
 ```
 
@@ -243,6 +273,28 @@ cd groovyapp1      && groovy main.groovy
 | Folder | How to run |
 |--------|------------|
 | [pygameapp1](pygameapp1/README.md) | `pip install pygame` → `python main.py` |
+| [tkinterapp1](tkinterapp1/README.md) | stdlib → `python main.py` |
+| [pyqtapp1](pyqtapp1/README.md) | `pip install PyQt5` → `python main.py` |
+| [win32app1](win32app1/README.md) | teaching sources; optional MinGW/MSVC |
+| [mfcapp1](mfcapp1/README.md) | MFC Doc/View teaching; no in-repo build |
+| [winformsapp1](winformsapp1/README.md) | optional `dotnet run` (Windows) |
+| [wpfapp1](wpfapp1/README.md) | optional `dotnet run` (Windows) |
+| [avaloniaapp1](avaloniaapp1/README.md) | optional `dotnet run` (cross-platform) |
+| [csharptuiapp1](csharptuiapp1/README.md) | optional `dotnet run` (ANSI TUI) |
+| [reactapp1](reactapp1/README.md) | open `index.html` (CDN, no npm) |
+| [vueapp1](vueapp1/README.md) | open `index.html` (CDN Vue 3) |
+| [angularapp1](angularapp1/README.md) | open `play.html`; components in `src/app/` |
+| [cocos2dapp1](cocos2dapp1/README.md) | open `index.html` (Director/Layer teaching) |
+| [x11app1](x11app1/README.md) | Xlib teaching; optional `gcc … -lX11` |
+| [gtkapp1](gtkapp1/README.md) | GTK3 teaching; optional `pkg-config gtk+-3.0` |
+| [blazorapp1](blazorapp1/README.md) | Blazor WASM; optional `dotnet run` |
+| [mauiapp1](mauiapp1/README.md) | .NET MAUI teaching sources; no in-repo build required |
+| [winui3app1](winui3app1/README.md) | WinUI 3 teaching sources; no in-repo build required |
+| [monoapp1](monoapp1/README.md) | Mono: `mcs` + `mono` |
+| [netaotapp1](netaotapp1/README.md) | .NET Native AOT: `dotnet publish` |
+| [asm_common](asm_common/README.md) | ASM teaching C reference (playable) |
+| [asm_wasmapp1](asm_wasmapp1/README.md) | WAT + browser playable host |
+| other `asm_*app1/` | x86/x64/ARM/Thumb/AArch64/RISC-V/MIPS/PPC/AVR/Z80/6502/LoongArch — see [TODO.md](TODO.md) |
 | [qtapp1](qtapp1/README.md) | `qmake && make` |
 | [electronapp1](electronapp1/README.md) | `npm install && npm start` |
 | [sdlapp1](sdlapp1/README.md) | SDL2 + `make` |

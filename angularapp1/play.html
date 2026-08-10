@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sokoban Angular 结构对照（零构建可玩）</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="js/game-core.js"></script>
+</head>
+<body>
+  <div class="app">
+    <h1>Sokoban · Angular 教学对照</h1>
+    <p class="hint">本页零构建可玩；完整 Angular 组件源码见 <code>src/app/</code>（可选 <code>ng serve</code>）</p>
+    <div id="board" class="board"></div>
+    <p id="status" class="status"></p>
+    <div class="btns">
+      <button type="button" data-dx="0" data-dy="-1">W</button>
+      <button type="button" data-dx="-1" data-dy="0">A</button>
+      <button type="button" data-dx="0" data-dy="1">S</button>
+      <button type="button" data-dx="1" data-dy="0">D</button>
+      <button type="button" id="btnZ">Z</button>
+      <button type="button" id="btnR">R</button>
+    </div>
+  </div>
+  <script src="js/play.js"></script>
+</body>
+</html>

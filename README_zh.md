@@ -10,8 +10,8 @@
 - **C 控制台版** — 轻量级终端游戏
 - **多语言终端版** — Python / PHP / Lua / Node.js / Ruby / Java / C# / Kotlin / Perl / R / Haskell / Rust / Go / Zig / C++ / …
 - **古典与扩展语言终端版** — Lisp / Scheme / COBOL / Fortran / Pascal / Prolog / BASIC / Ada / Forth / Tcl / OCaml / Clojure / F# / Scala / Elixir / Erlang / Nim / …（完整清单见 [TODO.md](TODO.md)）
-- **桌面图形 demo** — Pygame / Qt / Electron / SDL2 / Godot / raylib
-- **2D / 3D 网页版** — 浏览器游玩（3D 基于 three.js）
+- **桌面图形 demo** — Pygame / Qt / Electron / SDL2 / Godot / raylib / Win32 / MFC / Tkinter / PyQt / WinForms / WPF / Avalonia / C# TUI / MAUI / WinUI3 / Blazor
+- **2D / 3D 网页版** — 浏览器游玩（3D 基于 three.js）· React / Vue / Angular 教学 · Cocos2d 风格
 - **Android** — `androidapp1/`（Kotlin，点击寻路 + 图标虚拟键；见 [更新日志](androidapp1/CHANGELOG.md)）
 - **iOS** — `iosapp1/`（SwiftUI 教学演示源码，不要求在本仓库编译；见 [说明](iosapp1/README.md)）
 - **Nokia N81** — `n81app1/`（Java ME MIDP 教学演示，不要求编译；见 [说明](n81app1/README.md)）
@@ -77,6 +77,7 @@ sokoban/
 ├── juliaapp1/           # Julia 终端
 ├── powershellapp1/      # PowerShell 终端
 ├── bashapp1/            # Bash 终端
+├── cmdapp1/             # Windows CMD 批处理
 ├── awkapp1/             # AWK 终端
 ├── sqlapp1/             # SQL/SQLite 终端
 ├── cppapp1/             # C++ 终端
@@ -91,6 +92,31 @@ sokoban/
 ├── logoapp1/            # Logo 终端
 ├── aplapp1/             # APL 终端
 ├── factorapp1/          # Factor 终端
+├── vbapp1/              # Visual Basic .NET 终端
+├── vbaapp1/             # VBA（Excel 宏）教学
+├── vb6app1/             # Visual Basic 6.0 教学
+├── win32app1/           # C Win32 API 教学
+├── mfcapp1/             # MFC Doc/View 教学
+├── tkinterapp1/         # Python Tkinter GUI
+├── pyqtapp1/            # Python PyQt GUI
+├── winformsapp1/        # C# WinForms
+├── wpfapp1/             # C# WPF
+├── avaloniaapp1/        # C# Avalonia
+├── csharptuiapp1/       # C# 终端 TUI
+├── reactapp1/           # React（CDN）
+├── vueapp1/             # Vue 3（CDN）
+├── angularapp1/         # Angular 教学 + 零构建可玩
+├── cocos2dapp1/         # Cocos2d 风格 Canvas
+├── x11app1/             # X11/Xlib 教学
+├── gtkapp1/             # GTK3 教学
+├── blazorapp1/          # Blazor WebAssembly
+├── mauiapp1/            # .NET MAUI
+├── winui3app1/          # WinUI 3
+├── monoapp1/            # Mono / mcs
+├── netaotapp1/          # .NET Native AOT
+├── asm_common/          # 汇编教学 C 参考（可玩）
+├── asm_x86app1/ …       # 多 ISA 汇编骨架（见 TODO.md）
+├── asm_wasmapp1/        # WebAssembly / WAT
 ├── pygameapp1/          # Pygame（仿 html_app 2D）
 ├── qtapp1/              # Qt Widgets 桌面
 ├── electronapp1/        # Electron 桌面
@@ -282,13 +308,17 @@ cd ocamlapp1       && ocamlc -o sokoban game.ml main.ml && ./sokoban
 cd clojureapp1     && clj -M main.clj
 cd fsharpapp1      && dotnet run
 cd cppapp1         && g++ -std=c++17 -O2 main.cpp -o sokoban && ./sokoban
-cd powershellapp1  && pwsh -File main.ps1
+cd powershellapp1  && pwsh -NoProfile -File main.ps1
 cd bashapp1        && bash main.sh
+cd cmdapp1         && main.cmd
 cd sqlapp1         && python -X utf8 main.py
 cd juliaapp1       && julia main.jl
 cd nimapp1         && nim c -r main.nim
 cd dartapp1        && dart run main.dart
 cd groovyapp1      && groovy main.groovy
+cd vbapp1          && dotnet run
+# VBA（Excel）: 见 vbaapp1/README.md，导入宏运行 SokobanMain
+# VB6: 见 vb6app1/README.md，用 VB6 打开 sokoban.vbp → F5
 # … 其余目录均有独立 README
 ```
 
@@ -297,6 +327,28 @@ cd groovyapp1      && groovy main.groovy
 | 目录 | 运行要点 |
 |------|----------|
 | [pygameapp1](pygameapp1/README.md) | `pip install pygame` → `python main.py`（读全量 `levels.json`） |
+| [tkinterapp1](tkinterapp1/README.md) | 标准库 → `python main.py` |
+| [pyqtapp1](pyqtapp1/README.md) | `pip install PyQt5` → `python main.py` |
+| [win32app1](win32app1/README.md) | 教学源码；可选 `gcc … -mwindows` |
+| [mfcapp1](mfcapp1/README.md) | MFC Doc/View 教学源码，不强制编译 |
+| [winformsapp1](winformsapp1/README.md) | 可选 `dotnet run`（Windows） |
+| [wpfapp1](wpfapp1/README.md) | 可选 `dotnet run`（Windows） |
+| [avaloniaapp1](avaloniaapp1/README.md) | 可选 `dotnet run`（跨平台） |
+| [csharptuiapp1](csharptuiapp1/README.md) | 可选 `dotnet run`（ANSI TUI） |
+| [reactapp1](reactapp1/README.md) | 打开 `index.html`（CDN，无 npm） |
+| [vueapp1](vueapp1/README.md) | 打开 `index.html`（CDN Vue 3） |
+| [angularapp1](angularapp1/README.md) | 打开 `play.html`；组件源码见 `src/app/` |
+| [cocos2dapp1](cocos2dapp1/README.md) | 打开 `index.html`（Director/Layer 教学） |
+| [x11app1](x11app1/README.md) | Xlib 教学；可选 `gcc … -lX11` |
+| [gtkapp1](gtkapp1/README.md) | GTK3 教学；可选 `pkg-config gtk+-3.0` |
+| [blazorapp1](blazorapp1/README.md) | Blazor WASM；可选 `dotnet run` |
+| [mauiapp1](mauiapp1/README.md) | .NET MAUI 教学源码，不强制编译 |
+| [winui3app1](winui3app1/README.md) | WinUI 3 教学源码，不强制编译 |
+| [monoapp1](monoapp1/README.md) | Mono：`mcs` + `mono` |
+| [netaotapp1](netaotapp1/README.md) | .NET Native AOT：`dotnet publish` |
+| [asm_common](asm_common/README.md) | 汇编教学 C 参考（可玩） |
+| [asm_wasmapp1](asm_wasmapp1/README.md) | WAT + 浏览器可玩 |
+| 其它 `asm_*app1/` | x86/x64/ARM/Thumb/AArch64/RISC-V/MIPS/PPC/AVR/Z80/6502/LoongArch 见 [TODO.md](TODO.md) |
 | [qtapp1](qtapp1/README.md) | `qmake && make` |
 | [electronapp1](electronapp1/README.md) | `npm install && npm start` |
 | [sdlapp1](sdlapp1/README.md) | 需 SDL2 → `make` |

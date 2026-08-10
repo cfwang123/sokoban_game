@@ -1,5 +1,6 @@
-# powershellapp1 — PowerShell 推箱子终端版（教学）
-# 运行: pwsh -File main.ps1
+# powershellapp1 - PowerShell Sokoban (teaching)
+# run: powershell -NoProfile -ExecutionPolicy Bypass -File main.ps1
+#  or: pwsh -NoProfile -File main.ps1
 
 $ErrorActionPreference = 'Stop'
 . "$PSScriptRoot/Game.ps1"
@@ -15,7 +16,7 @@ $LEVEL = @(
 )
 
 $state = New-GameFromRows $LEVEL 0
-Write-Host 'sokoban_powershell — wasd 移动, z 撤销, r 重置, q 退出'
+Write-Host 'sokoban_powershell - wasd move, z undo, r reset, q quit'
 
 while ($true) {
     Write-Host ''
@@ -23,7 +24,11 @@ while ($true) {
     $flag = if ($state.Won) { ' WIN!' } else { '' }
     Write-Host ("moves=$($state.Moves)$flag")
     Write-Host -NoNewline '> '
-    $line = Read-Host
+    try {
+        $line = Read-Host
+    } catch {
+        break
+    }
     if ($null -eq $line) { break }
     $line = $line.Trim()
     if ($line.Length -eq 0) { continue }

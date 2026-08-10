@@ -1,0 +1,16 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="SokobanAvalonia.MainWindow"
+        Title="Sokoban Avalonia"
+        Width="320" Height="360"
+        Background="#1A1A2E"
+        KeyDown="OnKeyDown">
+  <DockPanel>
+    <TextBlock x:Name="Status" DockPanel.Dock="Bottom" Margin="8"
+               Foreground="White"/>
+    <!-- 教学：用 TextBlock 字符画代替完整 Drawing；也可换 Canvas/Skia -->
+    <TextBlock x:Name="Board" FontFamily="Consolas, Courier New, monospace"
+               FontSize="20" Foreground="#ECF0F1" Margin="16"
+               TextWrapping="NoWrap"/>
+  </DockPanel>
+</Window>

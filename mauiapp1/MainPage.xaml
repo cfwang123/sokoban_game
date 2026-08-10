@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SokobanMaui.MainPage"
+             Title="Sokoban MAUI"
+             BackgroundColor="#1A1A2E">
+  <ScrollView>
+    <VerticalStackLayout Padding="24" Spacing="12" HorizontalOptions="Center">
+      <Label Text="Sokoban · .NET MAUI"
+             TextColor="White"
+             FontSize="22"
+             HorizontalOptions="Center" />
+      <Label Text="WASD 按钮 · Z 撤销 · R 重置（教学源码）"
+             TextColor="#AAAAAA"
+             FontSize="12"
+             HorizontalOptions="Center" />
+      <Label x:Name="BoardLabel"
+             FontFamily="Consolas"
+             FontSize="22"
+             TextColor="#ECF0F1"
+             HorizontalOptions="Center"
+             LineBreakMode="NoWrap" />
+      <Label x:Name="StatusLabel"
+             TextColor="White"
+             HorizontalOptions="Center" />
+      <HorizontalStackLayout Spacing="8" HorizontalOptions="Center">
+        <Button Text="W" Clicked="OnUp" WidthRequest="48" />
+        <Button Text="A" Clicked="OnLeft" WidthRequest="48" />
+        <Button Text="S" Clicked="OnDown" WidthRequest="48" />
+        <Button Text="D" Clicked="OnRight" WidthRequest="48" />
+        <Button Text="Z" Clicked="OnUndo" WidthRequest="48" />
+        <Button Text="R" Clicked="OnReset" WidthRequest="48" />
+      </HorizontalStackLayout>
+    </VerticalStackLayout>
+  </ScrollView>
+</ContentPage>

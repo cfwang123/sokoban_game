@@ -43,12 +43,61 @@
 | `juliaapp1/` | Julia | ✅ |
 | `powershellapp1/` | PowerShell | ✅ |
 | `bashapp1/` | Bash | ✅ |
+| `cmdapp1/` | Windows CMD / 批处理（main.cmd） | ✅ |
 | `awkapp1/` | AWK | ✅ |
 | `sqlapp1/` | SQL / SQLite | ✅ |
 | `cppapp1/` | C++ | ✅ |
 | `groovyapp1/` | Groovy | ✅ |
 | `vapp1/` | V | ✅ |
 | `odinapp1/` | Odin | ✅ |
+| `vbapp1/` | Visual Basic .NET | ✅ |
+| `vbaapp1/` | VBA（Excel 宏） | ✅ |
+| `vb6app1/` | Visual Basic 6.0 | ✅ |
+
+## GUI / TUI 教学（不强制本仓库编译）
+
+| 目录 | 技术 | 状态 |
+|------|------|------|
+| `win32app1/` | C Win32 API | ✅ |
+| `mfcapp1/` | C++/MFC Doc-View | ✅ |
+| `tkinterapp1/` | Python Tkinter（标准库） | ✅ |
+| `pyqtapp1/` | Python PyQt5/6 / PySide6 | ✅ |
+| `winformsapp1/` | C# WinForms | ✅ |
+| `wpfapp1/` | C# WPF | ✅ |
+| `avaloniaapp1/` | C# Avalonia | ✅ |
+| `csharptuiapp1/` | C# 终端 TUI（ANSI） | ✅ |
+| `reactapp1/` | React（CDN，无构建） | ✅ |
+| `vueapp1/` | Vue 3（CDN，无构建） | ✅ |
+| `angularapp1/` | Angular 组件源码 + play.html | ✅ |
+| `cocos2dapp1/` | Cocos2d 风格 Canvas 场景 | ✅ |
+| `x11app1/` | C X11/Xlib | ✅ |
+| `gtkapp1/` | C GTK3（gtx→GTK） | ✅ |
+| `blazorapp1/` | C# Blazor WebAssembly | ✅ |
+| `mauiapp1/` | .NET MAUI | ✅ |
+| `winui3app1/` | WinUI 3 | ✅ |
+| `monoapp1/` | Mono / mcs | ✅ |
+| `netaotapp1/` | .NET Native AOT | ✅ |
+
+## 汇编教学（C 参考 + 各 ISA 骨架）
+
+| 目录 | ISA | 状态 |
+|------|------|------|
+| `asm_common/` | C 可玩参考实现 | ✅ |
+| `asm_x86app1/` | x86 (IA-32) | ✅ |
+| `asm_x64app1/` | x86-64 | ✅ |
+| `asm_armapp1/` | ARM32 | ✅ |
+| `asm_thumbapp1/` | Thumb / Thumb-2 | ✅ |
+| `asm_aarch64app1/` | AArch64 (ARM64) | ✅ |
+| `asm_riscvapp1/` | RISC-V | ✅ |
+| `asm_mipsapp1/` | MIPS32 | ✅ |
+| `asm_ppcapp1/` | PowerPC | ✅ |
+| `asm_avrapp1/` | AVR | ✅ |
+| `asm_z80app1/` | Z80 | ✅ |
+| `asm_6502app1/` | 6502 | ✅ |
+| `asm_loongarchapp1/` | LoongArch | ✅ |
+| `asm_wasmapp1/` | WebAssembly / WAT | ✅ |
+
+已有相关：`qtapp1`（C++ Qt）、`pygameapp1`、`html_app`、`csharpapp1`（行式 CLI）。
 
 ## 既有（本清单不重复）
 
