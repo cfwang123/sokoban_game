@@ -11,7 +11,7 @@ int main(void)
     char line[128];
     sk_reset(&g);
     printf("sokoban_asm — wasd 移动, z 撤销, r 重置, q 退出\n");
-    printf("(asm_common C 参考实现；见各 asm_*app1 的 ISA 汇编对照)\n");
+    printf("(C 或汇编 sk_try_move；见各 asm_*app1)\n");
     for (;;) {
         printf("\n");
         sk_render(&g, buf, (int)sizeof(buf));

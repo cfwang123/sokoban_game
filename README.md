@@ -10,6 +10,8 @@ A classic Sokoban puzzle game with **console**, **web**, and **console homebrew*
 - **C console** — lightweight terminal game
 - **Multi-language CLIs** — Python / PHP / Lua / Node.js / Ruby / Java / C# / Kotlin / Perl / R / Haskell / Rust / Go / Zig / C++ / …
 - **Classic & extended CLIs** — Lisp / Scheme / COBOL / Fortran / Pascal / Prolog / BASIC / Ada / Forth / Tcl / OCaml / Clojure / F# / Scala / Elixir / Erlang / Nim / … (full list in [TODO.md](TODO.md))
+- **Chinese programming languages** — Xi-lang / BingZhengZheng / CaoMang (native; others: [docs/UNSUPPORTED_LANGS.md](docs/UNSUPPORTED_LANGS.md))
+- **Esoteric languages** — Brainfuck / JSFuck (playable); others: [docs/UNSUPPORTED_LANGS.md](docs/UNSUPPORTED_LANGS.md)
 - **Desktop demos** — Pygame / Qt / Electron / SDL2 / Godot / raylib / Win32 / MFC / Tkinter / PyQt / WinForms / WPF / Avalonia / C# TUI / MAUI / WinUI3 / Blazor
 - **2D / 3D web** — browser play (3D uses three.js) · React / Vue / Angular teaching · Cocos2d-style
 - **Android** — `androidapp1/` (Kotlin, tap pathfinding + icon pad; [changelog](androidapp1/CHANGELOG.md))
@@ -90,8 +92,9 @@ sokoban/
 ├── iconapp1/            # Icon CLI
 ├── rexxapp1/            # REXX CLI
 ├── logoapp1/            # Logo CLI
-├── aplapp1/             # APL CLI
-├── factorapp1/          # Factor CLI
+├── xiyuyanapp1/         # Xi-lang (Chinese C macros, native)
+├── caomangapp1/         # CaoMang (.草蟒 sources)
+├── bingzhengzhengapp1/  # BingZhengZheng (Chinese C++ macros, native)
 ├── vbapp1/              # Visual Basic .NET CLI
 ├── vbaapp1/             # VBA (Excel macro) teaching
 ├── vb6app1/             # Visual Basic 6.0 teaching
@@ -114,9 +117,13 @@ sokoban/
 ├── winui3app1/          # WinUI 3
 ├── monoapp1/            # Mono / mcs
 ├── netaotapp1/          # .NET Native AOT
-├── asm_common/          # ASM teaching C reference (playable)
-├── asm_x86app1/ …       # multi-ISA asm skeletons (see TODO.md)
+├── asm_common/          # ASM teaching C reference + test_try_move
+├── asm_x86app1/ …       # multi-ISA full sk_try_move (see TODO.md)
 ├── asm_wasmapp1/        # WebAssembly / WAT
+├── brainfuckapp1/       # Brainfuck CLI (pure BF game + interpreter)
+├── befungeapp1/         # Befunge CLI (pure .bf game + interpreter)
+├── jsfuckapp1/          # JSFuck (generated try_move; Node / play.html)
+# other Wikipedia esolangs: not implementable — see docs/UNSUPPORTED_LANGS.md
 ├── pygameapp1/          # Pygame (html_app-like 2D)
 ├── qtapp1/              # Qt Widgets desktop
 ├── electronapp1/        # Electron desktop
@@ -265,6 +272,14 @@ cd groovyapp1      && groovy main.groovy
 cd vbapp1          && dotnet run
 # VBA (Excel): see vbaapp1/README.md — import macros, run SokobanMain
 # VB6: see vb6app1/README.md — open sokoban.vbp in VB6, F5
+# Chinese languages / esolang (native target language)
+cd xiyuyanapp1         && gcc -std=c11 -O2 main.c -o sokoban && ./sokoban
+cd caomangapp1         && python -X utf8 main.py
+cd bingzhengzhengapp1  && g++ -std=c++17 -O2 main.cpp -o sokoban && ./sokoban
+cd brainfuckapp1       && python -X utf8 main.py
+cd befungeapp1         && python -X utf8 main.py   # pure Befunge + interpreter
+cd jsfuckapp1          && node game.js             # pure-JSFuck try_move
+# not implementable: docs/UNSUPPORTED_LANGS.md
 # … every folder has its own README
 ```
 
@@ -292,9 +307,10 @@ cd vbapp1          && dotnet run
 | [winui3app1](winui3app1/README.md) | WinUI 3 teaching sources; no in-repo build required |
 | [monoapp1](monoapp1/README.md) | Mono: `mcs` + `mono` |
 | [netaotapp1](netaotapp1/README.md) | .NET Native AOT: `dotnet publish` |
-| [asm_common](asm_common/README.md) | ASM teaching C reference (playable) |
+| [asm_common](asm_common/README.md) | ASM teaching C reference + self-test (playable) |
 | [asm_wasmapp1](asm_wasmapp1/README.md) | WAT + browser playable host |
-| other `asm_*app1/` | x86/x64/ARM/Thumb/AArch64/RISC-V/MIPS/PPC/AVR/Z80/6502/LoongArch — see [TODO.md](TODO.md) |
+| [asm_x64app1](asm_x64app1/README.md) | x86-64 full `sk_try_move` (`make asm` on host) |
+| other `asm_*app1/` | x86/ARM/Thumb/AArch64/RISC-V/MIPS/PPC/AVR/Z80/6502/LoongArch full `sk_try_move` — see [TODO.md](TODO.md) |
 | [qtapp1](qtapp1/README.md) | `qmake && make` |
 | [electronapp1](electronapp1/README.md) | `npm install && npm start` |
 | [sdlapp1](sdlapp1/README.md) | SDL2 + `make` |

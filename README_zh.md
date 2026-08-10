@@ -10,6 +10,8 @@
 - **C 控制台版** — 轻量级终端游戏
 - **多语言终端版** — Python / PHP / Lua / Node.js / Ruby / Java / C# / Kotlin / Perl / R / Haskell / Rust / Go / Zig / C++ / …
 - **古典与扩展语言终端版** — Lisp / Scheme / COBOL / Fortran / Pascal / Prolog / BASIC / Ada / Forth / Tcl / OCaml / Clojure / F# / Scala / Elixir / Erlang / Nim / …（完整清单见 [TODO.md](TODO.md)）
+- **中文编程语言** — 习语言 / 丙正正 / 草蟒（目标语言实现；其余见 [docs/UNSUPPORTED_LANGS.md](docs/UNSUPPORTED_LANGS.md)）
+- **深奥编程语言（Esolang）** — Brainfuck / JSFuck 可玩；其余见 [docs/UNSUPPORTED_LANGS.md](docs/UNSUPPORTED_LANGS.md)
 - **桌面图形 demo** — Pygame / Qt / Electron / SDL2 / Godot / raylib / Win32 / MFC / Tkinter / PyQt / WinForms / WPF / Avalonia / C# TUI / MAUI / WinUI3 / Blazor
 - **2D / 3D 网页版** — 浏览器游玩（3D 基于 three.js）· React / Vue / Angular 教学 · Cocos2d 风格
 - **Android** — `androidapp1/`（Kotlin，点击寻路 + 图标虚拟键；见 [更新日志](androidapp1/CHANGELOG.md)）
@@ -90,8 +92,9 @@ sokoban/
 ├── iconapp1/            # Icon 终端
 ├── rexxapp1/            # REXX 终端
 ├── logoapp1/            # Logo 终端
-├── aplapp1/             # APL 终端
-├── factorapp1/          # Factor 终端
+├── xiyuyanapp1/         # 习语言（中文 C 宏，目标语言实现）
+├── caomangapp1/         # 草蟒（.草蟒 源码）
+├── bingzhengzhengapp1/  # 丙正正（中文 C++ 宏）
 ├── vbapp1/              # Visual Basic .NET 终端
 ├── vbaapp1/             # VBA（Excel 宏）教学
 ├── vb6app1/             # Visual Basic 6.0 教学
@@ -114,9 +117,13 @@ sokoban/
 ├── winui3app1/          # WinUI 3
 ├── monoapp1/            # Mono / mcs
 ├── netaotapp1/          # .NET Native AOT
-├── asm_common/          # 汇编教学 C 参考（可玩）
-├── asm_x86app1/ …       # 多 ISA 汇编骨架（见 TODO.md）
+├── asm_common/          # 汇编教学 C 参考（可玩）+ test_try_move
+├── asm_x86app1/ …       # 多 ISA 完整 sk_try_move（见 TODO.md）
 ├── asm_wasmapp1/        # WebAssembly / WAT
+├── brainfuckapp1/       # Brainfuck（纯 BF + 解释器）
+├── befungeapp1/         # Befunge（纯 .bf + 解释器）
+├── jsfuckapp1/          # JSFuck（脚本生成 try_move；Node / play.html）
+# 其它 Esolang：无法实现见 docs/UNSUPPORTED_LANGS.md
 ├── pygameapp1/          # Pygame（仿 html_app 2D）
 ├── qtapp1/              # Qt Widgets 桌面
 ├── electronapp1/        # Electron 桌面
@@ -238,7 +245,12 @@ MIDP 2.0 MIDlet 源码，演示功能机 Java 生命周期、`Canvas` 绘制与�
 | `pascalapp1/` | Pascal 终端 |
 | `prologapp1/` | Prolog 终端 |
 | `basicapp1/` | FreeBASIC 终端 |
-| `adaapp1/` … `factorapp1/` | 古典/扩展语言（见 [TODO.md](TODO.md)） |
+| `adaapp1/` … `logoapp1/` | 古典/扩展语言（见 [TODO.md](TODO.md)） |
+| `xiyuyanapp1/` | 习语言（中文 C） |
+| `caomangapp1/` | 草蟒（.草蟒） |
+| `bingzhengzhengapp1/` | 丙正正（中文 C++） |
+| `brainfuckapp1/` | Brainfuck（纯 BF） |
+| `jsfuckapp1/` | JSFuck（生成 try_move；Node / play.html） |
 | `pygameapp1/` | Pygame（仿 2D 网页） |
 | `qtapp1/` | Qt Widgets |
 | `electronapp1/` | Electron |
@@ -319,6 +331,14 @@ cd groovyapp1      && groovy main.groovy
 cd vbapp1          && dotnet run
 # VBA（Excel）: 见 vbaapp1/README.md，导入宏运行 SokobanMain
 # VB6: 见 vb6app1/README.md，用 VB6 打开 sokoban.vbp → F5
+# 中文编程语言 / Esolang（目标语言实现）
+cd xiyuyanapp1         && gcc -std=c11 -O2 main.c -o sokoban && ./sokoban
+cd caomangapp1         && python -X utf8 main.py   # 运行时翻译 .草蟒
+cd bingzhengzhengapp1  && g++ -std=c++17 -O2 main.cpp -o sokoban && ./sokoban
+cd brainfuckapp1       && python -X utf8 main.py   # 解释器跑纯 BF
+cd befungeapp1         && python -X utf8 main.py   # 解释器跑纯 Befunge
+cd jsfuckapp1          && node game.js             # try_move 纯 JSFuck
+# 无法实现的语言：docs/UNSUPPORTED_LANGS.md
 # … 其余目录均有独立 README
 ```
 
@@ -346,9 +366,10 @@ cd vbapp1          && dotnet run
 | [winui3app1](winui3app1/README.md) | WinUI 3 教学源码，不强制编译 |
 | [monoapp1](monoapp1/README.md) | Mono：`mcs` + `mono` |
 | [netaotapp1](netaotapp1/README.md) | .NET Native AOT：`dotnet publish` |
-| [asm_common](asm_common/README.md) | 汇编教学 C 参考（可玩） |
+| [asm_common](asm_common/README.md) | 汇编教学 C 参考 + 自测（可玩） |
 | [asm_wasmapp1](asm_wasmapp1/README.md) | WAT + 浏览器可玩 |
-| 其它 `asm_*app1/` | x86/x64/ARM/Thumb/AArch64/RISC-V/MIPS/PPC/AVR/Z80/6502/LoongArch 见 [TODO.md](TODO.md) |
+| [asm_x64app1](asm_x64app1/README.md) | x86-64 完整 `sk_try_move`（本机可 `make asm`） |
+| 其它 `asm_*app1/` | x86/ARM/Thumb/AArch64/RISC-V/MIPS/PPC/AVR/Z80/6502/LoongArch 完整 `sk_try_move`，见 [TODO.md](TODO.md) |
 | [qtapp1](qtapp1/README.md) | `qmake && make` |
 | [electronapp1](electronapp1/README.md) | `npm install && npm start` |
 | [sdlapp1](sdlapp1/README.md) | 需 SDL2 → `make` |

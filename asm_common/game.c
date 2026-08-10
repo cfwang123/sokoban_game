@@ -71,6 +71,7 @@ void sk_reset(SkGame *g)
     }
 }
 
+#ifndef SK_USE_ASM_TRY_MOVE
 int sk_try_move(SkGame *g, int dx, int dy)
 {
     int nx, ny, bx, by;
@@ -116,6 +117,7 @@ int sk_try_move(SkGame *g, int dx, int dy)
     g->py = ny;
     return 1;
 }
+#endif /* !SK_USE_ASM_TRY_MOVE */
 
 int sk_undo(SkGame *g)
 {

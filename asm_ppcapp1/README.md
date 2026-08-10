@@ -1,36 +1,42 @@
-# asm_ppcapp1 — PowerPC / Power ISA 推箱子汇编教学
+# asm_ppcapp1 — PowerPC 推箱子汇编教学
 
-**不强制在本仓库交叉编译**。完整可玩逻辑见 [`../asm_common`](../asm_common)（C 参考）。
+**完整 `sk_try_move` 已实现**，语义对齐 [../asm_common/game.c](../asm_common/game.c)。
+不强制在本仓库交叉编译；无对应工具链时用 C 参考主机可玩。
 
 ## 工具
 
-powerpc-linux-gnu-as / IBM XL
+32-bit SysV-ish; powerpc-linux-gnu-gcc -c
 
 ## 本目录
 
 | 文件 | 说明 |
 |------|------|
-| `try_move_ppc.S` | 该 ISA 下 `try_move` **教学骨架 / 寄存器约定** |
+| `try_move_ppc.S` | **完整** `sk_try_move`（与 game.h 布局一致） |
 | 可玩主机 | `../asm_common/host_main.c` + `game.c` |
-
-## 寄存器速查（Power ABI 概要）
-
-| 用途 | 寄存器 |
-|------|--------|
-| 参数 | r3–r10 |
-| 返回 | r3 |
-| 链接 | lr |
-
-常见于旧 Mac、部分嵌入式与游戏主机历史资料。
-
+| 自测 | `../asm_common/test_try_move.c` |
 
 ## 算法对照
 
-推箱 `try_move` 核心步骤（各 ISA 汇编应实现同一语义）：
+1. 若已胜利则失败
+2. 计算 `nx,ny`；越界或墙则失败
+3. 若是箱子：检查前方；推箱并记 hist；`moves++`；判胜
+4. 否则走路并记 hist
 
-1. 若已胜利则失败  
-2. 计算 `nx,ny`；越界或墙则失败  
-3. 若是箱子：检查前方；推箱并记 hist；`moves++`；判胜  
-4. 否则走路并记 hist  
+## 可选：链接汇编 `sk_try_move`
 
-键位（C 主机）：WASD / z / r / q。
+`ash
+# 汇编 try_move_ppc.S → try_move.o 后：
+cc -O2 -DSK_USE_ASM_TRY_MOVE -o sokoban_asm \
+  ../asm_common/host_main.c ../asm_common/game.c try_move.o -I../asm_common
+`
+
+x86-64 本机可直接：`cd ../asm_x64app1 && make asm`
+
+默认 C 参考：
+
+`ash
+cc -O2 -o sokoban ../asm_common/host_main.c ../asm_common/game.c -I../asm_common
+./sokoban
+`
+
+键位：WASD / z / r / q。

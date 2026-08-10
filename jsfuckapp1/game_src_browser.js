@@ -1,0 +1,170 @@
+// Readable browser source — encoded to sokoban.browser.jsfuck.js
+(function () {
+  var L = [
+    "#######",
+    "#. . .#",
+    "# $$$ #",
+    "#.$@$.#",
+    "# $$$ #",
+    "#. . .#",
+    "#######",
+  ];
+  function K(x, y) {
+    return x + "," + y;
+  }
+  function load() {
+    var W = {},
+      G = {},
+      B = {},
+      px = 0,
+      py = 0,
+      w = 0,
+      h = 0;
+    for (var y = 0; y < L.length; y++) {
+      h = y + 1;
+      var row = L[y];
+      for (var x = 0; x < row.length; x++) {
+        w = Math.max(w, x + 1);
+        var c = row[x],
+          k = K(x, y);
+        if (c === "#") W[k] = 1;
+        else if (c === ".") G[k] = 1;
+        else if (c === "$") B[k] = 1;
+        else if (c === "*") {
+          B[k] = 1;
+          G[k] = 1;
+        } else if (c === "@") {
+          px = x;
+          py = y;
+        } else if (c === "+") {
+          px = x;
+          py = y;
+          G[k] = 1;
+        }
+      }
+    }
+    return {
+      W: W,
+      G: G,
+      B: B,
+      px: px,
+      py: py,
+      m: 0,
+      won: false,
+      w: w,
+      h: h,
+      hist: [],
+    };
+  }
+  function win(s) {
+    for (var b in s.B)
+      if (!s.G[b]) {
+        s.won = false;
+        return;
+      }
+    s.won = true;
+  }
+  function move(s, dx, dy) {
+    if (s.won) return;
+    var nx = s.px + dx,
+      ny = s.py + dy,
+      nk = K(nx, ny);
+    if (s.W[nk]) return;
+    if (s.B[nk]) {
+      var bx = nx + dx,
+        by = ny + dy,
+        bk = K(bx, by);
+      if (s.W[bk] || s.B[bk]) return;
+      s.hist.push([s.px, s.py, nk, bk]);
+      delete s.B[nk];
+      s.B[bk] = 1;
+      s.px = nx;
+      s.py = ny;
+      s.m++;
+      win(s);
+      return;
+    }
+    s.hist.push([s.px, s.py, null, null]);
+    s.px = nx;
+    s.py = ny;
+  }
+  function undo(s) {
+    if (s.won || !s.hist.length) return;
+    while (s.hist.length) {
+      var e = s.hist.pop(),
+        hx = e[0],
+        hy = e[1],
+        bf = e[2],
+        bt = e[3];
+      if (bf != null) {
+        s.px = hx;
+        s.py = hy;
+        delete s.B[bt];
+        s.B[bf] = 1;
+        if (s.m > 0) s.m--;
+        s.won = false;
+        return;
+      }
+      s.px = hx;
+      s.py = hy;
+    }
+  }
+  function draw(s) {
+    var o = "";
+    for (var y = 0; y < s.h; y++) {
+      for (var x = 0; x < s.w; x++) {
+        var k = K(x, y);
+        if (s.px === x && s.py === y) o += s.G[k] ? "+" : "@";
+        else if (s.B[k]) o += s.G[k] ? "*" : "$";
+        else if (s.W[k]) o += "#";
+        else if (s.G[k]) o += ".";
+        else o += " ";
+      }
+      o += "\n";
+    }
+    return o;
+  }
+  var s = load();
+  var out = document.getElementById("out");
+  var mv = document.getElementById("mv");
+  var winEl = document.getElementById("win");
+  function paint() {
+    out.textContent = draw(s);
+    if (mv) mv.textContent = String(s.m);
+    if (winEl) winEl.textContent = s.won ? " WIN!" : "";
+  }
+  function step(ch) {
+    ch = (ch || "").toLowerCase();
+    if (ch === "r") {
+      s = load();
+      paint();
+      return;
+    }
+    if (ch === "z") {
+      undo(s);
+      paint();
+      return;
+    }
+    var M = { w: [0, -1], s: [0, 1], a: [-1, 0], d: [1, 0] };
+    if (M[ch] && !s.won) {
+      move(s, M[ch][0], M[ch][1]);
+      paint();
+    }
+  }
+  document.body.addEventListener("keydown", function (e) {
+    var k = e.key.toLowerCase();
+    if ("wasdzr".indexOf(k) >= 0) {
+      e.preventDefault();
+      step(k);
+    }
+  });
+  var btns = document.querySelectorAll("button[data-k]");
+  for (var i = 0; i < btns.length; i++) {
+    (function (b) {
+      b.addEventListener("click", function () {
+        step(b.getAttribute("data-k"));
+      });
+    })(btns[i]);
+  }
+  paint();
+})();

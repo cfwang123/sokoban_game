@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>jsfuckapp1 — pure JSFuck Sokoban</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #1a1f29;
+      --fg: #e8ecf1;
+      --muted: #8b95a8;
+      --acc: #6ee7b7;
+      --warn: #fbbf24;
+      --border: #2a3344;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      background: radial-gradient(1200px 600px at 20% -10%, #1a2740, var(--bg));
+      color: var(--fg);
+      padding: 1.25rem;
+    }
+    h1 { font-size: 1.15rem; margin: 0 0 0.35rem; }
+    .sub { color: var(--muted); font-size: 0.85rem; margin-bottom: 1rem; max-width: 40rem; line-height: 1.45; }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+      display: inline-block;
+    }
+    #out {
+      margin: 0;
+      line-height: 1.25;
+      font-size: 1.05rem;
+      white-space: pre;
+    }
+    .meta { margin-top: 0.75rem; color: var(--muted); }
+    .meta strong { color: var(--acc); }
+    #win { color: var(--warn); font-weight: 700; }
+    button {
+      font: inherit;
+      cursor: pointer;
+      background: #243044;
+      color: var(--fg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.35rem 0.7rem;
+      margin: 0.5rem 0.35rem 0 0;
+    }
+    button:hover { border-color: var(--acc); }
+    kbd {
+      border: 1px solid var(--border);
+      background: #12161e;
+      border-radius: 4px;
+      padding: 0.05rem 0.35rem;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>jsfuckapp1 — 纯 JSFuck 推箱子</h1>
+  <p class="sub">
+    玩法逻辑全部在 <code>sokoban.browser.jsfuck.js</code> 中，文件<strong>只含</strong>
+    <code>[]()!+</code> 六个字符（JSFuck）。本页只提供 DOM 壳。
+    键：<kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> <kbd>Z</kbd> 撤销 <kbd>R</kbd> 重置
+  </p>
+  <div class="card">
+    <pre id="out">loading pure JSFuck…</pre>
+    <div class="meta">moves: <strong id="mv">0</strong> <span id="win"></span></div>
+    <div>
+      <button type="button" data-k="w">W</button>
+      <button type="button" data-k="a">A</button>
+      <button type="button" data-k="s">S</button>
+      <button type="button" data-k="d">D</button>
+      <button type="button" data-k="z">Z</button>
+      <button type="button" data-k="r">R</button>
+    </div>
+  </div>
+  <!-- 纯 JSFuck 游戏程序（由 game_src_browser.js 编码生成） -->
+  <script src="sokoban.browser.jsfuck.js"></script>
+</body>
+</html>

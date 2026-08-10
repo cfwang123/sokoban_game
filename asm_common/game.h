@@ -28,9 +28,6 @@ int sk_undo(SkGame *g);
 void sk_render(const SkGame *g, char *buf, int cap);
 int sk_cell(const SkGame *g, int x, int y); /* 返回字符 */
 
-/* 汇编 try_move 可选入口：若定义 SK_USE_ASM_TRY_MOVE 则链接 *.s */
-#ifdef SK_USE_ASM_TRY_MOVE
-int sk_try_move_asm(SkGame *g, int dx, int dy);
-#endif
+/* 定义 SK_USE_ASM_TRY_MOVE 时 game.c 不提供 sk_try_move，改为链接各 ISA 的同名汇编符号 */
 
 #endif
