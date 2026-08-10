@@ -1,0 +1,139 @@
+# iconapp1 — Icon 推箱子终端版（教学）
+# 编译: icont sokoban.icn
+# 运行: sokoban  或 icon sokoban.icn
+
+global walls, goals, boxes, px, py, moves, won, width, height, hist
+
+procedure main()
+   local line, ch, level
+   level := [
+      "#######",
+      "#. . .#",
+      "# $$$ #",
+      "#.$@$.#",
+      "# $$$ #",
+      "#. . .#",
+      "#######"
+      ]
+   init_level(level)
+   write("sokoban_icon — wasd 移动, z 撤销, r 重置, q 退出")
+   repeat {
+      write()
+      write(render())
+      write("moves=", moves, if won then " WIN!" else "")
+      writes("> ")
+      line := read() | break
+      line := trim(line)
+      if *line = 0 then next
+      ch := map(line[1], &ucase, &lcase)
+      case ch of {
+         "w": try_move(0, -1)
+         "s": try_move(0, 1)
+         "a": try_move(-1, 0)
+         "d": try_move(1, 0)
+         "z": undo()
+         "r": init_level(level)
+         "q": break
+         }
+      if won then write("Level clear!")
+      }
+end
+
+procedure key(x, y)
+   return x || "," || y
+end
+
+procedure init_level(level)
+   local y, x, row, ch, k, maxx
+   walls := set(); goals := set(); boxes := set()
+   hist := []
+   moves := 0; won := &null
+   px := 0; py := 0; maxx := 0
+   every y := 1 to *level do {
+      row := level[y]
+      every x := 1 to *row do {
+         if x - 1 > maxx then maxx := x - 1
+         ch := row[x]
+         k := key(x - 1, y - 1)
+         case ch of {
+            "#": insert(walls, k)
+            ".": insert(goals, k)
+            "$": insert(boxes, k)
+            "*": { insert(boxes, k); insert(goals, k) }
+            "@": { px := x - 1; py := y - 1 }
+            "+": { px := x - 1; py := y - 1; insert(goals, k) }
+            }
+         }
+      }
+   width := maxx + 1
+   height := *level
+end
+
+procedure check_win()
+   local b
+   every b := !boxes do
+      if not member(goals, b) then {
+         won := &null
+         return
+         }
+   won := 1
+end
+
+procedure try_move(dx, dy)
+   local nx, ny, nk, bx, by, bk
+   if \won then fail
+   nx := px + dx; ny := py + dy
+   nk := key(nx, ny)
+   if member(walls, nk) then fail
+   if member(boxes, nk) then {
+      bx := nx + dx; by := ny + dy
+      bk := key(bx, by)
+      if member(walls, bk) | member(boxes, bk) then fail
+      put(hist, [px, py, nk, bk])
+      delete(boxes, nk)
+      insert(boxes, bk)
+      px := nx; py := ny
+      moves +:= 1
+      check_win()
+      return
+      }
+   put(hist, [px, py, &null, &null])
+   px := nx; py := ny
+end
+
+procedure undo()
+   local e
+   if \won | *hist = 0 then fail
+   while *hist > 0 do {
+      e := pull(hist)
+      if \e[3] then {
+         px := e[1]; py := e[2]
+         delete(boxes, e[4])
+         insert(boxes, e[3])
+         if moves > 0 then moves -:= 1
+         won := &null
+         return
+         }
+      px := e[1]; py := e[2]
+      }
+end
+
+procedure render()
+   local y, x, k, out, ch
+   out := ""
+   every y := 0 to height - 1 do {
+      every x := 0 to width - 1 do {
+         k := key(x, y)
+         if x = px & y = py then
+            ch := if member(goals, k) then "+" else "@"
+         else if member(boxes, k) then
+            ch := if member(goals, k) then "*" else "$"
+         else if member(walls, k) then ch := "#"
+         else if member(goals, k) then ch := "."
+         else ch := " "
+         out ||:= ch
+         }
+      out ||:= "\n"
+      }
+   return out
+end

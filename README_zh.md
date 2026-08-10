@@ -8,7 +8,8 @@
 
 - 经典推箱子玩法，内置多个关卡（`levels.json`）
 - **C 控制台版** — 轻量级终端游戏
-- **多语言终端版** — Python / PHP / Lua / Node.js / Ruby / Java / C# / Kotlin / Perl / R / Haskell / Rust / Go / Zig
+- **多语言终端版** — Python / PHP / Lua / Node.js / Ruby / Java / C# / Kotlin / Perl / R / Haskell / Rust / Go / Zig / C++ / …
+- **古典与扩展语言终端版** — Lisp / Scheme / COBOL / Fortran / Pascal / Prolog / BASIC / Ada / Forth / Tcl / OCaml / Clojure / F# / Scala / Elixir / Erlang / Nim / …（完整清单见 [TODO.md](TODO.md)）
 - **桌面图形 demo** — Pygame / Qt / Electron / SDL2 / Godot / raylib
 - **2D / 3D 网页版** — 浏览器游玩（3D 基于 three.js）
 - **Android** — `androidapp1/`（Kotlin，点击寻路 + 图标虚拟键；见 [更新日志](androidapp1/CHANGELOG.md)）
@@ -52,6 +53,44 @@ sokoban/
 ├── perlapp1/            # Perl 终端
 ├── rapp1/               # R 终端
 ├── haskellapp1/         # Haskell 终端
+├── lispapp1/            # Common Lisp 终端
+├── schemeapp1/          # Scheme 终端
+├── cobolapp1/           # COBOL 终端
+├── fortranapp1/         # Fortran 终端
+├── pascalapp1/          # Pascal 终端
+├── prologapp1/          # Prolog 终端
+├── basicapp1/           # FreeBASIC 终端
+├── adaapp1/             # Ada 终端
+├── forthapp1/           # Forth 终端
+├── tclapp1/             # Tcl 终端
+├── ocamlapp1/           # OCaml 终端
+├── clojureapp1/         # Clojure 终端
+├── fsharpapp1/          # F# 终端
+├── scalaapp1/           # Scala 终端
+├── elixirapp1/          # Elixir 终端
+├── erlangapp1/          # Erlang 终端
+├── nimapp1/             # Nim 终端
+├── crystalapp1/         # Crystal 终端
+├── dlangapp1/           # D 终端
+├── swiftapp1/           # Swift CLI 终端
+├── dartapp1/            # Dart CLI 终端
+├── juliaapp1/           # Julia 终端
+├── powershellapp1/      # PowerShell 终端
+├── bashapp1/            # Bash 终端
+├── awkapp1/             # AWK 终端
+├── sqlapp1/             # SQL/SQLite 终端
+├── cppapp1/             # C++ 终端
+├── groovyapp1/          # Groovy 终端
+├── vapp1/               # V 终端
+├── odinapp1/            # Odin 终端
+├── smalltalkapp1/       # Smalltalk 终端
+├── modula2app1/         # Modula-2 终端
+├── algolapp1/           # Algol 68 终端
+├── iconapp1/            # Icon 终端
+├── rexxapp1/            # REXX 终端
+├── logoapp1/            # Logo 终端
+├── aplapp1/             # APL 终端
+├── factorapp1/          # Factor 终端
 ├── pygameapp1/          # Pygame（仿 html_app 2D）
 ├── qtapp1/              # Qt Widgets 桌面
 ├── electronapp1/        # Electron 桌面
@@ -166,6 +205,14 @@ MIDP 2.0 MIDlet 源码，演示功能机 Java 生命周期、`Canvas` 绘制与�
 | `perlapp1/` | Perl 终端 |
 | `rapp1/` | R 终端 |
 | `haskellapp1/` | Haskell 终端 |
+| `lispapp1/` | Common Lisp 终端 |
+| `schemeapp1/` | Scheme 终端 |
+| `cobolapp1/` | COBOL 终端 |
+| `fortranapp1/` | Fortran 终端 |
+| `pascalapp1/` | Pascal 终端 |
+| `prologapp1/` | Prolog 终端 |
+| `basicapp1/` | FreeBASIC 终端 |
+| `adaapp1/` … `factorapp1/` | 古典/扩展语言（见 [TODO.md](TODO.md)） |
 | `pygameapp1/` | Pygame（仿 2D 网页） |
 | `qtapp1/` | Qt Widgets |
 | `electronapp1/` | Electron |
@@ -220,6 +267,29 @@ cd kotlinapp1  && kotlinc Game.kt Main.kt -include-runtime -d sokoban.jar && jav
 cd perlapp1    && perl main.pl
 cd rapp1       && Rscript main.R
 cd haskellapp1 && ghc Main.hs Game.hs -o sokoban && ./sokoban
+# 古典 / 历史语言
+cd lispapp1    && sbcl --script main.lisp
+cd schemeapp1  && guile -l game.scm -s main.scm
+cd cobolapp1   && cobc -x -free main.cbl game.cbl -o sokoban && ./sokoban
+cd fortranapp1 && gfortran -O2 game.f90 main.f90 -o sokoban && ./sokoban
+cd pascalapp1  && fpc -O2 main.pas && ./main
+cd prologapp1  && swipl -q -s main.pl
+cd basicapp1   && fbc -O 2 main.bas && ./main
+# 更多古典 / 现代语言（摘要，完整见 TODO.md）
+cd adaapp1         && gnatmake main.adb
+cd tclapp1         && tclsh main.tcl
+cd ocamlapp1       && ocamlc -o sokoban game.ml main.ml && ./sokoban
+cd clojureapp1     && clj -M main.clj
+cd fsharpapp1      && dotnet run
+cd cppapp1         && g++ -std=c++17 -O2 main.cpp -o sokoban && ./sokoban
+cd powershellapp1  && pwsh -File main.ps1
+cd bashapp1        && bash main.sh
+cd sqlapp1         && python -X utf8 main.py
+cd juliaapp1       && julia main.jl
+cd nimapp1         && nim c -r main.nim
+cd dartapp1        && dart run main.dart
+cd groovyapp1      && groovy main.groovy
+# … 其余目录均有独立 README
 ```
 
 ### 桌面图形 demo

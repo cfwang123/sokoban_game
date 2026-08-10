@@ -1,0 +1,181 @@
+; logoapp1 — Logo 推箱子终端版（教学）
+; 运行: logo sokoban.logo
+; 或: ucblogo sokoban.logo
+; 兼容 UCBLogo / FMSLogo 风格（部分方言需微调）
+
+to key :x :y
+  output (word :x "," :y)
+end
+
+to init.level
+  make "walls []
+  make "goals []
+  make "boxes []
+  make "hist []
+  make "moves 0
+  make "won "false
+  make "level [ #######  |#. . .#|  |# $$$ #|  |#.$@$.#|  |# $$$ #|  |#. . .#|  ####### ]
+  ; simpler fixed level as list of words is awkward for spaces — use char codes via lists
+  make "rows [
+    [ # # # # # # # ]
+    [ # . | | . | | . # ]
+    [ # | | $ $ $ | | # ]
+    [ # . $ @ $ . # ]
+    [ # | | $ $ $ | | # ]
+    [ # . | | . | | . # ]
+    [ # # # # # # # ]
+  ]
+  ; Use string rows instead:
+  make "srows [
+    "#######
+    "#. . .#
+    "# $$$ #
+    "#.$@$.#
+    "# $$$ #
+    "#. . .#
+    "#######
+  ]
+  make "px 0 make "py 0
+  make "width 0 make "height 0
+  make "y 0
+  foreach :srows [
+    make "row ?
+    make "x 0
+    make "width max :width count :row
+    while [:x < count :row] [
+      make "ch item :x+1 :row
+      make "k key :x :y
+      if equalp :ch "# [ make "walls lput :k :walls ]
+      if equalp :ch ". [ make "goals lput :k :goals ]
+      if equalp :ch "$ [ make "boxes lput :k :boxes ]
+      if equalp :ch "* [ make "boxes lput :k :boxes make "goals lput :k :goals ]
+      if equalp :ch "@ [ make "px :x make "py :y ]
+      if equalp :ch "+ [ make "px :x make "py :y make "goals lput :k :goals ]
+      make "x :x+1
+    ]
+    make "y :y+1
+  ]
+  make "height :y
+  make "moves 0
+  make "won "false
+  make "hist []
+end
+
+to member? :item :list
+  if emptyp :list [output "false]
+  if equalp :item first :list [output "true]
+  output member? :item butfirst :list
+end
+
+to remove.item :item :list
+  if emptyp :list [output []]
+  if equalp :item first :list [output butfirst :list]
+  output fput first :list remove.item :item butfirst :list
+end
+
+to check.win
+  foreach :boxes [
+    if not member? ? :goals [ make "won "false stop ]
+  ]
+  make "won "true
+end
+
+to try.move :dx :dy
+  if equalp :won "true [stop]
+  make "nx :px+:dx
+  make "ny :py+:dy
+  make "nk key :nx :ny
+  if member? :nk :walls [stop]
+  if member? :nk :boxes [
+    make "bx :nx+:dx
+    make "by :ny+:dy
+    make "bk key :bx :by
+    if or member? :bk :walls member? :bk :boxes [stop]
+    make "hist fput (list :px :py :nk :bk) :hist
+    make "boxes remove.item :nk :boxes
+    make "boxes lput :bk :boxes
+    make "px :nx make "py :ny
+    make "moves :moves+1
+    check.win
+    stop
+  ]
+  make "hist fput (list :px :py "none "none) :hist
+  make "px :nx make "py :ny
+end
+
+to undo.move
+  if or equalp :won "true emptyp :hist [stop]
+  while [not emptyp :hist] [
+    make "e first :hist
+    make "hist butfirst :hist
+    make "hx item 1 :e
+    make "hy item 2 :e
+    make "bf item 3 :e
+    make "bt item 4 :e
+    if not equalp :bf "none [
+      make "px :hx make "py :hy
+      make "boxes remove.item :bt :boxes
+      make "boxes lput :bf :boxes
+      if :moves > 0 [make "moves :moves-1]
+      make "won "false
+      stop
+    ]
+    make "px :hx make "py :hy
+  ]
+end
+
+to render
+  make "y 0
+  while [:y < :height] [
+    make "line "
+    make "x 0
+    while [:x < :width] [
+      make "k key :x :y
+      if and equalp :x :px equalp :y :py [
+        ifelse member? :k :goals [make "line word :line "+] [make "line word :line "@]
+      ] [
+        ifelse member? :k :boxes [
+          ifelse member? :k :goals [make "line word :line "*] [make "line word :line "$]
+        ] [
+          ifelse member? :k :walls [make "line word :line "#] [
+            ifelse member? :k :goals [make "line word :line "."] [make "line word :line "| |]
+          ]
+        ]
+      ]
+      make "x :x+1
+    ]
+    print :line
+    make "y :y+1
+  ]
+end
+
+to main
+  init.level
+  print [sokoban_logo — wasd 移动, z 撤销, r 重置, q 退出]
+  make "done "false
+  while [not equalp :done "true] [
+    print "
+    render
+    ifelse equalp :won "true [
+      (print word "moves= :moves [ WIN!])
+    ] [
+      (print word "moves= :moves)
+    ]
+    type [> ]
+    make "line readword
+    if emptyp :line [make "line "]
+    make "ch first :line
+    make "ch lowercase :ch
+    if equalp :ch "w [try.move 0 -1]
+    if equalp :ch "s [try.move 0 1]
+    if equalp :ch "a [try.move -1 0]
+    if equalp :ch "d [try.move 1 0]
+    if equalp :ch "z [undo.move]
+    if equalp :ch "r [init.level]
+    if equalp :ch "q [make "done "true]
+    if equalp :won "true [print [Level clear!]]
+  ]
+end
+
+main
+bye

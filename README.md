@@ -8,7 +8,8 @@ A classic Sokoban puzzle game with **console**, **web**, and **console homebrew*
 
 - Classic Sokoban gameplay with many levels (`levels.json`)
 - **C console** — lightweight terminal game
-- **Multi-language CLIs** — Python / PHP / Lua / Node.js / Ruby / Java / C# / Kotlin / Perl / R / Haskell / Rust / Go / Zig
+- **Multi-language CLIs** — Python / PHP / Lua / Node.js / Ruby / Java / C# / Kotlin / Perl / R / Haskell / Rust / Go / Zig / C++ / …
+- **Classic & extended CLIs** — Lisp / Scheme / COBOL / Fortran / Pascal / Prolog / BASIC / Ada / Forth / Tcl / OCaml / Clojure / F# / Scala / Elixir / Erlang / Nim / … (full list in [TODO.md](TODO.md))
 - **Desktop demos** — Pygame / Qt / Electron / SDL2 / Godot / raylib
 - **2D / 3D web** — browser play (3D uses three.js)
 - **Android** — `androidapp1/` (Kotlin, tap pathfinding + icon pad; [changelog](androidapp1/CHANGELOG.md))
@@ -52,6 +53,44 @@ sokoban/
 ├── perlapp1/            # Perl CLI
 ├── rapp1/               # R CLI
 ├── haskellapp1/         # Haskell CLI
+├── lispapp1/            # Common Lisp CLI
+├── schemeapp1/          # Scheme CLI
+├── cobolapp1/           # COBOL CLI
+├── fortranapp1/         # Fortran CLI
+├── pascalapp1/          # Pascal CLI
+├── prologapp1/          # Prolog CLI
+├── basicapp1/           # FreeBASIC CLI
+├── adaapp1/             # Ada CLI
+├── forthapp1/           # Forth CLI
+├── tclapp1/             # Tcl CLI
+├── ocamlapp1/           # OCaml CLI
+├── clojureapp1/         # Clojure CLI
+├── fsharpapp1/          # F# CLI
+├── scalaapp1/           # Scala CLI
+├── elixirapp1/          # Elixir CLI
+├── erlangapp1/          # Erlang CLI
+├── nimapp1/             # Nim CLI
+├── crystalapp1/         # Crystal CLI
+├── dlangapp1/           # D CLI
+├── swiftapp1/           # Swift CLI
+├── dartapp1/            # Dart CLI
+├── juliaapp1/           # Julia CLI
+├── powershellapp1/      # PowerShell CLI
+├── bashapp1/            # Bash CLI
+├── awkapp1/             # AWK CLI
+├── sqlapp1/             # SQL/SQLite CLI
+├── cppapp1/             # C++ CLI
+├── groovyapp1/          # Groovy CLI
+├── vapp1/               # V CLI
+├── odinapp1/            # Odin CLI
+├── smalltalkapp1/       # Smalltalk CLI
+├── modula2app1/         # Modula-2 CLI
+├── algolapp1/           # Algol 68 CLI
+├── iconapp1/            # Icon CLI
+├── rexxapp1/            # REXX CLI
+├── logoapp1/            # Logo CLI
+├── aplapp1/             # APL CLI
+├── factorapp1/          # Factor CLI
 ├── pygameapp1/          # Pygame (html_app-like 2D)
 ├── qtapp1/              # Qt Widgets desktop
 ├── electronapp1/        # Electron desktop
@@ -174,6 +213,29 @@ cd kotlinapp1  && kotlinc Game.kt Main.kt -include-runtime -d sokoban.jar && jav
 cd perlapp1    && perl main.pl
 cd rapp1       && Rscript main.R
 cd haskellapp1 && ghc Main.hs Game.hs -o sokoban && ./sokoban
+# classic / historical languages
+cd lispapp1    && sbcl --script main.lisp
+cd schemeapp1  && guile -l game.scm -s main.scm
+cd cobolapp1   && cobc -x -free main.cbl game.cbl -o sokoban && ./sokoban
+cd fortranapp1 && gfortran -O2 game.f90 main.f90 -o sokoban && ./sokoban
+cd pascalapp1  && fpc -O2 main.pas && ./main
+cd prologapp1  && swipl -q -s main.pl
+cd basicapp1   && fbc -O 2 main.bas && ./main
+# more classic / modern languages (see TODO.md for full list)
+cd adaapp1         && gnatmake main.adb
+cd tclapp1         && tclsh main.tcl
+cd ocamlapp1       && ocamlc -o sokoban game.ml main.ml && ./sokoban
+cd clojureapp1     && clj -M main.clj
+cd fsharpapp1      && dotnet run
+cd cppapp1         && g++ -std=c++17 -O2 main.cpp -o sokoban && ./sokoban
+cd powershellapp1  && pwsh -File main.ps1
+cd bashapp1        && bash main.sh
+cd sqlapp1         && python -X utf8 main.py
+cd juliaapp1       && julia main.jl
+cd nimapp1         && nim c -r main.nim
+cd dartapp1        && dart run main.dart
+cd groovyapp1      && groovy main.groovy
+# … every folder has its own README
 ```
 
 ### Desktop demos

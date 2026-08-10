@@ -1,0 +1,162 @@
+# algolapp1 — Algol 68 推箱子终端版（教学）
+# 运行: a68g sokoban.a68
+# 需要 Algol 68 Genie
+
+MODE HIST = STRUCT(INT px, py, bfx, bfy, btx, bty, BOOL push);
+MODE STATE = STRUCT(
+  [1:32,1:32]CHAR map,
+  INT width, height, px, py, moves, histn,
+  BOOL won,
+  [1:1024]HIST hist
+);
+
+PROC clear map = (REF STATE s)VOID:
+BEGIN
+  FOR y TO 32 DO FOR x TO 32 DO map OF s[x,y] := " " OD OD;
+  width OF s := 0; height OF s := 0; moves OF s := 0;
+  won OF s := FALSE; histn OF s := 0;
+  px OF s := 1; py OF s := 1
+END;
+
+PROC from rows = (REF STATE s, []STRING rows)VOID:
+BEGIN
+  clear map(s);
+  height OF s := UPB rows - LWB rows + 1;
+  INT y0 := 0;
+  FOR yi FROM LWB rows TO UPB rows DO
+    y0 +:= 1;
+    STRING row = rows[yi];
+    IF UPB row > width OF s THEN width OF s := UPB row FI;
+    FOR x TO UPB row DO
+      CHAR ch = row[x];
+      CASE ch IN
+        "#": map OF s[x, y0] := "#",
+        ".": map OF s[x, y0] := ".",
+        "$": map OF s[x, y0] := "$",
+        "*": map OF s[x, y0] := "*",
+        "@": BEGIN map OF s[x, y0] := " "; px OF s := x; py OF s := y0 END,
+        "+": BEGIN map OF s[x, y0] := "."; px OF s := x; py OF s := y0 END
+        OUT map OF s[x, y0] := " "
+      ESAC
+    OD
+  OD
+END;
+
+PROC check win = (REF STATE s)VOID:
+BEGIN
+  won OF s := TRUE;
+  FOR y TO height OF s DO
+    FOR x TO width OF s DO
+      IF map OF s[x,y] = "$" THEN won OF s := FALSE FI
+    OD
+  OD
+END;
+
+PROC try move = (REF STATE s, INT dx, dy)BOOL:
+IF won OF s THEN FALSE
+ELSE
+  INT nx = px OF s + dx, ny = py OF s + dy;
+  IF nx < 1 OR ny < 1 OR nx > width OF s OR ny > height OF s THEN FALSE
+  ELSE
+    CHAR ch = map OF s[nx, ny];
+    IF ch = "#" THEN FALSE
+    ELIF ch = "$" OR ch = "*" THEN
+      INT bx = nx + dx, by = ny + dy;
+      IF bx < 1 OR by < 1 OR bx > width OF s OR by > height OF s THEN FALSE
+      ELSE
+        CHAR ch2 = map OF s[bx, by];
+        IF ch2 = "#" OR ch2 = "$" OR ch2 = "*" THEN FALSE
+        ELSE
+          histn OF s +:= 1;
+          hist OF s[histn OF s] := (px OF s, py OF s, nx, ny, bx, by, TRUE);
+          map OF s[nx, ny] := (IF map OF s[nx, ny] = "*" THEN "." ELSE " " FI);
+          map OF s[bx, by] := (IF map OF s[bx, by] = "." THEN "*" ELSE "$" FI);
+          px OF s := nx; py OF s := ny;
+          moves OF s +:= 1;
+          check win(s);
+          TRUE
+        FI
+      FI
+    ELSE
+      histn OF s +:= 1;
+      hist OF s[histn OF s] := (px OF s, py OF s, 0, 0, 0, 0, FALSE);
+      px OF s := nx; py OF s := ny;
+      TRUE
+    FI
+  FI
+FI;
+
+PROC undo = (REF STATE s)BOOL:
+IF won OF s OR histn OF s = 0 THEN FALSE
+ELSE
+  WHILE histn OF s > 0 DO
+    HIST h = hist OF s[histn OF s];
+    histn OF s -:= 1;
+    IF push OF h THEN
+      px OF s := px OF h; py OF s := py OF h;
+      map OF s[btx OF h, bty OF h] :=
+        (IF map OF s[btx OF h, bty OF h] = "*" THEN "." ELSE " " FI);
+      map OF s[bfx OF h, bfy OF h] :=
+        (IF map OF s[bfx OF h, bfy OF h] = "." THEN "*" ELSE "$" FI);
+      IF moves OF s > 0 THEN moves OF s -:= 1 FI;
+      won OF s := FALSE;
+      TRUE EXIT
+    ELSE
+      px OF s := px OF h; py OF s := py OF h
+    FI
+  OD;
+  TRUE
+FI;
+
+PROC render = (REF STATE s)VOID:
+BEGIN
+  FOR y TO height OF s DO
+    FOR x TO width OF s DO
+      CHAR ch;
+      IF x = px OF s AND y = py OF s THEN
+        ch := (IF map OF s[x,y] = "." THEN "+" ELSE "@" FI)
+      ELSE
+        ch := map OF s[x,y]
+      FI;
+      print(ch)
+    OD;
+    print(newline)
+  OD
+END;
+
+# main #
+STATE st;
+[]STRING level = (
+  "#######",
+  "#. . .#",
+  "# $$$ #",
+  "#.$@$.#",
+  "# $$$ #",
+  "#. . .#",
+  "#######"
+);
+from rows(st, level);
+print(("sokoban_algol68 — wasd 移动, z 撤销, r 重置, q 退出", newline));
+BOOL done := FALSE;
+WHILE NOT done DO
+  print(newline);
+  render(st);
+  print(("moves=", moves OF st, (IF won OF st THEN " WIN!" ELSE "" FI), newline, "> "));
+  STRING line;
+  read(line);
+  IF UPB line >= 1 THEN
+    CHAR ch = line[1];
+    IF ch >= "A" AND ch <= "Z" THEN ch := REPR(ABS ch + 32) FI;
+    CASE ch IN
+      "w": try move(st, 0, -1),
+      "s": try move(st, 0, 1),
+      "a": try move(st, -1, 0),
+      "d": try move(st, 1, 0),
+      "z": undo(st),
+      "r": from rows(st, level),
+      "q": done := TRUE
+      OUT SKIP
+    ESAC;
+    IF won OF st THEN print(("Level clear!", newline)) FI
+  FI
+OD
