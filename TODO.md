@@ -71,8 +71,10 @@
 | 目录 | 语言 | 状态 |
 |------|------|------|
 | `brainfuckapp1/` | Brainfuck（纯 BF + 仓库内解释器） | ✅ |
-| `befungeapp1/` | Befunge（纯 `.bf` + 仓库内解释器） | ✅ |
+| `befungeapp1/` | Befunge-93（纯 `sokoban.bf` + 解释器；a/d/q） | ✅ |
 | `jsfuckapp1/` | JSFuck（`try_move` 纯 `[]()!+`，`generate.js` 生成；Node / play.html） | ✅ |
+| `unreadableapp1/` | Unreadable（纯 `'"'"` 游戏 + 仓库内 Python 解释器） | ✅ |
+| `parenthesishellapp1/` | Parenthesis Hell（Python 解释器 + PH 值状态可玩） | ✅ |
 
 ### 无法实现（不建目录）
 
@@ -125,13 +127,13 @@ Chef、FALSE、MarioLANG、LOLCODE、Whitespace、Shakespeare、INTERCAL、Malbo
 
 ## 既有（本清单不重复）
 
-Python / PHP / Lua / Node.js / Ruby / Java / C# / Kotlin / Perl / R / Haskell / Rust / Go / Zig 及桌面/主机/扩展等，见根目录 README。
+Python / PHP / Lua / Node.js / Ruby / Java / C# / Kotlin / Perl / R / Haskell / Rust / Go / Zig 及桌面/主机/扩展等，见根目录 readme。
 
 ## 说明
 
 - 多数为教学演示，不强制本机安装对应工具链。
 - **政策**：须用**目标语言**实现游戏；禁止用 Python 等宿主另写一套逻辑冒充该语言 demo。实现不了的语言只在 [docs/UNSUPPORTED_LANGS.md](docs/UNSUPPORTED_LANGS.md) 标注，**不建目录**。
-- **Logo / Algol 68 / Modula-2 / Forth / Icon**：方言差异大，以源码 + README 为准，个别环境可能需微调。
+- **Logo / Algol 68 / Modula-2 / Forth / Icon**：方言差异大，以源码 + readme 为准，个别环境可能需微调。
 - 跳过几乎无法在通用桌面运行的语言（如 RPG 仅限 IBM i）。
 - 生成脚本（维护用）：`scripts/_gen_classic_langs.py`、`_gen_classic_langs_b.py`、`_gen_classic_langs_c.py`、`_gen_brainfuck_sokoban.py`
 - **Esolang**：`brainfuckapp1/`（纯 BF）、`jsfuckapp1/`（脚本生成纯 JSFuck `try_move`）；禁止 Python 冒充其它 esolang 空壳。

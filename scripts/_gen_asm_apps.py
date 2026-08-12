@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Generate asm_*app1 teaching folders with ISA-specific try_move notes + README."""
+"""Generate asm_*app1 teaching folders with ISA-specific try_move notes + readme."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -444,7 +444,7 @@ def write_arch(dir_name, title, tools, body_file, body, extra):
 
 键位（C 主机）：WASD / z / r / q。
 """
-    (d / "README.md").write_text(readme, encoding="utf-8")
+    (d / "readme.md").write_text(readme, encoding="utf-8")
     (d / "CHANGELOG.md").write_text(
         f"""# Changelog
 

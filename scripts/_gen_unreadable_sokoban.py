@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Generate unreadableapp1/sokoban.unr — playable Sokoban in Unreadable.
+"""Generate unreadableapp1/sokoban.unr (Unreadable Sokoban).
 
-Spec: https://esolangs.org/wiki/Unreadable
-Alphabet: only ' and \"
+Builds an AST then emits once. Spec: https://esolangs.org/wiki/Unreadable
+
+Policy: gameplay lives in Unreadable; Python only interprets.
 """
 from __future__ import annotations
 
 import sys
+from dataclasses import dataclass, field
 from pathlib import Path
+from typing import List
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "unreadableapp1" / "sokoban.unr"
@@ -23,551 +26,542 @@ LEVEL = [
     "#######",
 ]
 W = H = 7
+N = 49
 
+# Variable layout (keep numbers small so rn(index) stays shallow)
 MAP0 = 0
-PX, PY = 50, 51
-MOVES, WON, HISTN = 52, 53, 54
+PX, PY, MOVES, WON, HN = 50, 51, 52, 53, 54
 DX, DY, NX, NY = 55, 56, 57, 58
-BX, BY, IDX, TOI = 59, 60, 61, 62
-TILE, TMP, FLAG, ACT = 63, 64, 65, 66
-FRI = 67
-A, B, C, D = 210, 211, 212, 213
-HIST0 = 100
-ESZ = 5
-RUN = 199
-
-T_FLOOR, T_WALL, T_GOAL, T_BOX, T_BG = 0, 1, 2, 3, 4
+BX, BY, IX, TO, FR = 59, 60, 61, 62, 63
+TL, TMP, FL, AC, RUN = 64, 65, 66, 67, 68
+A, B, C, XX, YY = 70, 71, 72, 73, 74
+H0, ESZ = 80, 5
+TF, TW, TG, TB, TBG = 0, 1, 2, 3, 4
 
 PRINT, INC, ONE, DO, WHILE, SET, GET, DEC, IF, IN = range(1, 11)
 
 
-def tile_of(ch: str) -> int:
+def tile(ch: str) -> int:
     return {" ": 0, "#": 1, ".": 2, "$": 3, "*": 4, "@": 0, "+": 2}[ch]
 
 
-def find_player() -> tuple[int, int]:
-    for y, row in enumerate(LEVEL):
-        for x, ch in enumerate(row):
-            if ch in "@+":
+def player() -> tuple[int, int]:
+    for y, r in enumerate(LEVEL):
+        for x, c in enumerate(r):
+            if c in "@+":
                 return x, y
     return 1, 1
 
 
-def em(cmd: int, *args: str) -> str:
-    return "'" + ('"' * cmd) + "".join(args)
+@dataclass
+class E:
+    c: int
+    a: List["E"] = field(default_factory=list)
+    _em: str | None = field(default=None, repr=False, compare=False)
+
+    def emit(self) -> str:
+        if self._em is None:
+            self._em = "'" + ('"' * self.c) + "".join(x.emit() for x in self.a)
+        return self._em
 
 
-def one() -> str:
-    return em(ONE)
+def e(c: int, *a: E) -> E:
+    return E(c, list(a))
 
 
-def inc(x: str) -> str:
-    return em(INC, x)
+def u1() -> E:
+    return e(ONE)
 
 
-def dec(x: str) -> str:
-    return em(DEC, x)
+def ui(x: E) -> E:
+    return e(INC, x)
 
 
-def num(n: int) -> str:
+def ud(x: E) -> E:
+    return e(DEC, x)
+
+
+_rc: dict[int, E] = {}
+
+
+def rn(n: int) -> E:
+    """Integer literal via ONE/INC/DEC (memoized AST nodes)."""
+    if n in _rc:
+        return _rc[n]
     if n == 0:
-        return dec(one())
-    if n < 0:
-        e = one()
+        r = ud(u1())
+    elif n > 0:
+        r = u1()
+        for _ in range(n - 1):
+            r = ui(r)
+    else:
+        r = u1()
         for _ in range(-n + 1):
-            e = dec(e)
-        return e
-    e = one()
-    for _ in range(n - 1):
-        e = inc(e)
-    return e
-
-
-def do(*xs: str) -> str:
-    if not xs:
-        return one()
-    r = xs[-1]
-    for x in reversed(xs[:-1]):
-        r = em(DO, x, r)
+            r = ud(r)
+    _rc[n] = r
     return r
 
 
-def while_(c: str, body: str) -> str:
-    return em(WHILE, c, body)
+def do(*xs: E) -> E:
+    """Sequence; balanced DO tree keeps depth O(log n)."""
+    if not xs:
+        return u1()
+    if len(xs) == 1:
+        return xs[0]
+    mid = len(xs) // 2
+    return e(DO, do(*xs[:mid]), do(*xs[mid:]))
 
 
-def setv(i: str, v: str) -> str:
-    return em(SET, i, v)
+def wh(c: E, b: E) -> E:
+    return e(WHILE, c, b)
 
 
-def getv(i: str) -> str:
-    return em(GET, i)
+def st(i: E, v: E) -> E:
+    return e(SET, i, v)
 
 
-def if_(c: str, t: str, e: str) -> str:
-    return em(IF, c, t, e)
+def gt(i: E) -> E:
+    return e(GET, i)
 
 
-def pr(x: str) -> str:
-    return em(PRINT, x)
+def iff(c: E, t: E, f: E) -> E:
+    return e(IF, c, t, f)
 
 
-def inp() -> str:
-    return em(IN)
+def pr(x: E) -> E:
+    return e(PRINT, x)
 
 
-def lit(i: int) -> str:
-    return num(i)
+def inn() -> E:
+    return e(IN)
 
 
-def g(i: int) -> str:
-    return getv(lit(i))
+def L(i: int) -> E:
+    return rn(i)
 
 
-def s(i: int, v: str) -> str:
-    return setv(lit(i), v)
+def G(i: int) -> E:
+    return gt(rn(i))
 
 
-def pr_ch(ch: str) -> str:
-    return pr(lit(ord(ch)))
+def S(i: int, v: E) -> E:
+    return st(rn(i), v)
 
 
-def pr_str(text: str) -> str:
-    return do(*[pr_ch(c) for c in text]) if text else one()
+def pc(ch: str) -> E:
+    o = ord(ch)
+    if o > 127:
+        raise ValueError(f"non-ASCII char {ch!r} (ord={o}); use ASCII only")
+    return pr(rn(o))
 
 
-def add_into(dst: int, src: int, tmp: int = B) -> str:
-    """dst += src (preserves src via tmp)."""
-    return do(
-        s(tmp, g(src)),
-        while_(g(tmp), do(s(dst, inc(g(dst))), s(tmp, dec(g(tmp))))),
-    )
+def ps(s: str) -> E:
+    return do(*[pc(c) for c in s]) if s else u1()
 
 
-def ge_const(var: int, n: int, flag: int = FLAG) -> str:
-    """flag = 1 if vars[var] >= n."""
-    steps: list[str] = [s(flag, one()), s(TMP, g(var))]
+def add(dst: int, src: int) -> E:
+    return do(S(B, G(src)), wh(G(B), do(S(dst, ui(G(dst))), S(B, ud(G(B))))))
+
+
+def ge(v: int, n: int) -> E:
+    """FL = 1 iff G(v) >= n (destructive on TMP)."""
+    xs: list[E] = [S(FL, u1()), S(TMP, G(v))]
     for _ in range(n):
-        steps.append(if_(g(TMP), s(TMP, dec(g(TMP))), s(flag, num(0))))
-    return do(*steps)
+        xs.append(iff(G(TMP), S(TMP, ud(G(TMP))), S(FL, L(0))))
+    return do(*xs)
 
 
-def eq_val(expr: str, val: int, flag: int = FLAG) -> str:
-    """flag = 1 iff expr == val (via subtract)."""
-    steps: list[str] = [s(flag, one()), s(TMP, expr)]
+def eqv(v: int, val: int) -> E:
+    """FL = 1 iff G(v) == val."""
+    xs: list[E] = [S(FL, u1()), S(TMP, G(v))]
     for _ in range(val):
-        steps.append(s(TMP, dec(g(TMP))))
-    steps.append(while_(g(TMP), do(s(flag, num(0)), s(TMP, num(0)))))
-    return do(*steps)
+        xs.append(S(TMP, ud(G(TMP))))
+    xs.append(wh(G(TMP), do(S(FL, L(0)), S(TMP, L(0)))))
+    return do(*xs)
 
 
-def map_index(x_var: int, y_var: int, out: int) -> str:
-    """out = y*W + x."""
+def eq2(a: int, b: int) -> E:
+    """FL = 1 iff G(a) == G(b)."""
     return do(
-        s(out, num(0)),
-        s(TMP, g(y_var)),
-        while_(
-            g(TMP),
-            do(*[s(out, inc(g(out))) for _ in range(W)], s(TMP, dec(g(TMP)))),
+        S(FL, u1()),
+        S(TMP, G(a)),
+        S(B, G(b)),
+        wh(
+            iff(G(TMP), iff(G(B), u1(), L(0)), L(0)),
+            do(S(TMP, ud(G(TMP))), S(B, ud(G(B)))),
         ),
-        s(TMP, g(x_var)),
-        while_(g(TMP), do(s(out, inc(g(out))), s(TMP, dec(g(TMP))))),
+        iff(G(TMP), S(FL, L(0)), u1()),
+        iff(G(B), S(FL, L(0)), u1()),
     )
 
 
-def cell_addr() -> str:
-    """A = MAP0 + IDX."""
-    return do(s(A, lit(MAP0)), add_into(A, IDX))
-
-
-def load_tile() -> str:
-    return do(cell_addr(), s(TILE, getv(g(A))))
-
-
-def store_tile(val: str) -> str:
-    return do(cell_addr(), setv(g(A), val))
-
-
-def print_number(var: int) -> str:
-    V, T, DIG = 200, 201, 202
+def midx(x: int, y: int, o: int) -> E:
+    """o = G(y)*W + G(x)."""
     return do(
-        s(V, g(var)),
-        s(T, num(0)),
-        while_(
-            do(ge_const(V, 10, FLAG), g(FLAG)),
-            do(*[s(V, dec(g(V))) for _ in range(10)], s(T, inc(g(T)))),
-        ),
-        if_(
-            g(T),
-            do(s(DIG, lit(ord("0"))), add_into(DIG, T), pr(g(DIG))),
-            one(),
-        ),
-        do(s(DIG, lit(ord("0"))), add_into(DIG, V), pr(g(DIG))),
+        S(o, L(0)),
+        S(TMP, G(y)),
+        wh(G(TMP), do(*[S(o, ui(G(o))) for _ in range(W)], S(TMP, ud(G(TMP))))),
+        S(TMP, G(x)),
+        wh(G(TMP), do(S(o, ui(G(o))), S(TMP, ud(G(TMP))))),
     )
 
 
-def render() -> str:
-    chunks: list[str] = []
-    for y in range(H):
-        for x in range(W):
-            i = y * W + x
-            is_pl = do(
-                eq_val(g(PX), x, FLAG),
-                s(C, g(FLAG)),
-                eq_val(g(PY), y, FLAG),
-                if_(
-                    g(C),
-                    if_(g(FLAG), s(FLAG, one()), s(FLAG, num(0))),
-                    s(FLAG, num(0)),
-                ),
-            )
-            cell = g(MAP0 + i)
-            print_pl = do(
-                eq_val(cell, T_GOAL, TMP),
-                if_(g(TMP), pr_ch("+"), pr_ch("@")),
-            )
-            print_tile = do(
-                eq_val(cell, T_WALL, FLAG),
-                if_(
-                    g(FLAG),
-                    pr_ch("#"),
+def lmap() -> E:
+    return do(S(A, L(MAP0)), add(A, IX), S(TL, gt(G(A))))
+
+
+def smap(v: E) -> E:
+    return do(S(A, L(MAP0)), add(A, IX), st(G(A), v))
+
+
+def pnum(v: int) -> E:
+    V, T, D = 190, 191, 192
+    return do(
+        S(V, G(v)),
+        S(T, L(0)),
+        wh(
+            do(ge(V, 10), G(FL)),
+            do(*[S(V, ud(G(V))) for _ in range(10)], S(T, ui(G(T)))),
+        ),
+        iff(G(T), do(S(D, L(ord("0"))), add(D, T), pr(G(D))), u1()),
+        do(S(D, L(ord("0"))), add(D, V), pr(G(D))),
+    )
+
+
+def cell() -> E:
+    return do(
+        midx(XX, YY, IX),
+        lmap(),
+        eq2(PX, XX),
+        S(C, G(FL)),
+        eq2(PY, YY),
+        iff(G(C), iff(G(FL), S(FL, u1()), S(FL, L(0))), S(FL, L(0))),
+        iff(
+            G(FL),
+            do(eqv(TL, TG), iff(G(FL), pc("+"), pc("@"))),
+            do(
+                eqv(TL, TW),
+                iff(
+                    G(FL),
+                    pc("#"),
                     do(
-                        eq_val(cell, T_GOAL, FLAG),
-                        if_(
-                            g(FLAG),
-                            pr_ch("."),
+                        eqv(TL, TG),
+                        iff(
+                            G(FL),
+                            pc("."),
                             do(
-                                eq_val(cell, T_BOX, FLAG),
-                                if_(
-                                    g(FLAG),
-                                    pr_ch("$"),
-                                    do(
-                                        eq_val(cell, T_BG, FLAG),
-                                        if_(g(FLAG), pr_ch("*"), pr_ch(" ")),
-                                    ),
+                                eqv(TL, TB),
+                                iff(
+                                    G(FL),
+                                    pc("$"),
+                                    do(eqv(TL, TBG), iff(G(FL), pc("*"), pc(" "))),
                                 ),
                             ),
                         ),
                     ),
                 ),
-            )
-            chunks.append(do(is_pl, if_(g(FLAG), print_pl, print_tile)))
-        chunks.append(pr_ch("\n"))
-    chunks.append(
-        do(
-            pr_str("moves="),
-            print_number(MOVES),
-            if_(g(WON), pr_str(" WIN!"), one()),
-            pr_ch("\n"),
-            pr_str("> "),
-        )
-    )
-    return do(*chunks)
-
-
-def check_win() -> str:
-    parts = [s(WON, one())]
-    for i in range(W * H):
-        parts.append(
-            do(
-                eq_val(g(MAP0 + i), T_BOX, FLAG),
-                if_(g(FLAG), s(WON, num(0)), one()),
-            )
-        )
-    return do(*parts)
-
-
-def hist_ptr() -> str:
-    return do(
-        s(A, lit(HIST0)),
-        s(B, g(HISTN)),
-        while_(
-            g(B),
-            do(*[s(A, inc(g(A))) for _ in range(ESZ)], s(B, dec(g(B)))),
+            ),
         ),
     )
 
 
-def push_hist(is_push: bool) -> str:
-    steps = [hist_ptr(), setv(g(A), g(PX))]
-    steps += [s(A, inc(g(A))), setv(g(A), g(PY))]
-    if is_push:
-        steps += [
-            s(A, inc(g(A))),
-            setv(g(A), g(FRI)),
-            s(A, inc(g(A))),
-            setv(g(A), g(TOI)),
-            s(A, inc(g(A))),
-            setv(g(A), one()),
+def render() -> E:
+    return do(
+        S(YY, L(0)),
+        wh(
+            do(ge(YY, H), iff(G(FL), L(0), u1())),
+            do(
+                S(XX, L(0)),
+                wh(
+                    do(ge(XX, W), iff(G(FL), L(0), u1())),
+                    do(cell(), S(XX, ui(G(XX)))),
+                ),
+                pc("\n"),
+                S(YY, ui(G(YY))),
+            ),
+        ),
+        ps("moves="),
+        pnum(MOVES),
+        iff(G(WON), ps(" WIN!"), u1()),
+        pc("\n"),
+        ps("> "),
+    )
+
+
+def cwin() -> E:
+    return do(
+        S(WON, u1()),
+        S(IX, L(0)),
+        wh(
+            do(ge(IX, N), iff(G(FL), L(0), u1())),
+            do(lmap(), eqv(TL, TB), iff(G(FL), S(WON, L(0)), u1()), S(IX, ui(G(IX)))),
+        ),
+    )
+
+
+def hptr() -> E:
+    return do(
+        S(A, L(H0)),
+        S(B, G(HN)),
+        wh(G(B), do(*[S(A, ui(G(A))) for _ in range(ESZ)], S(B, ud(G(B))))),
+    )
+
+
+def phist(push: bool) -> E:
+    xs = [hptr(), st(G(A), G(PX)), S(A, ui(G(A))), st(G(A), G(PY))]
+    if push:
+        xs += [
+            S(A, ui(G(A))),
+            st(G(A), G(FR)),
+            S(A, ui(G(A))),
+            st(G(A), G(TO)),
+            S(A, ui(G(A))),
+            st(G(A), u1()),
         ]
     else:
-        steps += [
-            s(A, inc(g(A))),
-            setv(g(A), num(0)),
-            s(A, inc(g(A))),
-            setv(g(A), num(0)),
-            s(A, inc(g(A))),
-            setv(g(A), num(0)),
+        xs += [
+            S(A, ui(G(A))),
+            st(G(A), L(0)),
+            S(A, ui(G(A))),
+            st(G(A), L(0)),
+            S(A, ui(G(A))),
+            st(G(A), L(0)),
         ]
-    steps.append(s(HISTN, inc(g(HISTN))))
-    return do(*steps)
+    xs.append(S(HN, ui(G(HN))))
+    return do(*xs)
 
 
-def apply_delta() -> str:
+def delta() -> E:
+    # DX/DY encoding: 0=-, 1=0, 2=+
     return do(
-        s(NX, g(PX)),
-        s(NY, g(PY)),
-        eq_val(g(DX), 0, FLAG),
-        if_(g(FLAG), s(NX, dec(g(NX))), one()),
-        eq_val(g(DX), 2, FLAG),
-        if_(g(FLAG), s(NX, inc(g(NX))), one()),
-        eq_val(g(DY), 0, FLAG),
-        if_(g(FLAG), s(NY, dec(g(NY))), one()),
-        eq_val(g(DY), 2, FLAG),
-        if_(g(FLAG), s(NY, inc(g(NY))), one()),
+        S(NX, G(PX)),
+        S(NY, G(PY)),
+        eqv(DX, 0),
+        iff(G(FL), S(NX, ud(G(NX))), u1()),
+        eqv(DX, 2),
+        iff(G(FL), S(NX, ui(G(NX))), u1()),
+        eqv(DY, 0),
+        iff(G(FL), S(NY, ud(G(NY))), u1()),
+        eqv(DY, 2),
+        iff(G(FL), S(NY, ui(G(NY))), u1()),
     )
 
 
-def in_bounds(xv: int, yv: int) -> str:
+def inb(x: int, y: int) -> E:
     return do(
-        ge_const(xv, 0, FLAG),
-        if_(
-            g(FLAG),
+        ge(x, 0),
+        iff(
+            G(FL),
             do(
-                ge_const(yv, 0, FLAG),
-                if_(
-                    g(FLAG),
+                ge(y, 0),
+                iff(
+                    G(FL),
                     do(
-                        ge_const(xv, 7, FLAG),
-                        if_(
-                            g(FLAG),
-                            s(FLAG, num(0)),
-                            do(
-                                ge_const(yv, 7, FLAG),
-                                if_(g(FLAG), s(FLAG, num(0)), s(FLAG, one())),
-                            ),
+                        ge(x, 7),
+                        iff(
+                            G(FL),
+                            S(FL, L(0)),
+                            do(ge(y, 7), iff(G(FL), S(FL, L(0)), S(FL, u1()))),
                         ),
                     ),
-                    s(FLAG, num(0)),
+                    S(FL, L(0)),
                 ),
             ),
-            s(FLAG, num(0)),
+            S(FL, L(0)),
         ),
     )
 
 
-def load_map() -> str:
-    return do(s(A, lit(MAP0)), add_into(A, IDX), s(TILE, getv(g(A))))
-
-
-def store_map(val: str) -> str:
-    return do(s(A, lit(MAP0)), add_into(A, IDX), setv(g(A), val))
-
-
-def walk() -> str:
-    return do(push_hist(False), s(PX, g(NX)), s(PY, g(NY)))
-
-
-def push_box() -> str:
+def walk() -> E:
     return do(
-        s(FRI, g(IDX)),
-        s(BX, g(NX)),
-        s(BY, g(NY)),
-        eq_val(g(DX), 0, FLAG),
-        if_(g(FLAG), s(BX, dec(g(BX))), one()),
-        eq_val(g(DX), 2, FLAG),
-        if_(g(FLAG), s(BX, inc(g(BX))), one()),
-        eq_val(g(DY), 0, FLAG),
-        if_(g(FLAG), s(BY, dec(g(BY))), one()),
-        eq_val(g(DY), 2, FLAG),
-        if_(g(FLAG), s(BY, inc(g(BY))), one()),
-        in_bounds(BX, BY),
-        if_(
-            g(FLAG),
+        phist(False),
+        S(PX, G(NX)),
+        S(PY, G(NY)),
+        S(MOVES, ui(G(MOVES))),
+    )
+
+
+def pbox() -> E:
+    return do(
+        S(FR, G(IX)),
+        S(BX, G(NX)),
+        S(BY, G(NY)),
+        eqv(DX, 0),
+        iff(G(FL), S(BX, ud(G(BX))), u1()),
+        eqv(DX, 2),
+        iff(G(FL), S(BX, ui(G(BX))), u1()),
+        eqv(DY, 0),
+        iff(G(FL), S(BY, ud(G(BY))), u1()),
+        eqv(DY, 2),
+        iff(G(FL), S(BY, ui(G(BY))), u1()),
+        inb(BX, BY),
+        iff(
+            G(FL),
             do(
-                map_index(BX, BY, TOI),
-                s(IDX, g(TOI)),
-                load_map(),
-                eq_val(g(TILE), T_FLOOR, FLAG),
-                s(C, g(FLAG)),
-                eq_val(g(TILE), T_GOAL, FLAG),
-                if_(
-                    g(C),
-                    s(FLAG, one()),
-                    if_(g(FLAG), s(FLAG, one()), s(FLAG, num(0))),
-                ),
-                if_(
-                    g(FLAG),
+                midx(BX, BY, TO),
+                S(IX, G(TO)),
+                lmap(),
+                eqv(TL, TF),
+                S(C, G(FL)),
+                eqv(TL, TG),
+                iff(G(C), S(FL, u1()), iff(G(FL), S(FL, u1()), S(FL, L(0)))),
+                iff(
+                    G(FL),
                     do(
-                        eq_val(g(TILE), T_GOAL, FLAG),
-                        if_(
-                            g(FLAG),
-                            do(s(IDX, g(TOI)), store_map(lit(T_BG))),
-                            do(s(IDX, g(TOI)), store_map(lit(T_BOX))),
+                        eqv(TL, TG),
+                        iff(
+                            G(FL),
+                            do(S(IX, G(TO)), smap(L(TBG))),
+                            do(S(IX, G(TO)), smap(L(TB))),
                         ),
-                        s(IDX, g(FRI)),
-                        load_map(),
-                        eq_val(g(TILE), T_BG, FLAG),
-                        if_(
-                            g(FLAG),
-                            store_map(lit(T_GOAL)),
-                            store_map(lit(T_FLOOR)),
-                        ),
-                        push_hist(True),
-                        s(PX, g(NX)),
-                        s(PY, g(NY)),
-                        s(MOVES, inc(g(MOVES))),
-                        check_win(),
+                        S(IX, G(FR)),
+                        lmap(),
+                        eqv(TL, TBG),
+                        iff(G(FL), smap(L(TG)), smap(L(TF))),
+                        phist(True),
+                        S(PX, G(NX)),
+                        S(PY, G(NY)),
+                        S(MOVES, ui(G(MOVES))),
+                        cwin(),
                     ),
-                    one(),
+                    u1(),
                 ),
             ),
-            one(),
+            u1(),
         ),
     )
 
 
-def try_move() -> str:
-    return if_(
-        g(WON),
-        one(),
+def tmove() -> E:
+    return iff(
+        G(WON),
+        u1(),
         do(
-            apply_delta(),
-            in_bounds(NX, NY),
-            if_(
-                g(FLAG),
+            delta(),
+            inb(NX, NY),
+            iff(
+                G(FL),
                 do(
-                    map_index(NX, NY, IDX),
-                    load_map(),
-                    eq_val(g(TILE), T_WALL, FLAG),
-                    if_(
-                        g(FLAG),
-                        one(),
+                    midx(NX, NY, IX),
+                    lmap(),
+                    eqv(TL, TW),
+                    iff(
+                        G(FL),
+                        u1(),
                         do(
-                            eq_val(g(TILE), T_BOX, FLAG),
-                            s(C, g(FLAG)),
-                            eq_val(g(TILE), T_BG, FLAG),
-                            if_(
-                                g(C),
-                                s(FLAG, one()),
-                                if_(g(FLAG), s(FLAG, one()), s(FLAG, num(0))),
+                            eqv(TL, TB),
+                            S(C, G(FL)),
+                            eqv(TL, TBG),
+                            iff(
+                                G(C),
+                                S(FL, u1()),
+                                iff(G(FL), S(FL, u1()), S(FL, L(0))),
                             ),
-                            if_(g(FLAG), push_box(), walk()),
+                            iff(G(FL), pbox(), walk()),
                         ),
                     ),
                 ),
-                one(),
+                u1(),
             ),
         ),
     )
 
 
-def undo() -> str:
-    return if_(
-        g(HISTN),
+def undo() -> E:
+    return iff(
+        G(HN),
         do(
-            s(HISTN, dec(g(HISTN))),
-            hist_ptr(),
-            s(PX, getv(g(A))),
-            s(A, inc(g(A))),
-            s(PY, getv(g(A))),
-            s(A, inc(g(A))),
-            s(FRI, getv(g(A))),
-            s(A, inc(g(A))),
-            s(TOI, getv(g(A))),
-            s(A, inc(g(A))),
-            s(FLAG, getv(g(A))),
-            if_(
-                g(FLAG),
+            S(HN, ud(G(HN))),
+            hptr(),
+            S(PX, gt(G(A))),
+            S(A, ui(G(A))),
+            S(PY, gt(G(A))),
+            S(A, ui(G(A))),
+            S(FR, gt(G(A))),
+            S(A, ui(G(A))),
+            S(TO, gt(G(A))),
+            S(A, ui(G(A))),
+            S(FL, gt(G(A))),
+            iff(
+                G(FL),
                 do(
-                    s(IDX, g(TOI)),
-                    load_map(),
-                    eq_val(g(TILE), T_BG, FLAG),
-                    if_(
-                        g(FLAG),
-                        store_map(lit(T_GOAL)),
-                        store_map(lit(T_FLOOR)),
-                    ),
-                    s(IDX, g(FRI)),
-                    load_map(),
-                    eq_val(g(TILE), T_GOAL, FLAG),
-                    if_(
-                        g(FLAG),
-                        store_map(lit(T_BG)),
-                        store_map(lit(T_BOX)),
-                    ),
-                    if_(g(MOVES), s(MOVES, dec(g(MOVES))), one()),
-                    s(WON, num(0)),
+                    S(IX, G(TO)),
+                    lmap(),
+                    eqv(TL, TBG),
+                    iff(G(FL), smap(L(TG)), smap(L(TF))),
+                    S(IX, G(FR)),
+                    lmap(),
+                    eqv(TL, TG),
+                    iff(G(FL), smap(L(TBG)), smap(L(TB))),
+                    iff(G(MOVES), S(MOVES, ud(G(MOVES))), u1()),
+                    S(WON, L(0)),
                 ),
-                one(),
+                u1(),
             ),
         ),
-        one(),
+        u1(),
     )
 
 
-def reset(px0: int, py0: int) -> str:
-    seq = []
+def dm(dx: int, dy: int) -> E:
+    return do(S(DX, L(dx)), S(DY, L(dy)), tmove())
+
+
+def map_reset(px0: int, py0: int) -> E:
+    xs = []
     for y, row in enumerate(LEVEL):
         for x, ch in enumerate(row):
-            seq.append(s(MAP0 + y * W + x, lit(tile_of(ch))))
-    seq += [
-        s(PX, lit(px0)),
-        s(PY, lit(py0)),
-        s(MOVES, num(0)),
-        s(WON, num(0)),
-        s(HISTN, num(0)),
+            xs.append(S(MAP0 + y * W + x, L(tile(ch))))
+    xs += [
+        S(PX, L(px0)),
+        S(PY, L(py0)),
+        S(MOVES, L(0)),
+        S(WON, L(0)),
+        S(HN, L(0)),
     ]
-    return do(*seq)
+    return do(*xs)
 
 
-def dir_move(dxc: int, dyc: int) -> str:
-    return do(s(DX, lit(dxc)), s(DY, lit(dyc)), try_move())
-
-
-def handle() -> str:
+def handle() -> E:
+    px0, py0 = player()
     return do(
-        s(ACT, inp()),
-        eq_val(g(ACT), ord("\r"), FLAG),
-        if_(g(FLAG), s(ACT, inp()), one()),
-        eq_val(g(ACT), ord("\n"), FLAG),
-        if_(g(FLAG), s(ACT, inp()), one()),
-        eq_val(g(ACT), ord("q"), FLAG),
-        if_(
-            g(FLAG),
-            s(RUN, num(0)),
+        S(AC, inn()),
+        eqv(AC, ord("\r")),
+        iff(G(FL), S(AC, inn()), u1()),
+        eqv(AC, ord("\n")),
+        iff(G(FL), S(AC, inn()), u1()),
+        eqv(AC, ord("q")),
+        iff(
+            G(FL),
+            S(RUN, L(0)),
             do(
-                eq_val(g(ACT), ord("r"), FLAG),
-                if_(
-                    g(FLAG),
-                    reset(*find_player()),
+                eqv(AC, ord("r")),
+                iff(
+                    G(FL),
+                    map_reset(px0, py0),
                     do(
-                        eq_val(g(ACT), ord("z"), FLAG),
-                        if_(
-                            g(FLAG),
+                        eqv(AC, ord("z")),
+                        iff(
+                            G(FL),
                             undo(),
                             do(
-                                eq_val(g(ACT), ord("w"), FLAG),
-                                if_(
-                                    g(FLAG),
-                                    dir_move(1, 0),
+                                eqv(AC, ord("w")),
+                                iff(
+                                    G(FL),
+                                    dm(1, 0),
                                     do(
-                                        eq_val(g(ACT), ord("s"), FLAG),
-                                        if_(
-                                            g(FLAG),
-                                            dir_move(1, 2),
+                                        eqv(AC, ord("s")),
+                                        iff(
+                                            G(FL),
+                                            dm(1, 2),
                                             do(
-                                                eq_val(g(ACT), ord("a"), FLAG),
-                                                if_(
-                                                    g(FLAG),
-                                                    dir_move(0, 1),
+                                                eqv(AC, ord("a")),
+                                                iff(
+                                                    G(FL),
+                                                    dm(0, 1),
                                                     do(
-                                                        eq_val(g(ACT), ord("d"), FLAG),
-                                                        if_(
-                                                            g(FLAG),
-                                                            dir_move(2, 1),
-                                                            one(),
-                                                        ),
+                                                        eqv(AC, ord("d")),
+                                                        iff(G(FL), dm(2, 1), u1()),
                                                     ),
                                                 ),
                                             ),
@@ -583,38 +577,53 @@ def handle() -> str:
     )
 
 
-def gen() -> str:
-    px0, py0 = find_player()
-    return do(
-        reset(px0, py0),
-        pr_str("sokoban_unreadable — wasd z r q\n"),
-        pr_str("(Unreadable + Python interpreter)\n"),
-        s(RUN, one()),
-        while_(
-            g(RUN),
-            do(
-                render(),
-                if_(g(WON), pr_str("Level clear!\n"), one()),
-                handle(),
-            ),
+def build() -> list[E]:
+    px0, py0 = player()
+    prog: list[E] = []
+    for y, row in enumerate(LEVEL):
+        for x, ch in enumerate(row):
+            prog.append(S(MAP0 + y * W + x, L(tile(ch))))
+    prog += [
+        S(PX, L(px0)),
+        S(PY, L(py0)),
+        S(MOVES, L(0)),
+        S(WON, L(0)),
+        S(HN, L(0)),
+        ps("sokoban_unreadable - wasd z r q\n"),
+        ps("(Unreadable + Python interpreter)\n"),
+        S(RUN, u1()),
+        wh(
+            G(RUN),
+            do(render(), iff(G(WON), ps("Level clear!\n"), u1()), handle()),
         ),
-        pr_str("bye\n"),
-    )
+        ps("bye\n"),
+    ]
+    return prog
 
 
 def main() -> None:
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    src = gen()
+    sys.setrecursionlimit(max(sys.getrecursionlimit(), 5000))
+    print("building AST...", flush=True)
+    prog = build()
+    print(f"exprs={len(prog)}, emitting...", flush=True)
+    chunks: list[str] = []
+    for i, ex in enumerate(prog):
+        chunks.append(ex.emit())
+        if (i + 1) % 20 == 0:
+            print(f"  emitted {i + 1}/{len(prog)}", flush=True)
+    src = "".join(chunks)
     bad = set(src) - set("'\"")
     if bad:
-        raise SystemExit(f"non-alphabet: {bad!r}")
+        raise SystemExit(f"bad chars {bad}")
+    OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(src, encoding="utf-8")
-    print(f"wrote {OUT} ({len(src)} chars)")
+    print(f"wrote {OUT} ({len(src)} chars)", flush=True)
     sys.path.insert(0, str(ROOT / "unreadableapp1"))
     from interpreter import parse_program
 
-    exprs = parse_program(src)
-    print(f"parsed OK, {len(exprs)} root expr(s)")
+    print("parse check...", flush=True)
+    pe = parse_program(src)
+    print(f"parse OK roots={len(pe)}")
 
 
 if __name__ == "__main__":

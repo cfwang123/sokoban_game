@@ -1,6 +1,6 @@
 /**
  * sdlapp1 — SDL2 推箱子桌面 demo（教学）
- * 编译见 README（需 SDL2 开发库）。
+ * 编译见 readme（需 SDL2 开发库）。
  */
 #include <SDL.h>
 #include <stdio.h>

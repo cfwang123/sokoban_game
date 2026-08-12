@@ -3,14 +3,17 @@
 """Parenthesis Hell interpreter (Python).
 
 Spec: https://esolangs.org/wiki/Parenthesis_Hell
-Reference semantics aligned with qpliu/esolang (Haskell interp):
+Wire format / eval aligned with qpliu/esolang Haskell interpreter.
 
-- Values: Nil | Cons(a, b)
-- Program is one expression; evaluated with *input* as the argument
-- ()  evaluates to the current input
-- Application: (fn . arg) looks up fn in scope and applies to arg (unevaluated cdr);
-  each builtin decides how to evaluate arg
-- User-defined (letrec): arg is evaluated first; body runs with that value as input
+Values: Nil | Cons(a, b)
+Encoding (Show/Read):
+  show Nil              = "()"
+  show (Cons a b)       = "(" + shows(a) + ")"  where
+    shows Nil           = ""
+    shows (Cons a b)    = "(" + shows(a) + ")" + shows(b)
+  equivalently top-level readNext after '(':
+    ')'     -> Nil
+    '(' car cdr -> Cons (no extra close between car/cdr)
 
 Root functions:
   ()        quote
@@ -24,35 +27,26 @@ Root functions:
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Callable, Dict, Optional, Tuple, Union
+from typing import Callable, Dict, List, Optional, Tuple, Union
 
 
-# ----- Values ---------------------------------------------------------------
-
-
-@dataclass(frozen=True, eq=True)
+@dataclass(frozen=True)
 class NilType:
-    def __repr__(self) -> str:
-        return "()"
+    pass
 
 
 NIL = NilType()
 
 
-@dataclass(frozen=True, eq=True)
+@dataclass(frozen=True)
 class Cons:
     car: "Value"
     cdr: "Value"
 
-    def __repr__(self) -> str:
-        return value_to_source(self)
-
 
 Value = Union[NilType, Cons]
-
-Scope = Dict[Value, "PhFunc"]
-# PhFunc(arg, scope, input, def_scope) -> Value  (may use trampoline thunks)
-PhFunc = Callable[[Value, Scope, Value, Scope], Value]
+Scope = Dict[object, object]
+PhFunc = Callable[[Value, Scope, Value], object]
 
 
 class PhError(Exception):
@@ -60,142 +54,57 @@ class PhError(Exception):
 
 
 def is_nil(v: Value) -> bool:
-    return v is NIL or isinstance(v, NilType)
+    return isinstance(v, NilType)
 
 
-def car(v: Value) -> Value:
-    if isinstance(v, Cons):
-        return v.car
-    return NIL
+def vcar(v: Value) -> Value:
+    return v.car if isinstance(v, Cons) else NIL
 
 
-def cdr(v: Value) -> Value:
-    if isinstance(v, Cons):
-        return v.cdr
-    return NIL
+def vcdr(v: Value) -> Value:
+    return v.cdr if isinstance(v, Cons) else NIL
 
 
-def cons(a: Value, b: Value) -> Value:
-    return Cons(a, b)
-
-
-# ----- Parse / print source -------------------------------------------------
+# ----- Parse / print --------------------------------------------------------
 
 
 def parse(src: str) -> Value:
-    """Parse one Parenthesis Hell value; non-paren chars ignored."""
+    chars = [c for c in src if c in "()"]
     i = 0
-    n = len(src)
-
-    def skip() -> None:
-        nonlocal i
-        while i < n and src[i] not in "()":
-            i += 1
-
-    def parse_val() -> Value:
-        nonlocal i
-        skip()
-        if i >= n:
-            raise PhError("unexpected end of input")
-        if src[i] != "(":
-            raise PhError(f"expected '(' at {i}")
-        i += 1
-        skip()
-        if i < n and src[i] == ")":
-            i += 1
-            return NIL
-        # Cons: parse car, then cdr (rest of list-shaped nesting per PH reader)
-        # PH reader: after '(', either ')' -> Nil, or parse car then parse cdr then
-        # In qpliu Read: readNext' ('(':s) = car then cdr both via readNext'
-        # Actually: '(' starts cons; first nested value is car, second is cdr.
-        # Wait - the Show is: Cons a b => '(' + show a + ')' + show b
-        # So source of Cons a b is: ( <source a without outer?> )
-        # Looking at Read carefully:
-        # readNext ('(':s) = readNext' s
-        # readNext' ('(':s) = let (car,s') = readNext' s
-        #                     (cdr,s'') = readNext' s'
-        #                     (Cons car cdr, s'')
-        # readNext' (')':s) = (Nil, s)
-        #
-        # So inside a paren group started by outer '(', we use readNext' which:
-        # - on ')' returns Nil
-        # - on '(' parses Cons by reading car and cdr with readNext' (not full readNext)
-        #
-        # That means the top-level is readNext which requires starting '(',
-        # and the inner format is different from show of nested structure...
-        #
-        # Show Nil = "" (empty between parens of parent) 
-        # Show (Cons a b) = '(' + show a + ')' + show b
-        # So Cons Nil Nil shown as: (())  because show Nil = "" so '(' + '' + ')' + '' = ()
-        # Wait: shows Nil s = s  (empty), shows (Cons a b) s = '(' + shows a (')' + shows b s)
-        # Cons Nil Nil: '(' + (shows Nil = '') + ')' + (shows Nil = '') = ()
-        # That's just () which is also Nil! Bug?
-        #
-        # Outer show adds parens: show a = '(' : shows a ")"
-        # show Nil = "(" + "" + ")" = "()"
-        # show (Cons Nil Nil) = "(" + shows (Cons Nil Nil) + ")"
-        #   shows (Cons Nil Nil) = '(' + shows Nil + ')' + shows Nil = '(' + '' + ')' + '' = "()"
-        #   full = "(())"
-        # Yes (()) is Cons Nil Nil.
-        #
-        # show (Cons (Cons Nil Nil) Nil) = "(" + "(()" + ")" + "" + ")" 
-        #   shows (Cons (Cons Nil Nil) Nil) = '(' + shows(Cons Nil Nil) + ')' + shows Nil
-        #   shows(Cons Nil Nil) = "()" 
-        #   = "(()" + ")" + "" = "(() )" without space = "(() )"
-        #   = "(() )"
-        #   full show = "((()))"
-        #
-        # Reader readNext' on content inside outer parens of a value...
-        # Top-level parse uses readNext which needs '('.
-
-        a = parse_inner()
-        d = parse_inner()
-        skip()
-        if i >= n or src[i] != ")":
-            raise PhError(f"expected ')' at {i}")
-        i += 1
-        return Cons(a, d)
+    n = len(chars)
 
     def parse_inner() -> Value:
-        """readNext' — used inside an already-opened '('. """
         nonlocal i
-        skip()
         if i >= n:
             raise PhError("unmatched '('")
-        if src[i] == ")":
-            return NIL  # do not consume; caller may be finishing
-        if src[i] != "(":
-            raise PhError(f"expected '(' or ')' at {i}")
-        i += 1  # consume '('
-        skip()
-        if i < n and src[i] == ")":
+        if chars[i] == ")":
             i += 1
             return NIL
+        if chars[i] != "(":
+            raise PhError("expected '('")
+        i += 1  # '('
         a = parse_inner()
         d = parse_inner()
-        skip()
-        if i >= n or src[i] != ")":
-            raise PhError(f"expected ')' closing cons at {i}")
-        i += 1
         return Cons(a, d)
 
-    # Top-level: like readNext
-    skip()
-    if i >= n:
-        return NIL
-    if src[i] != "(":
-        # ignore junk until '('
-        while i < n and src[i] != "(":
-            i += 1
+    def parse_top() -> Value:
+        nonlocal i
         if i >= n:
             return NIL
-    result = parse_val()
-    return result
+        if chars[i] != "(":
+            raise PhError("expected '(' at start")
+        i += 1
+        return parse_inner()
+
+    # skip to first (
+    while i < n and chars[i] != "(":
+        i += 1
+    if i >= n:
+        return NIL
+    return parse_top()
 
 
 def value_to_source(v: Value) -> str:
-    """Serialize value matching qpliu Show (with outer parens for whole value)."""
-
     def shows(x: Value) -> str:
         if is_nil(x):
             return ""
@@ -205,220 +114,182 @@ def value_to_source(v: Value) -> str:
     return "(" + shows(v) + ")"
 
 
-# ----- String <-> Value (ASCII, qpliu Value.hs) ------------------------------
+# ----- ASCII string encoding (Value.hs) -------------------------------------
 
 
 def str_to_value(s: str) -> Value:
     if s == "":
         return Cons(NIL, NIL)
 
-    def bits_to_value(bit_indices: list[int], ch: str, rest_fn) -> Value:
-        if not bit_indices:
-            return rest_fn()
-        b = bit_indices[0]
-        bs = bit_indices[1:]
-        bit_set = (ord(ch) >> b) & 1
-        nested = bits_to_value(bs, ch, rest_fn)
-        if bit_set:
-            return Cons(nested, NIL)
-        return Cons(NIL, nested)
-
-    def encode_from(i: int) -> Value:
-        if i >= len(s):
+    def encode_from(idx: int) -> Value:
+        if idx >= len(s):
             return Cons(NIL, NIL)
-        ch = s[i]
-        return bits_to_value(list(range(7, -1, -1)), ch, lambda: encode_from(i + 1))
+        ch = s[idx]
+        o = ord(ch)
+
+        def bits(b: int) -> Value:
+            if b < 0:
+                return encode_from(idx + 1)
+            nested = bits(b - 1)
+            if (o >> b) & 1:
+                return Cons(nested, NIL)
+            return Cons(NIL, nested)
+
+        return bits(7)
 
     return encode_from(0)
 
 
 def value_to_str(v: Value) -> str:
-    out: list[str] = []
+    out: List[str] = []
 
-    def consume(bit_indices: list[int], byte: int, rest: Value) -> Optional[Value]:
-        if not bit_indices:
-            out.append(chr(byte & 0xFF))
+    def take_bits(rest: Value, b: int, byte: int) -> Optional[Value]:
+        if b < 0:
+            out.append(chr(byte & 255))
             return rest
-        if is_nil(rest):
+        if is_nil(rest) or not isinstance(rest, Cons):
             return None
-        assert isinstance(rest, Cons)
-        b = bit_indices[0]
-        bs = bit_indices[1:]
         if is_nil(rest.car):
-            # bit 0: Cons Nil rest
-            return consume(bs, byte, rest.cdr)
-        # bit 1: Cons rest' Nil  — bit set
-        return consume(bs, byte | (1 << b), rest.car)
+            return take_bits(rest.cdr, b - 1, byte)
+        # bit set: Cons(nested, Nil)
+        return take_bits(rest.car, b - 1, byte | (1 << b))
 
     cur: Optional[Value] = v
     while cur is not None and not is_nil(cur):
-        nxt = consume(list(range(7, -1, -1)), 0, cur)
+        nxt = take_bits(cur, 7, 0)
         if nxt is None:
             break
         cur = nxt
     return "".join(out)
 
 
-# ----- Eval -----------------------------------------------------------------
+# ----- Eval (trampoline) ----------------------------------------------------
 
 
 class _Thunk:
     __slots__ = ("fn",)
 
-    def __init__(self, fn: Callable[[], Value]):
+    def __init__(self, fn: Callable[[], object]):
         self.fn = fn
 
 
-def _force(x: Union[Value, _Thunk]) -> Value:
+def force(x: object) -> Value:
     while isinstance(x, _Thunk):
         x = x.fn()
+    assert isinstance(x, (NilType, Cons))
     return x
-
-
-def _fn_quote(arg: Value, scope: Scope, inp: Value, def_scope: Scope) -> Value:
-    return arg
-
-
-def _fn_car(arg: Value, scope: Scope, inp: Value, def_scope: Scope) -> Value:
-    v = _force(ph_eval_raw(arg, scope, inp))
-    return car(v)
-
-
-def _fn_cdr(arg: Value, scope: Scope, inp: Value, def_scope: Scope) -> Value:
-    v = _force(ph_eval_raw(arg, scope, inp))
-    return cdr(v)
-
-
-def _fn_cons(arg: Value, scope: Scope, inp: Value, def_scope: Scope) -> Value:
-    if is_nil(arg):
-        return NIL
-    assert isinstance(arg, Cons)
-    h = _force(ph_eval_raw(arg.car, scope, inp))
-    t = _force(ph_eval_raw(arg.cdr, scope, inp))
-    return Cons(h, t)
-
-
-def _fn_if(arg: Value, scope: Scope, inp: Value, def_scope: Scope) -> Value:
-    if is_nil(arg) or is_nil(cdr(arg)):
-        return NIL
-    assert isinstance(arg, Cons)
-    cond = _force(ph_eval_raw(arg.car, scope, inp))
-    body = arg.cdr
-    assert isinstance(body, Cons)
-    if not is_nil(cond):
-        return _Thunk(lambda: ph_eval_raw(body.car, scope, inp))
-    return _Thunk(lambda: ph_eval_raw(body.cdr, scope, inp))
-
-
-def _fn_eval(arg: Value, scope: Scope, inp: Value, def_scope: Scope) -> Value:
-    expr = _force(ph_eval_raw(arg, scope, inp))
-    return _Thunk(lambda: ph_eval_raw(expr, scope, inp))
-
-
-def _fn_let(arg: Value, scope: Scope, inp: Value, def_scope: Scope) -> Value:
-    if is_nil(arg):
-        return NIL
-    assert isinstance(arg, Cons)
-    bindings = arg.car
-    body = arg.cdr
-
-    # Build nested scope
-    new_scope: Scope = {}
-    new_scope["_outer"] = scope  # type: ignore
-
-    def make_user_fn(fn_body: Value) -> PhFunc:
-        def user_fn(uarg: Value, uscope: Scope, uinp: Value, udef: Scope) -> Value:
-            # Evaluate argument in caller's scope, then body with result as input
-            evaluated = _force(ph_eval_raw(uarg, uscope, uinp))
-            return _Thunk(lambda: ph_eval_raw(fn_body, new_scope, evaluated))
-
-        return user_fn
-
-    b = bindings
-    while not is_nil(b):
-        assert isinstance(b, Cons)
-        item = b.car
-        b = b.cdr
-        if is_nil(item):
-            continue
-        if not isinstance(item, Cons):
-            continue
-        name = item.car
-        fn_body = item.cdr
-        new_scope[name] = make_user_fn(fn_body)
-
-    return _Thunk(lambda: ph_eval_raw(body, new_scope, inp))
-
-
-def root_scope() -> Scope:
-    return {
-        NIL: _fn_quote,  # ()
-        Cons(NIL, NIL): _fn_let,  # (())
-        Cons(Cons(NIL, NIL), NIL): _fn_car,  # ((()))
-        Cons(NIL, Cons(NIL, NIL)): _fn_cdr,  # (()())
-        Cons(Cons(NIL, NIL), Cons(NIL, NIL)): _fn_cons,  # ((())())
-        Cons(NIL, Cons(NIL, Cons(NIL, NIL))): _fn_if,  # (()()())
-        Cons(Cons(Cons(NIL, NIL), NIL), NIL): _fn_eval,  # (((())))
-    }
 
 
 def _lookup(scope: Scope, name: Value) -> Optional[PhFunc]:
     cur: Optional[Scope] = scope
     while cur is not None:
-        if name in cur and name != "_outer":
-            return cur[name]
-        outer = cur.get("_outer")  # type: ignore
-        if outer is None or not isinstance(outer, dict):
+        if name in cur:
+            return cur[name]  # type: ignore
+        outer = cur.get("__outer__")
+        if not isinstance(outer, dict):
             break
-        cur = outer  # type: ignore
+        cur = outer
     return None
 
 
-def ph_eval_raw(expr: Value, scope: Scope, inp: Value) -> Union[Value, _Thunk]:
+def eval_raw(expr: Value, scope: Scope, inp: Value) -> object:
     if is_nil(expr):
         return inp
     assert isinstance(expr, Cons)
-    fn_name = expr.car
-    arg = expr.cdr
-    fn = _lookup(scope, fn_name)
+    fn = _lookup(scope, expr.car)
     if fn is None:
-        # try root if not nested
-        fn = root_scope().get(fn_name)
-    if fn is None:
-        raise PhError(f"undefined function: {value_to_source(fn_name)}")
-    return fn(arg, scope, inp, scope)
+        raise PhError(f"undefined function {value_to_source(expr.car)}")
+    return fn(expr.cdr, scope, inp)
+
+
+def make_root() -> Scope:
+    def f_quote(arg: Value, scope: Scope, inp: Value) -> Value:
+        return arg
+
+    def f_car(arg: Value, scope: Scope, inp: Value) -> Value:
+        return vcar(force(eval_raw(arg, scope, inp)))
+
+    def f_cdr(arg: Value, scope: Scope, inp: Value) -> Value:
+        return vcdr(force(eval_raw(arg, scope, inp)))
+
+    def f_cons(arg: Value, scope: Scope, inp: Value) -> Value:
+        if is_nil(arg):
+            return NIL
+        assert isinstance(arg, Cons)
+        h = force(eval_raw(arg.car, scope, inp))
+        t = force(eval_raw(arg.cdr, scope, inp))
+        return Cons(h, t)
+
+    def f_if(arg: Value, scope: Scope, inp: Value) -> object:
+        if is_nil(arg) or is_nil(vcdr(arg)):
+            return NIL
+        assert isinstance(arg, Cons)
+        cond = force(eval_raw(arg.car, scope, inp))
+        body = arg.cdr
+        assert isinstance(body, Cons)
+        if not is_nil(cond):
+            return _Thunk(lambda: eval_raw(body.car, scope, inp))
+        return _Thunk(lambda: eval_raw(body.cdr, scope, inp))
+
+    def f_eval(arg: Value, scope: Scope, inp: Value) -> object:
+        e = force(eval_raw(arg, scope, inp))
+        return _Thunk(lambda: eval_raw(e, scope, inp))
+
+    def f_let(arg: Value, scope: Scope, inp: Value) -> object:
+        if is_nil(arg):
+            return NIL
+        assert isinstance(arg, Cons)
+        bindings = arg.car
+        body = arg.cdr
+        new_scope: Scope = {"__outer__": scope}
+
+        def make_user(fn_body: Value) -> PhFunc:
+            def user(uarg: Value, uscope: Scope, uinp: Value) -> object:
+                evaluated = force(eval_raw(uarg, uscope, uinp))
+                return _Thunk(lambda: eval_raw(fn_body, new_scope, evaluated))
+
+            return user
+
+        b = bindings
+        while not is_nil(b):
+            assert isinstance(b, Cons)
+            item = b.car
+            b = b.cdr
+            if is_nil(item) or not isinstance(item, Cons):
+                continue
+            new_scope[item.car] = make_user(item.cdr)
+
+        return _Thunk(lambda: eval_raw(body, new_scope, inp))
+
+    return {
+        NIL: f_quote,
+        Cons(NIL, NIL): f_let,
+        Cons(Cons(NIL, NIL), NIL): f_car,
+        Cons(NIL, Cons(NIL, NIL)): f_cdr,
+        Cons(Cons(NIL, NIL), Cons(NIL, NIL)): f_cons,
+        Cons(NIL, Cons(NIL, Cons(NIL, NIL))): f_if,
+        Cons(Cons(Cons(NIL, NIL), NIL), NIL): f_eval,
+    }
 
 
 def ph_eval(expr: Value, inp: Value = NIL) -> Value:
-    """Evaluate expression with input; return fully forced value."""
-    return _force(ph_eval_raw(expr, root_scope(), inp))
+    return force(eval_raw(expr, make_root(), inp))
 
 
-def ph_eval_source(src: str, input_str: Optional[str] = None) -> Value:
+def run_source(src: str, input_str: Optional[str] = None) -> str:
     prog = parse(src)
-    inp = str_to_value(input_str) if input_str is not None else NIL
-    return ph_eval(prog, inp)
-
-
-def run_source(src: str, input_str: str = "") -> str:
-    """Evaluate program; decode result as ASCII string (like qpliu ph.hs)."""
-    prog = parse(src)
-    inp = str_to_value(input_str) if input_str != "" else NIL
-    # cat with empty input: use Cons(Nil,Nil) as empty string when input_str==""?
-    # ph.hs: strToValue input from getContents; empty file -> strToValue [] = Cons Nil Nil
-    if input_str == "":
-        # For programs that need empty string input vs Nil:
-        # Hello world uses Nil input typically (no need for input)
-        result = ph_eval(prog, NIL)
+    if input_str is None:
+        inp: Value = NIL
+    elif input_str == "":
+        inp = Cons(NIL, NIL)  # empty string
     else:
-        result = ph_eval(prog, str_to_value(input_str))
-    return value_to_str(result)
+        inp = str_to_value(input_str)
+    return value_to_str(ph_eval(prog, inp))
 
 
-# ----- Helpers for building programs ----------------------------------------
+# ----- Program builders -----------------------------------------------------
 
-# Builtin names
-Q = NIL  # quote
+Q = NIL
 LET = Cons(NIL, NIL)
 CAR = Cons(Cons(NIL, NIL), NIL)
 CDR = Cons(NIL, Cons(NIL, NIL))
@@ -455,12 +326,15 @@ def ph_let(bindings: Value, body: Value) -> Value:
     return app(LET, Cons(bindings, body))
 
 
-def bind(name: Value, body: Value) -> Value:
-    return Cons(name, body)
-
-
-def bind_list(pairs: list[Tuple[Value, Value]]) -> Value:
+def binds(*pairs: Tuple[Value, Value]) -> Value:
     acc: Value = NIL
     for name, body in reversed(pairs):
-        acc = Cons(bind(name, body), acc)
+        acc = Cons(Cons(name, body), acc)
+    return acc
+
+
+def list_from(*xs: Value) -> Value:
+    acc: Value = NIL
+    for x in reversed(xs):
+        acc = Cons(x, acc)
     return acc

@@ -4,7 +4,7 @@ Attribute VB_Name = "Main"
 ' 然后运行宏 SokobanMain（Alt+F8）
 '
 ' 交互：InputBox 输入 wasd/z/r/q；地图用 MsgBox 显示
-' （也可把 RenderAscii 写到工作表单元格，见 README）
+' （也可把 RenderAscii 写到工作表单元格，见 readme）
 
 Option Explicit
 

@@ -28,7 +28,9 @@
 | **INTERCAL** | 故意难用；工具链与交互 I/O 不适合本教学规模 |
 | **Malbolge** | 几乎不可手写完整程序 |
 | **Piet** | 图像编程，工具链与体量不适合文本仓库 |
-| ~~**JSFuck**~~ | **已实现** → `jsfuckapp1/`（脚本生成 `try_move` 为纯 `[]()!+`；见该目录 README） |
+| ~~**JSFuck**~~ | **已实现** → `jsfuckapp1/` |
+| ~~**Befunge**~~ | **已实现** → `befungeapp1/`（纯 `sokoban.bf` + 解释器） |
+| ~~**Unreadable**~~ | **已实现** → `unreadableapp1/`（纯 `'`/`"` 游戏 + Python 解释器） |
 | **Chef** | 菜谱式栈语言，不适合交互主循环 |
 | **FALSE** | 极简栈语言，完整交互游戏不现实 |
 | **LOLCODE** | 方言/工具链不稳定，不宜假冒完整原生工程 |
@@ -47,8 +49,9 @@
 |------|------|
 | `brainfuckapp1/` | **Brainfuck** — 游戏为纯 BF；Python 仅为解释器（允许） |
 | `befungeapp1/` | **Befunge** — 游戏为纯 `.bf`；Python 仅为解释器（允许；场地可大于经典 80×25） |
-| `jsfuckapp1/` | **JSFuck** — 游戏为纯 `[]()!+`；Node/浏览器执行；`main.py` 仅启动/自检 |
 | `jsfuckapp1/` | **JSFuck** — `try_move` 为纯 `[]()!+`（`generate.js` 生成）；宿主只负责 UI |
+| `unreadableapp1/` | **Unreadable** — 游戏为纯 `'`/`"`；Python 仅为解释器 |
+| `parenthesishellapp1/` | **Parenthesis Hell** — Python 解释器；状态为 PH Cons/Nil；纯 `()` 示例 `hello.ph` |
 | `xiyuyanapp1/` | **习语言**（中文 C 宏）— 游戏源码即中文关键字 C |
 | `bingzhengzhengapp1/` | **丙正正**（中文 C++ 宏） |
 | `caomangapp1/` | **草蟒** — 逻辑在 `.草蟒`；`main.py` 仅为关键字翻译运行时 |

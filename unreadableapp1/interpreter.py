@@ -25,7 +25,7 @@ from dataclasses import dataclass
 from typing import Callable, List, Optional, TextIO
 
 
-sys.setrecursionlimit(20000)
+sys.setrecursionlimit(50000)
 
 PRINT, INC, ONE, DO, WHILE, SET, GET, DEC, IF, IN = range(1, 11)
 ARGNS = {
@@ -70,35 +70,88 @@ class ParseError(Exception):
     pass
 
 
-def parse_one(pgm: str) -> tuple[Expr, str]:
-    if not pgm:
-        raise ParseError("empty program or too few arguments")
-    if pgm[0] != "'":
-        raise ParseError(f"expected ', got {pgm[:20]!r}")
-    command = 0
-    index = 1
-    while index < len(pgm) and pgm[index] != "'":
-        if pgm[index] == '"':
-            command += 1
-        index += 1
-    if not 1 <= command <= 10:
-        raise ParseError(f"invalid command arity-id {command}")
-    rest = pgm[index:]
-    args: List[Expr] = []
-    for _ in range(ARGNS[command]):
-        arg, rest = parse_one(rest)
-        args.append(arg)
-    return Expr(command, args), rest
+def _tokenize(pgm: str) -> list[int]:
+    """Turn quote stream into command arity-ids (1..10)."""
+    tokens: list[int] = []
+    i = 0
+    n = len(pgm)
+    while i < n:
+        if pgm[i] != "'":
+            raise ParseError(f"expected ', got {pgm[i : i + 20]!r}")
+        i += 1
+        command = 0
+        while i < n and pgm[i] != "'":
+            if pgm[i] == '"':
+                command += 1
+            # other chars already stripped
+            i += 1
+        if not 1 <= command <= 10:
+            raise ParseError(f"invalid command arity-id {command}")
+        tokens.append(command)
+    return tokens
 
 
 def parse_program(text: str) -> List[Expr]:
+    """Parse full program into root expressions (iterative, stack-safe)."""
     pgm = re.sub(r"[^\"']", "", text)
-    rest = pgm
-    exprs: List[Expr] = []
-    while rest:
-        exp, rest = parse_one(rest)
-        exprs.append(exp)
-    return exprs
+    tokens = _tokenize(pgm)
+    roots: List[Expr] = []
+    # stack frames: (command, args_collected, args_still_needed)
+    stack: list[tuple[int, list[Expr], int]] = []
+    pos = 0
+    nt = len(tokens)
+
+    def push_token(cmd: int) -> None:
+        need = ARGNS[cmd]
+        if need == 0:
+            finish(Expr(cmd, []))
+        else:
+            stack.append((cmd, [], need))
+
+    def finish(node: Expr) -> None:
+        if not stack:
+            roots.append(node)
+            return
+        cmd, args, need = stack[-1]
+        args.append(node)
+        need -= 1
+        if need == 0:
+            stack.pop()
+            finish(Expr(cmd, args))
+        else:
+            stack[-1] = (cmd, args, need)
+
+    while pos < nt or stack:
+        if stack and stack[-1][2] == 0:
+            # should not happen with finish logic
+            cmd, args, _ = stack.pop()
+            finish(Expr(cmd, args))
+            continue
+        if pos >= nt:
+            if stack:
+                raise ParseError("unexpected end of program (missing arguments)")
+            break
+        cmd = tokens[pos]
+        pos += 1
+        if not stack:
+            push_token(cmd)
+        else:
+            # this token starts the next required child
+            need_parent = stack[-1][2]
+            if need_parent <= 0:
+                raise ParseError("internal parse error")
+            push_token(cmd)
+
+    return roots
+
+
+def parse_one(pgm: str) -> tuple[Expr, str]:
+    """Compatibility helper: parse a single expression from a quote string."""
+    exprs = parse_program(pgm)
+    if not exprs:
+        raise ParseError("empty program or too few arguments")
+    # re-strip to find remainder is not tracked; full parse only
+    return exprs[0], ""
 
 
 class AutoArray:
@@ -132,8 +185,6 @@ class Interpreter:
         self.vars = AutoArray()
         self.stdin = stdin if stdin is not None else sys.stdin
         self.stdout = stdout if stdout is not None else sys.stdout
-        self._line_buf = ""
-        self._line_i = 0
         self.cmds: dict[int, Callable[..., int]] = {
             PRINT: self._print,
             INC: self._inc,
@@ -197,7 +248,6 @@ class Interpreter:
         return self.eval(z)
 
     def _in(self) -> int:
-        # Prefer char-at-a-time; if stdin is line-buffered interactive, still OK
         ch = self.stdin.read(1)
         if ch == "":
             return -1

@@ -9,7 +9,7 @@
 - Gameplay aligned with `html_app` / `androidapp1`: push rules, undo (push-only), reset, answer playback, RMS last level
 - Keypad + softkey UI (no touch); menu action demos BFS pathfinding
 - Demo level subset (~35) embedded in `LevelsData.java`
-- Docs: README + DEVELOPMENT mapping to Android/iOS
+- Docs: readme + DEVELOPMENT mapping to Android/iOS
 
 ### 中文
 
@@ -18,4 +18,4 @@
 - 玩法对齐网页/Android：推箱规则、仅撤销推箱步、重置、答案回放、RMS 记关卡
 - 数字键盘 + 软键（无触屏）；菜单提供 BFS 寻路演示
 - 演示关卡子集（约 35 关）写入 `LevelsData.java`
-- 文档：README 与 Android/iOS 对照速查
+- 文档：readme 与 Android/iOS 对照速查

@@ -191,7 +191,7 @@ let () =
 """,
     )
     write(
-        "ocamlapp1/README.md",
+        "ocamlapp1/readme.md",
         readme(
             "ocamlapp1 — OCaml 推箱子（教学）",
             "需要 [OCaml](https://ocaml.org/)（`ocamlc` / `ocamlopt`）。",
@@ -356,7 +356,7 @@ def gen_clojure() -> None:
 """,
     )
     write(
-        "clojureapp1/README.md",
+        "clojureapp1/readme.md",
         readme(
             "clojureapp1 — Clojure 推箱子（教学）",
             "需要 [Clojure CLI](https://clojure.org/)（`clj` / `clojure`）。",
@@ -545,7 +545,7 @@ let main _ =
 """,
     )
     write(
-        "fsharpapp1/README.md",
+        "fsharpapp1/readme.md",
         readme(
             "fsharpapp1 — F# 推箱子（教学）",
             "需要 .NET SDK（`dotnet`）。",
@@ -716,7 +716,7 @@ object Main {
 """,
     )
     write(
-        "scalaapp1/README.md",
+        "scalaapp1/readme.md",
         readme(
             "scalaapp1 — Scala 推箱子（教学）",
             "需要 [Scala](https://www.scala-lang.org/) 3 或 2（`scala` / `scalac`）。",
@@ -918,7 +918,7 @@ MainLoop.loop(state, level)
 """,
     )
     write(
-        "elixirapp1/README.md",
+        "elixirapp1/readme.md",
         readme(
             "elixirapp1 — Elixir 推箱子（教学）",
             "需要 [Elixir](https://elixir-lang.org/)（`elixir`）。",
@@ -1098,7 +1098,7 @@ handle(_, S) -> S.
 """,
     )
     write(
-        "erlangapp1/README.md",
+        "erlangapp1/readme.md",
         readme(
             "erlangapp1 — Erlang 推箱子（教学）",
             "需要 [Erlang/OTP](https://www.erlang.org/)（`erlc` / `erl`）。",
@@ -1299,7 +1299,7 @@ end
 """,
     )
     write(
-        "crystalapp1/README.md",
+        "crystalapp1/readme.md",
         readme(
             "crystalapp1 — Crystal 推箱子（教学）",
             "需要 [Crystal](https://crystal-lang.org/)（`crystal`）。",
@@ -1470,7 +1470,7 @@ void main() {
 """,
     )
     write(
-        "dlangapp1/README.md",
+        "dlangapp1/readme.md",
         readme(
             "dlangapp1 — D 推箱子（教学）",
             "需要 [DMD](https://dlang.org/) 或 LDC（`dmd` / `ldc2`）。",
@@ -1649,7 +1649,7 @@ while true {
 """,
     )
     write(
-        "swiftapp1/README.md",
+        "swiftapp1/readme.md",
         readme(
             "swiftapp1 — Swift 推箱子（教学）",
             "需要 Swift toolchain（`swift` / `swiftc`）。与 `iosapp1` 的 SwiftUI 版独立，本目录为纯终端。",
@@ -1788,7 +1788,7 @@ function render(   y, x, k, ch) {
 """,
     )
     write(
-        "awkapp1/README.md",
+        "awkapp1/readme.md",
         readme(
             "awkapp1 — AWK 推箱子（教学）",
             "需要 gawk（GNU Awk）。Windows 可用 Git Bash / MSYS 中的 `gawk`。",
@@ -2231,7 +2231,7 @@ if __name__ == "__main__":
 ''',
     )
     write(
-        "sqlapp1/README.md",
+        "sqlapp1/readme.md",
         readme(
             "sqlapp1 — SQL / SQLite 推箱子（教学）",
             "需要 Python 3 + 标准库 `sqlite3`（状态全部落在 SQLite 表中）。",
@@ -2448,7 +2448,7 @@ fn main() {
 """,
     )
     write(
-        "vapp1/README.md",
+        "vapp1/readme.md",
         readme(
             "vapp1 — V 推箱子（教学）",
             "需要 [V](https://vlang.io/)（`v`）。",

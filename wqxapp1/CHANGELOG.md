@@ -8,7 +8,7 @@
 - Teaching project for BBK Wenquxing-class e-dictionaries: portable C Sokoban + `wqx_api` HAL (**no device firmware build in-repo**)
 - Gameplay aligned with other ports: push rules, push-only undo, answer playback, last-level NV storage
 - ~20 demo levels embedded in `levels_data.c`; MENU demos BFS walk
-- Docs: README + DEVELOPMENT (layering, key map, porting checklist)
+- Docs: readme + DEVELOPMENT (layering, key map, porting checklist)
 
 ### 中文
 
