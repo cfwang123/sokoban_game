@@ -1,6 +1,6 @@
 # harmonyapp1 — HarmonyOS 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 ArkTS 状态机 + 声明式 UI 示意。**用 DevEco Studio 新建工程后拷入 `entry/src/main/ets`。**

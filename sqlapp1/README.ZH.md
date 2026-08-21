@@ -1,6 +1,6 @@
 # sqlapp1 — SQL / SQLite 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 需要 Python 3 + 标准库 `sqlite3`（状态全部落在 SQLite 表中）。

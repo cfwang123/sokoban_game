@@ -1,6 +1,6 @@
 # cocos2dapp1 — Cocos2d 风格推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 **无需安装 Cocos Creator**：浏览器打开 `index.html`，用 Canvas + 简易 Director/Layer 循环演示 2D 引擎结构。

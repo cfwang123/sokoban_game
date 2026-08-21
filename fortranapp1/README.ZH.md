@@ -1,6 +1,6 @@
 # fortranapp1 — Fortran 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 需要 [gfortran](https://gcc.gnu.org/fortran/)（GCC Fortran）。

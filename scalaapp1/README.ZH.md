@@ -1,6 +1,6 @@
 # scalaapp1 — Scala 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 需要 [Scala](https://www.scala-lang.org/) 3 或 2（`scala` / `scalac`）。

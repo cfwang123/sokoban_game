@@ -1,6 +1,6 @@
 # jetbrainsext1 — JetBrains IDE 插件推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 面向 **IntelliJ IDEA / Android Studio / WebStorm** 等（IntelliJ Platform）。

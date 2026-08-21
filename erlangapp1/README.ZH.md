@@ -1,6 +1,6 @@
 # erlangapp1 — Erlang 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 需要 [Erlang/OTP](https://www.erlang.org/)（`erlc` / `erl`）。

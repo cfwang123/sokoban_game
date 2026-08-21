@@ -1,6 +1,6 @@
 # electronapp1 — Electron 推箱子桌面 demo（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 用 Electron 包装 Canvas 游戏（逻辑仿 `html_app`）。需要 Node.js。

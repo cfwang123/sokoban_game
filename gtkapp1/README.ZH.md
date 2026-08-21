@@ -1,6 +1,6 @@
 # gtkapp1 — GTK3 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 **GTK** 桌面教学源码（用户消息中的 “gtx” 按 **GTK** 理解），**不要求在本仓库内编译**。

@@ -1,6 +1,6 @@
 # emacsext1 — Emacs 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 单文件 `sokoban.el`：`M-x sokoban`。

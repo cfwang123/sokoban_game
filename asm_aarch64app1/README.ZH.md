@@ -1,6 +1,6 @@
 # asm_aarch64app1 — AArch64 (ARM64) 推箱子汇编教学
 
-> [English](readme.md)
+> [English](README.md)
 
 
 **完整 `sk_try_move` 已实现**，语义对齐 [../asm_common/game.c](../asm_common/game.c)。

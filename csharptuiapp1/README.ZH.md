@@ -1,6 +1,6 @@
 # csharptuiapp1 — C# TUI 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 纯控制台 **TUI 循环**（ANSI 清屏 + 彩色字符 + 立即按键），**零第三方包**。  

@@ -1,6 +1,6 @@
 # xiyuyanapp1 — 习语言完整推箱子
 
-> [English](readme.md)
+> [English](README.md)
 
 
 **习语言**：中文关键字 C（本仓库用预处理宏实现）。**游戏逻辑全部为中文关键字源码**（`main.c`），无 Python 代替。

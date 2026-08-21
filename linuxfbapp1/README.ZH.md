@@ -1,6 +1,6 @@
 # linuxfbapp1 — Linux 帧缓冲推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 读写 `/dev/fb0` 画色块；无权限或失败时回退终端 ASCII。

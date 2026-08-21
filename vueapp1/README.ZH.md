@@ -1,6 +1,6 @@
 # vueapp1 — Vue 3 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 **无需 npm / 无需编译**：打开 `index.html` 即可（CDN Vue 3）。

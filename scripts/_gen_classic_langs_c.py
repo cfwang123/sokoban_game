@@ -249,7 +249,7 @@ BYE
 """,
     )
     write(
-        "forthapp1/readme.md",
+        "forthapp1/README.md",
         readme(
             "forthapp1 — Forth 推箱子（教学）",
             "需要 [Gforth](https://gforth.org/)（`gforth`）。栈式语言教学版。",
@@ -446,7 +446,7 @@ main :: proc() {
 """,
     )
     write(
-        "odinapp1/readme.md",
+        "odinapp1/README.md",
         readme(
             "odinapp1 — Odin 推箱子（教学）",
             "需要 [Odin](https://odin-lang.org/)（`odin`）。",
@@ -717,7 +717,7 @@ show:
 """,
     )
     write(
-        "rexxapp1/readme.md",
+        "rexxapp1/README.md",
         readme(
             "rexxapp1 — REXX 推箱子（教学）",
             "需要 [Regina REXX](https://regina-rexx.sourceforge.io/) 或 ooRexx（`rexx`）。",
@@ -904,7 +904,7 @@ Transcript show: 'sokoban_smalltalk — wasd 移动, z 撤销, r 重置, q 退�
 """,
     )
     write(
-        "smalltalkapp1/readme.md",
+        "smalltalkapp1/README.md",
         readme(
             "smalltalkapp1 — Smalltalk 推箱子（教学）",
             "需要 [GNU Smalltalk](https://www.gnu.org/software/smalltalk/)（`gst`）。",
@@ -1059,7 +1059,7 @@ end
 """,
     )
     write(
-        "iconapp1/readme.md",
+        "iconapp1/README.md",
         readme(
             "iconapp1 — Icon 推箱子（教学）",
             "需要 [Icon](https://www2.cs.arizona.edu/icon/) 或 Unicon（`icont` / `icon`）。",
@@ -1270,7 +1270,7 @@ END Game.
 """,
     )
     write(
-        "modula2app1/readme.md",
+        "modula2app1/README.md",
         readme(
             "modula2app1 — Modula-2 推箱子（教学）",
             "需要 [GNU Modula-2](https://www.nongnu.org/gm2/)（`gm2`，GCC 插件）。API 按 GM2 方言，其它编译器可能需微调。",
@@ -1448,7 +1448,7 @@ OD
 """,
     )
     write(
-        "algolapp1/readme.md",
+        "algolapp1/README.md",
         readme(
             "algolapp1 — Algol 68 推箱子（教学）",
             "需要 [Algol 68 Genie](https://jmvdveer.home.xs4all.nl/en.algol-68-genie.html)（`a68g`）。语法可能因实现略有差异。",
@@ -1646,7 +1646,7 @@ bye
 """,
     )
     write(
-        "logoapp1/readme.md",
+        "logoapp1/README.md",
         readme(
             "logoapp1 — Logo 推箱子（教学）",
             "需要 UCBLogo / FMSLogo 等（`logo` / `ucblogo`）。方言差异较大，必要时按本地 Logo 微调。",
@@ -1880,7 +1880,7 @@ if __name__ == "__main__":
 ''',
     )
     write(
-        "aplapp1/readme.md",
+        "aplapp1/README.md",
         """# aplapp1 — APL 推箱子（教学）
 
 - **可运行驱动**：`python -X utf8 main.py`（与其它 *app1 行为一致）
@@ -2117,7 +2117,7 @@ if __name__ == "__main__":
 ''',
     )
     write(
-        "factorapp1/readme.md",
+        "factorapp1/README.md",
         """# factorapp1 — Factor 推箱子（教学）
 
 - **可运行驱动**：`python -X utf8 main.py`

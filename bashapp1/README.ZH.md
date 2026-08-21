@@ -1,6 +1,6 @@
 # bashapp1 — Bash 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 纯 **Bash 4+** 脚本（关联数组），无需编译。

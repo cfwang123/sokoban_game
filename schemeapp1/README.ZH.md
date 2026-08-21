@@ -1,6 +1,6 @@
 # schemeapp1 — Scheme 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 R5RS 风格，可用 [Guile](https://www.gnu.org/software/guile/)、[CHICKEN](https://call-cc.org/) 或 [Gauche](https://practical-scheme.net/gauche/) 等。

@@ -1,6 +1,6 @@
 # goapp1 — Go 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 标准库终端版。需要窗口时在 `main` 接入 [Ebiten](https://ebiten.org/)。

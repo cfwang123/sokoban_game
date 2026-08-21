@@ -1,6 +1,6 @@
 # monoapp1 — Mono 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 面向 **Mono**（`mcs` / `mono`）与经典 .NET Framework 风格 C# 的教学终端版。  

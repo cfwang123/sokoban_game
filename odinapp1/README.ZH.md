@@ -1,6 +1,6 @@
 # odinapp1 — Odin 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 需要 [Odin](https://odin-lang.org/)（`odin`）。

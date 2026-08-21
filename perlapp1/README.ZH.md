@@ -1,6 +1,6 @@
 # perlapp1 — Perl 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 纯标准库终端版。需要 Perl 5.16+。

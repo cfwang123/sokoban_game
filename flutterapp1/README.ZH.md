@@ -1,6 +1,6 @@
 # flutterapp1 — Flutter 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 Dart / Flutter 跨端演示：`CustomPainter` 棋盘 + 点击寻路 + 虚拟方向键。

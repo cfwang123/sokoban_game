@@ -1,6 +1,6 @@
 # mfcapp1 — MFC 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 示意 **MFC Document/View** 分层的教学源码，**不要求在本仓库内编译**。

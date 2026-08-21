@@ -1,6 +1,6 @@
 # vs2026ext1 — Visual Studio 扩展推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 面向 **Visual Studio 2022 / 预览版与后续 VS（俗称 2026 一代）** 的扩展开发示意：

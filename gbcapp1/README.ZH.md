@@ -1,6 +1,6 @@
 # gbcapp1 — Game Boy Color 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 在 `gbapp1` 之上增加**逻辑调色板**（墙/箱/目标/玩家分色）。  

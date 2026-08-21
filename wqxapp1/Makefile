@@ -17,7 +17,7 @@ help:
 	@echo "  make list         列出源文件"
 	@echo "  make host-syntax  可选：用主机 gcc -fsyntax-only 检查语法"
 	@echo "  真机：用厂商 SDK 替换 wqx_hal_stub.c 后按 SDK 手册链接"
-	@echo "详见 readme.md 与 docs/DEVELOPMENT.md"
+	@echo "详见 README.md 与 docs/DEVELOPMENT.md"
 
 list:
 	@echo Sources:

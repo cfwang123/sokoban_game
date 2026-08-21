@@ -1,6 +1,6 @@
 # blazorapp1 — Blazor WebAssembly 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 C# **Blazor WASM** 组件教学源码，**不强制在本仓库编译**。

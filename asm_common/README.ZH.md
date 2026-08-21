@@ -1,6 +1,6 @@
 # asm_common — 汇编教学共用 C 参考实现
 
-> [English](readme.md)
+> [English](README.md)
 
 
 各 `asm_*app1` 目录中的 **`.s` / `.S` / `.asm` / `.wat`** 实现同一套 `sk_try_move` 语义，对照本目录算法。

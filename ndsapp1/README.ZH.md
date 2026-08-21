@@ -1,6 +1,6 @@
 # ndsapp1 — Nintendo DS 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 **双屏**：上屏棋盘，下屏 HUD + 触屏方向键。逻辑 `game_core`，显示 `nds_hw.h`。

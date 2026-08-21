@@ -1,6 +1,6 @@
 # parenthesishellapp1 — Parenthesis Hell 推箱子
 
-> [English](readme.md)
+> [English](README.md)
 
 
 [Parenthesis Hell](https://esolangs.org/wiki/Parenthesis_Hell)：Lisp 风格 esolang，**代码与数据都只有嵌套括号** `()`。  
@@ -25,8 +25,8 @@ python -X utf8 main.py --test
 | `sokoban.ph` | 纯 `()` 程序（默认 identity：返回输入状态） |
 | `main.py` | 交互主机 + 用 PH `Cons`/`Nil` 树表示的棋盘状态 |
 | `generate.py` | 重新写入默认 `sokoban.ph` |
-| `readme.zh.md` | 本说明（中文） |
-| `readme.md` | English |
+| `README.ZH.md` | 本说明（中文） |
+| `README.md` | English |
 
 ## 语言要点
 

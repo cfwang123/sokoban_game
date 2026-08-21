@@ -1,6 +1,6 @@
 # netaotapp1 — .NET Native AOT 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 演示 **PublishAot**（Native AOT）：编译为**原生机器码**，目标机无需安装 .NET 运行时。  

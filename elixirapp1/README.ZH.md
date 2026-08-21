@@ -1,6 +1,6 @@
 # elixirapp1 — Elixir 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 需要 [Elixir](https://elixir-lang.org/)（`elixir`）。

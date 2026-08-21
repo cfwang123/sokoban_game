@@ -1,6 +1,6 @@
 # csharpapp1 — C# 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 .NET 控制台版。需要 [.NET 8 SDK](https://dotnet.microsoft.com/)。

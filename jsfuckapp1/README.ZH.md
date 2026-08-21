@@ -1,6 +1,6 @@
 # jsfuckapp1 — 纯 JSFuck 可玩推箱子
 
-> [English](readme.md)
+> [English](README.md)
 
 
 [JSFuck](https://jsfuck.com/)：只用 **`[]()!+`** 六个字符写合法 JavaScript。  

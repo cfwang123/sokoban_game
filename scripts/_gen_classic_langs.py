@@ -203,7 +203,7 @@ while ($true) {
 """,
     )
     write(
-        "powershellapp1/readme.md",
+        "powershellapp1/README.md",
         readme(
             "powershellapp1 — PowerShell 推箱子（教学）",
             "需要 PowerShell 5+ 或 PowerShell 7（`pwsh`）。",
@@ -370,7 +370,7 @@ done
 """,
     )
     write(
-        "bashapp1/readme.md",
+        "bashapp1/README.md",
         readme(
             "bashapp1 — Bash 推箱子（教学）",
             "需要 Bash 4+（关联数组）。Git Bash / WSL / Linux / macOS。",
@@ -560,7 +560,7 @@ main()
 """,
     )
     write(
-        "juliaapp1/readme.md",
+        "juliaapp1/README.md",
         readme(
             "juliaapp1 — Julia 推箱子（教学）",
             "需要 [Julia](https://julialang.org/)。",
@@ -731,7 +731,7 @@ while (true) {
 """,
     )
     write(
-        "groovyapp1/readme.md",
+        "groovyapp1/README.md",
         readme(
             "groovyapp1 — Groovy 推箱子（教学）",
             "需要 [Groovy](https://groovy-lang.org/)（`groovy`）。",
@@ -903,7 +903,7 @@ int main() {
 """,
     )
     write(
-        "cppapp1/readme.md",
+        "cppapp1/README.md",
         readme(
             "cppapp1 — C++ 推箱子（教学）",
             "需要 C++17 编译器（g++ / clang++ / MSVC）。",
@@ -1068,7 +1068,7 @@ while true:
 """,
     )
     write(
-        "nimapp1/readme.md",
+        "nimapp1/README.md",
         readme(
             "nimapp1 — Nim 推箱子（教学）",
             "需要 [Nim](https://nim-lang.org/)（`nim`）。",
@@ -1272,7 +1272,7 @@ void main() {
 """,
     )
     write(
-        "dartapp1/readme.md",
+        "dartapp1/README.md",
         readme(
             "dartapp1 — Dart 推箱子（教学）",
             "需要 [Dart SDK](https://dart.dev/)（与 Flutter 独立，纯 CLI）。",

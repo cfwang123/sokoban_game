@@ -1,6 +1,6 @@
 # awkapp1 — AWK 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 需要 gawk（GNU Awk）。Windows 可用 Git Bash / MSYS 中的 `gawk`。

@@ -1,6 +1,6 @@
 # 推箱子 Android 版 (androidapp1)
 
-> [English](readme.md)
+> [English](README.md)
 
 
 将 [`html_app`](../html_app) 2D 网页推箱子移植为原生 Android 应用。
@@ -91,4 +91,4 @@ copy /Y ..\levels.json app\src\main\assets\levels.json
 ## 参考
 
 - 玩法与交互：[`../html_app`](../html_app)
-- 仓库总览：[`../readme.zh.md`](../readme.zh.md)
+- 仓库总览：[`../README.ZH.md`](../README.ZH.md)

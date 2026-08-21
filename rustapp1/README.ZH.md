@@ -1,6 +1,6 @@
 # rustapp1 — Rust 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 纯标准库：核心 `game.rs` + 终端主循环。可选自行接入 `macroquad` 做图形。

@@ -1,6 +1,6 @@
 # tkinterapp1 — Tkinter 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 Python **标准库** GUI，无需编译、无需 pip。

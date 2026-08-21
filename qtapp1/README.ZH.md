@@ -1,6 +1,6 @@
 # qtapp1 — Qt 推箱子桌面 demo（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 单文件 `QWidget` + `QPainter`。需要 Qt 5.15+ / Qt 6 与 `qmake` 或 Qt Creator。

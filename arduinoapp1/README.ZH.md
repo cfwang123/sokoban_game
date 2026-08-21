@@ -1,6 +1,6 @@
 # arduinoapp1 — Arduino 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 `.ino` + 共享 `game_core` / `mini_levels.h`。默认 **串口 ASCII**；可自行接 OLED。

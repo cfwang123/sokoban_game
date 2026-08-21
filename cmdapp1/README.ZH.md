@@ -1,6 +1,6 @@
 # cmdapp1 — Windows CMD 批处理推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 纯 **`cmd.exe` 批处理**，无需安装额外运行时。

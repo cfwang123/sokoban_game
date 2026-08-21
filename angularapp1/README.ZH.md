@@ -1,6 +1,6 @@
 # angularapp1 — Angular 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 ## 立刻可玩（不编译）

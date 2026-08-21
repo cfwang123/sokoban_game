@@ -1,6 +1,6 @@
 # 推箱子 · GBA 版（gbaapp1）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 将 `html_app` / `fcapp1` 的推箱子移植为 **Game Boy Advance** ROM。  

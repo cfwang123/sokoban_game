@@ -1,6 +1,6 @@
 # mauiapp1 — .NET MAUI 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 跨平台 **.NET MAUI** 教学源码（Android / iOS / Windows / macOS），**不要求在本仓库内编译**。

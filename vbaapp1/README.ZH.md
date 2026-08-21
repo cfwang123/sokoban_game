@@ -1,6 +1,6 @@
 # vbaapp1 — VBA 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 面向 **Excel / Office VBA**（也可用于 Word/Access 等支持 VBA 的宿主）。  

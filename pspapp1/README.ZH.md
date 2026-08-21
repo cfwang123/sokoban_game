@@ -1,6 +1,6 @@
 # 推箱子 · PSP 版（pspapp1）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 将 `html_app` 推箱子移植为 **PlayStation Portable** homebrew。  

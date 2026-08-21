@@ -1,6 +1,6 @@
 # swiftapp1 — Swift 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 需要 Swift toolchain（`swift` / `swiftc`）。与 `iosapp1` 的 SwiftUI 版独立，本目录为纯终端。

@@ -1,6 +1,6 @@
 # unreadableapp1 — Unreadable 推箱子（完整游戏）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 **纯 [Unreadable](https://esolangs.org/wiki/Unreadable)** 实现迷你关卡（与 `brainfuckapp1` / `befungeapp1` 同一政策：玩法在目标语言里，Python 只做解释器）。

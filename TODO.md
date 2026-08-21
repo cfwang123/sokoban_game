@@ -44,7 +44,9 @@
 | `cmdapp1/` | Windows CMD / 批处理（main.cmd） | ✅ |
 | `awkapp1/` | AWK | ✅ |
 | `sqlapp1/` | SQL / SQLite | ✅ |
-| `cppapp1/` | C++ | ✅ |
+| `cppapp1/` | C++（C++17） | ✅ |
+| `cpp26app1/` | C++03～C++26 语法展柜（`-std=c++26`） | ✅ |
+| `cpphardapp1/` | C++ 大量难读语法（反例） | ✅ |
 | `groovyapp1/` | Groovy | ✅ |
 | `vapp1/` | V | ✅ |
 | `odinapp1/` | Odin | ✅ |
@@ -127,13 +129,13 @@ Chef、FALSE、MarioLANG、LOLCODE、Whitespace、Shakespeare、INTERCAL、Malbo
 
 ## 既有（本清单不重复）
 
-Python / PHP / Lua / Node.js / Ruby / Java / C# / Kotlin / Perl / R / Haskell / Rust / Go / Zig 及桌面/主机/扩展等，见根目录 readme。
+Python / PHP / Lua / Node.js / Ruby / Java / C# / Kotlin / Perl / R / Haskell / Rust / Go / Zig 及桌面/主机/扩展等，见根目录 [README.md](README.md) / [README.ZH.md](README.ZH.md)。
 
 ## 说明
 
 - 多数为教学演示，不强制本机安装对应工具链。
 - **政策**：须用**目标语言**实现游戏；禁止用 Python 等宿主另写一套逻辑冒充该语言 demo。实现不了的语言只在 [docs/UNSUPPORTED_LANGS.md](docs/UNSUPPORTED_LANGS.md) 标注，**不建目录**。
-- **Logo / Algol 68 / Modula-2 / Forth / Icon**：方言差异大，以源码 + readme 为准，个别环境可能需微调。
+- **Logo / Algol 68 / Modula-2 / Forth / Icon**：方言差异大，以源码 + README 为准，个别环境可能需微调。
 - 跳过几乎无法在通用桌面运行的语言（如 RPG 仅限 IBM i）。
 - 生成脚本（维护用）：`scripts/_gen_classic_langs.py`、`_gen_classic_langs_b.py`、`_gen_classic_langs_c.py`、`_gen_brainfuck_sokoban.py`
 - **Esolang**：`brainfuckapp1/`（纯 BF）、`jsfuckapp1/`（脚本生成纯 JSFuck `try_move`）；禁止 Python 冒充其它 esolang 空壳。

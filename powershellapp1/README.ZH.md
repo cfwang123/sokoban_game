@@ -1,6 +1,6 @@
 # powershellapp1 — PowerShell 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 纯 **PowerShell** 脚本（Windows PowerShell 5.1+ 或 PowerShell 7 `pwsh`）。

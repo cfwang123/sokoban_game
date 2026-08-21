@@ -1,6 +1,6 @@
 # forthapp1 — Forth 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 需要 [Gforth](https://gforth.org/)（`gforth`）。栈式语言教学版。

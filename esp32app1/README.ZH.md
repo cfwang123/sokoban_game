@@ -1,6 +1,6 @@
 # esp32app1 — ESP32 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 ESP-IDF 风格：`app_main` + FreeRTOS 轮询 + `game_core` + `mini_levels.h`。  

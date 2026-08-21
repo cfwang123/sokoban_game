@@ -444,7 +444,7 @@ def write_arch(dir_name, title, tools, body_file, body, extra):
 
 键位（C 主机）：WASD / z / r / q。
 """
-    (d / "readme.md").write_text(readme, encoding="utf-8")
+    (d / "README.md").write_text(readme, encoding="utf-8")
     (d / "CHANGELOG.md").write_text(
         f"""# Changelog
 

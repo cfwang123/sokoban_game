@@ -1,6 +1,6 @@
 # luaapp1 — Lua 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 纯标准库终端版。需要 [Lua](https://www.lua.org/) 5.1+。

@@ -1,6 +1,6 @@
 # caomangapp1 — 草蟒完整推箱子
 
-> [English](readme.md)
+> [English](README.md)
 
 
 **草蟒**：中文关键字 Python。本目录**游戏逻辑全部用中文关键字**写在 `.草蟒` 源文件中；`main.py` 仅为关键字翻译运行时（类似编译器前端），**不是**另一套 Python 游戏实现。

@@ -1,6 +1,6 @@
 # pygameapp1 — Pygame 推箱子（仿 html_app 2D）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 用 [Pygame](https://www.pygame.org/) 复刻网页 2D 版（`html_app/`）的画面与操作。
@@ -45,8 +45,8 @@ pygameapp1/
 ├── main.py           # 窗口、输入、绘制
 ├── game.py           # 状态机 + 寻路
 ├── requirements.txt
-├── readme.zh.md
-└── readme.md
+├── README.ZH.md
+└── README.md
 ```
 
 对照：

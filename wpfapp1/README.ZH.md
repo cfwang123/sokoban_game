@@ -1,6 +1,6 @@
 # wpfapp1 — WPF 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 C# **WPF** 教学源码（XAML + code-behind），**不要求在本仓库内编译**。

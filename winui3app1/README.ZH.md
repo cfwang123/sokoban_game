@@ -1,6 +1,6 @@
 # winui3app1 — WinUI 3 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 Windows **WinUI 3 / Windows App SDK** 教学源码，**不要求在本仓库内编译**。

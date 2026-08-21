@@ -1,6 +1,6 @@
 # cppapp1 — C++ 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 需要 C++17 编译器（g++ / clang++ / MSVC）。

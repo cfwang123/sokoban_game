@@ -1,6 +1,6 @@
 # raylibapp1 — raylib 推箱子桌面 demo（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 C + [raylib](https://www.raylib.com/) 窗口。配色对齐 `html_app`。

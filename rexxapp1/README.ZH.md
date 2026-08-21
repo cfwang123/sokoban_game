@@ -1,6 +1,6 @@
 # rexxapp1 — REXX 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 需要 [Regina REXX](https://regina-rexx.sourceforge.io/) 或 ooRexx（`rexx`）。

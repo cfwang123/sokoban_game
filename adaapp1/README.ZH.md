@@ -1,6 +1,6 @@
 # adaapp1 — Ada 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 需要 [GNAT](https://www.adacore.com/download)（`gnatmake` / GCC Ada）。

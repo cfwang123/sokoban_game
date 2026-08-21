@@ -1,6 +1,6 @@
 # algolapp1 — Algol 68 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 需要 [Algol 68 Genie](https://jmvdveer.home.xs4all.nl/en.algol-68-genie.html)（`a68g`）。语法可能因实现略有差异。

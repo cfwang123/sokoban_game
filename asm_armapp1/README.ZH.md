@@ -1,6 +1,6 @@
 # asm_armapp1 — ARM32 (AArch32 ARM) 推箱子汇编教学
 
-> [English](readme.md)
+> [English](README.md)
 
 
 **完整 `sk_try_move` 已实现**，语义对齐 [../asm_common/game.c](../asm_common/game.c)。

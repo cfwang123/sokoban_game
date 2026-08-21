@@ -1,6 +1,6 @@
 # bingzhengzhengapp1 — 丙正正完整推箱子
 
-> [English](readme.md)
+> [English](README.md)
 
 
 **丙正正**：中文关键字 C++（预处理宏）。**游戏逻辑全部为中文关键字源码**（`main.cpp`），无 Python 代替。

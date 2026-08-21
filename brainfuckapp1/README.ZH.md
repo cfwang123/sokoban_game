@@ -1,6 +1,6 @@
 # brainfuckapp1 — Brainfuck 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 纯 **Brainfuck** 实现的迷你关卡终端版；仓库内附带 Python 解释器，无需另装 `bf` 工具即可运行。
@@ -20,8 +20,8 @@ python -X utf8 main.py
 |------|------|
 | `sokoban.bf` | Brainfuck 源码（由生成器展开；约 100 万条指令） |
 | `main.py` | 小型 BF 解释器 + 行缓冲输入 |
-| `readme.zh.md` | 本说明（中文） |
-| `readme.md` | English |
+| `README.ZH.md` | 本说明（中文） |
+| `README.md` | English |
 
 重新生成 `sokoban.bf`（维护用）：
 

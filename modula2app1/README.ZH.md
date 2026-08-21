@@ -1,6 +1,6 @@
 # modula2app1 — Modula-2 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 需要 [GNU Modula-2](https://www.nongnu.org/gm2/)（`gm2`，GCC 插件）。API 按 GM2 方言，其它编译器可能需微调。

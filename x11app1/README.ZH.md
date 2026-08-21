@@ -1,6 +1,6 @@
 # x11app1 — X11 / Xlib 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 Linux/Unix **X11 原生窗口**教学源码，**不要求在本仓库内编译**。

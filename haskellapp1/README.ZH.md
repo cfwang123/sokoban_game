@@ -1,6 +1,6 @@
 # haskellapp1 — Haskell 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 需要 [GHC](https://www.haskell.org/ghc/)。纯标准库 + `containers`（GHC 自带）。

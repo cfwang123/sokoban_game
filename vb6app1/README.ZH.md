@@ -1,6 +1,6 @@
 # vb6app1 — Visual Basic 6.0 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 经典 **VB6** Standard EXE（`Sub Main`，无窗体）。

@@ -1,6 +1,6 @@
 # vscodeext1 — VS Code 推箱子扩展（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 命令面板运行 **「Sokoban: Open Game」**，在 Webview 中游玩。

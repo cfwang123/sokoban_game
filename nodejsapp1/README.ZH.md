@@ -1,6 +1,6 @@
 # nodejsapp1 — Node.js 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 纯标准库终端版：`game.js` + `main.js`。需要 Node.js 14+。

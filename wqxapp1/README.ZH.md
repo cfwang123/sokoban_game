@@ -1,6 +1,6 @@
 # 推箱子 · 步步高文曲星 (wqxapp1) — 教学工程
 
-> [English](readme.md)
+> [English](README.md)
 
 
 在 **步步高文曲星** 类电子词典上运行的推箱子 **C 语言工程演示**（分层 HAL + 玩法核心）。
@@ -36,8 +36,8 @@
 
 ```
 wqxapp1/
-├── readme.zh.md
-├── readme.md
+├── README.ZH.md
+├── README.md
 ├── CHANGELOG.md
 ├── Makefile              # 教学：list / 可选 host 语法检查
 ├── docs/DEVELOPMENT.md

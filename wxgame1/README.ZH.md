@@ -1,6 +1,6 @@
 # wxgame1 — 微信小游戏推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 Canvas 2D + 触摸虚拟键 + 点击寻路。用**微信开发者工具**打开本目录（appid 测试号）。

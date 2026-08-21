@@ -1,6 +1,6 @@
 # unityapp1 — Unity 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 C# 逻辑脚本 + `GameController`（Gizmos/OnGUI 示意）。**不包含** `Library/`、完整 `.unity` 场景二进制，避免仓库膨胀。

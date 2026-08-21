@@ -1,6 +1,6 @@
 # befungeapp1 — Befunge-93 可玩推箱子
 
-> [English](readme.md)
+> [English](README.md)
 
 
 **游戏逻辑 100% 为 Befunge-93**（`sokoban.bf`）。  

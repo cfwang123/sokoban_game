@@ -1,6 +1,6 @@
 # reactapp1 — React 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 **无需 npm / 无需编译**：浏览器打开即可（CDN React 18 + Babel standalone）。

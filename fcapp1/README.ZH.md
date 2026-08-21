@@ -1,6 +1,6 @@
 # FC 推箱子（fcapp1）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 将 `html_app` 的推箱子玩法移植到 **NES/FC**，工程结构参考 `game/fc_mario`。

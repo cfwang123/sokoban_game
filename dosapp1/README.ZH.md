@@ -1,6 +1,6 @@
 # dosapp1 — DOS 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 文本模式 ASCII（默认可移植）；DJGPP 下可加 `-DUSE_MODE13` 写 0xA000 显存。

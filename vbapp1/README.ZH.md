@@ -1,6 +1,6 @@
 # vbapp1 — Visual Basic .NET 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 需要 [.NET SDK](https://dotnet.microsoft.com/)（`dotnet`）。与 `csharpapp1` 同生态的 VB.NET 终端版。

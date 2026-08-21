@@ -1,6 +1,6 @@
 # pythonapp1 — Python 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 纯标准库终端版：核心 `game.py` + 主循环 `main.py`。

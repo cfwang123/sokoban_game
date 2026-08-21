@@ -1,6 +1,6 @@
 # asm_wasmapp1 — WebAssembly（WAT）推箱子教学
 
-> [English](readme.md)
+> [English](README.md)
 
 
 **WebAssembly Text Format** 可视为一种“汇编”：线性内存 + 导出函数。

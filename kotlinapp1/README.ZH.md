@@ -1,6 +1,6 @@
 # kotlinapp1 — Kotlin 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 标准库终端版。需要 Kotlin 编译器（`kotlinc`）或 IDEA。

@@ -1,6 +1,6 @@
 # sdlapp1 — SDL2 推箱子桌面 demo（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 轻量 C + SDL2 窗口。配色对齐 `html_app`。同思路可用 [SFML](https://www.sfml-dev.org/) 重写（C++ `sf::RenderWindow`）。

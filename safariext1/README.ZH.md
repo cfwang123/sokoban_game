@@ -1,6 +1,6 @@
 # safariext1 — Safari 扩展推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 **Safari Web Extension** 资源（Manifest V3 popup），玩法同 `chromeext1`。

@@ -1,6 +1,6 @@
 # pyqtapp1 — PyQt 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 教学用 PyQt 桌面版源码，**不强制在本仓库配置 Qt 工具链**。

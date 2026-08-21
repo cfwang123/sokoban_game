@@ -1,6 +1,6 @@
 # dlangapp1 — D 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 需要 [DMD](https://dlang.org/) 或 LDC（`dmd` / `ldc2`）。

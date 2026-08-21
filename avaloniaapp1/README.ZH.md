@@ -1,6 +1,6 @@
 # avaloniaapp1 — Avalonia 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 跨平台 **Avalonia UI** 教学源码（Windows / Linux / macOS），**不要求在本仓库内编译**。

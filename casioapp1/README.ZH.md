@@ -1,6 +1,6 @@
 # casioapp1 — Casio 图形计算器推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 抽象 **128×64** 点阵与 `get_key`，演示如何把同一 `game_core` 接到计算器 Add-In。

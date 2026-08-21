@@ -1,6 +1,6 @@
 # chromeext1 — Chrome 扩展推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 Manifest V3 · popup 画布 · `chrome.storage` 记关卡。

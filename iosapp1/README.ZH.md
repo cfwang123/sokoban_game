@@ -1,6 +1,6 @@
 # 推箱子 iOS 版 (iosapp1) — 教学演示
 
-> [English](readme.md)
+> [English](README.md)
 
 
 将 [`html_app`](../html_app) / [`androidapp1`](../androidapp1) 的推箱子逻辑用 **SwiftUI** 写成 iOS 应用源码，用于**演示 iOS 应用如何组织与开发**。
@@ -63,8 +63,8 @@
 
 ```
 iosapp1/
-├── readme.zh.md              # 本说明（中文）
-├── readme.md                 # English
+├── README.ZH.md              # 本说明（中文）
+├── README.md                 # English
 ├── CHANGELOG.md
 ├── .gitignore
 └── Sokoban/

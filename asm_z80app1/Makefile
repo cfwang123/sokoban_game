@@ -18,7 +18,7 @@ test: $(COMMON)/test_try_move.c $(COMMON)/game.c
 # Override ASM_SRC / ASM_CMD in ISA-specific notes below if needed.
 # Example (x64 gas): make asm ASM_SRC=try_move_x64.S
 asm:
-	@echo "See readme.md for assembling sk_try_move and linking with -DSK_USE_ASM_TRY_MOVE"
+	@echo "See README.md for assembling sk_try_move and linking with -DSK_USE_ASM_TRY_MOVE"
 
 clean:
 	rm -f sokoban test_try_move *.o *.exe sokoban_asm test_asm

@@ -1,6 +1,6 @@
 # 推箱子 Nokia N81 版 (n81app1) — 教学演示
 
-> [English](readme.md)
+> [English](README.md)
 
 
 面向 **Nokia N81**（Symbian S60 3rd Edition FP1）的 **Java ME / MIDP 2.0** 推箱子源码，用于**演示功能机 Java 应用如何组织与开发**。
@@ -32,8 +32,8 @@ N81 即属于这一代：**CLDC 1.1 + MIDP 2.0**。
 
 ```
 n81app1/
-├── readme.zh.md
-├── readme.md
+├── README.ZH.md
+├── README.md
 ├── CHANGELOG.md
 ├── .gitignore
 ├── bin/

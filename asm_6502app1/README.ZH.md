@@ -1,6 +1,6 @@
 # asm_6502app1 — 6502 / 65C02 推箱子汇编教学
 
-> [English](readme.md)
+> [English](README.md)
 
 
 **完整 `sk_try_move` 已实现**，语义对齐 [../asm_common/game.c](../asm_common/game.c)。

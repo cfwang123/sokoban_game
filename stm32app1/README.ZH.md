@@ -1,6 +1,6 @@
 # stm32app1 — STM32 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 CubeMX 可合并的 `Core/Src` + `Core/Inc` 示意：裸机 `while(1)` 轮询。

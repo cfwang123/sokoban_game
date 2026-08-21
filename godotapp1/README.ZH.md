@@ -1,6 +1,6 @@
 # godotapp1 — Godot 推箱子桌面 demo（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 [Godot 4.x](https://godotengine.org/) + GDScript。用编辑器打开本目录即可运行。

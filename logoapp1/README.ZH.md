@@ -1,6 +1,6 @@
 # logoapp1 — Logo 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 需要 UCBLogo / FMSLogo 等（`logo` / `ucblogo`）。方言差异较大，必要时按本地 Logo 微调。

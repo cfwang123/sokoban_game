@@ -1,6 +1,6 @@
 # basicapp1 — FreeBASIC 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 需要 [FreeBASIC](https://www.freebasic.net/)（`fbc`）。经典 BASIC 风格教学版。

@@ -1,6 +1,6 @@
 # firefoxext1 — Firefox 扩展推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 WebExtensions · Manifest V3（gecko id 见 `manifest.json`）。

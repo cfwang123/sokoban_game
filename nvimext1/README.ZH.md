@@ -1,6 +1,6 @@
 # nvimext1 — Neovim Lua 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 纯 Lua 实现：`:Sokoban` 打开 tab + buffer，hjkl 游玩。

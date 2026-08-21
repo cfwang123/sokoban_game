@@ -1,6 +1,6 @@
 # vimext1 — Vim 推箱子插件（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 Vimscript：`:Sokoban` 打开专用 buffer，hjkl 移动。

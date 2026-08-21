@@ -1,6 +1,6 @@
 Attribute VB_Name = "Game"
 ' 推箱子核心逻辑（VBA 教学，Excel / 通用 VBA 宿主）
-' 用法见 main.bas / readme.md
+' 用法见 main.bas / README.md
 
 Option Explicit
 

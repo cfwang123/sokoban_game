@@ -1,6 +1,6 @@
 # gbapp1 — Game Boy 推箱子（教学）
 
-> [English](readme.md)
+> [English](README.md)
 
 
 **160×144 · 4 灰阶**。逻辑用共享 `game_core`；显示/按键经 `gb_hw.h` 抽象。
